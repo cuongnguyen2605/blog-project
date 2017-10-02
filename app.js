@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 // var routers = require('./routes/router');
 
 const routerArticle = require('./routes/routerArticles');
+const routerCredential = require('./routes/routerCredentials');
 
 
 var app = express();
@@ -31,6 +32,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', router);
 
 app.use('/articles', routerArticle);
+
+app.use('/admin/credentials', routerCredential);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
