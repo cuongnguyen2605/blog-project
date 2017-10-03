@@ -4,6 +4,7 @@ exports.up = function(knex) {
         table.increments("profile_id").primary();
         table.string("fullname");
         table.string("username");
+        table.integer("user_id");
         table.string("email");
         table.string("phone");
         table.string("address");
