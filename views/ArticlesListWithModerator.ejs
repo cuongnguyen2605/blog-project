@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Articles List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+<div class="container" align="center">
+    <h1 align="center">Articles List</h1>
+    <a href="/articles/createnew" style="margin-right: 10%; float: right">
+        <button type="button" class="btn btn-outline-primary">Create new Article</button>
+    </a>
+    <br><br>
+    <table class="table table-hover" style="width: 80% ;" align="center">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Created Date</th>
+            <th>Status</th>
+            <th colspan="3"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% articles.forEach(function(article) { %>
+        <tr>
+            <td><%= article.article_id %></td>
+            <td><a href="/articles/detail/<%= article.article_id %>"><%= article.title %></a></td>
+            <td><%= article.fullname %></td>
+            <td><%= article.create_at.toDateString() %></td>
+            <td><%= article.status %></td>
+
+            <% if (article.status == "waiting") { %>
+            <td><a href="/articles/accept/<%= article.article_id %>">
+                    <button type="button" class="btn btn-outline-warning">Accept</button>
+                </a></td>
+            <td><a href="/articles/delete/<%= article.article_id %>">
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                </a></td>
+            <% } %>
+            <% if (article.status == "accepted") { %>
+            <td><a href="/articles/reject/<%= article.article_id %>">
+                    <button type="button" class="btn btn-outline-warning">Reject</button>
+                </a></td>
+            <td><a href="/articles/delete/<%= article.article_id %>">
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                </a></td>
+            <% } %>
+            <% if (article.status == "rejected") { %>
+            <td colspan="2"><a href="/articles/unreject/<%= article.article_id %>">
+                    <button type="button" class="btn btn-outline-warning">Unreject</button>
+                </a></td>
+            <% } %>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

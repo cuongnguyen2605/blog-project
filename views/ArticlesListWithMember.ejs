@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Articles List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+<div class="row" style="width:90%; margin-right: auto; margin-left:auto">
+    <div class="container col">
+        <h1 align="center">Articles List</h1>
+        <br>
+        <div class="list-group">
+            <% if (articles[0]==null) { %>
+            <h3>Don't have any article!</h3>
+            <% } else { %>
+            <% articles.forEach(function(article) { %>
+            <a href="/articles/detail/<%= article.article_id %>"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><%= article.title %></h5>
+                </div>
+                <p></p>
+                <div class="d-flex w-100 justify-content-between">
+                    <small>Author: <%= article.fullname %></small>
+                    <small>Created Date: <%= article.create_at.toDateString() %></small>
+                </div>
+            </a>
+            <% }); } %>
+        </div>
+    </div>
+
+    <div class="col-xl-3" style="margin-top: 100px">
+        <a href="/articles/createnew">
+            <button type="button" class="btn btn-outline-primary">Create new Article</button>
+        </a>
+        <br><br>
+
+        <form action="/articles/search" method="post">
+            <div class="input-group">
+                <input type="text" name="title" id="title" placeholder="Search by title" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="submit">Go!</button>
+                </span>
+            </div>
+        </form>
+        <br>
+        <form action="/articles/search" method="post">
+            <div class="input-group">
+                <input type="text" name="author" id="author" placeholder="Search by author" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="submit">Go!</button>
+                </span>
+            </div>
+        </form>
+        <br>
+        <h4>Search by ...</h4>
+        <form action="/articles/search" method="post">
+            <div class="input-group">
+                <input type="date" name="date" id="date" placeholder="Search by author" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="submit">Go!</button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

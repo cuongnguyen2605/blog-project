@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create new Article</title>
+
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({selector: 'textarea'});</script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+<div align="center">
+    <h1>Create new article</h1>
+    <div align="center" style="width: 70%">
+        <form action="/articles/savenew" method="post">
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon1">Title</span>
+                <input type="text" class="form-control" aria-describedby="sizing-addon1"
+                       name="title" placeholder="Input new article title">
+            </div>
+            <br>
+            <textarea name="content" id="" cols="30" rows="10"></textarea>
+            <br>
+
+            <input type="submit" value="Save" class="btn btn-primary btn-lg">
+            <input type="reset" value="Clear" class="btn btn-secondary btn-lg">
+        </form>
+    </div>
+</div>
+</body>
+</html>
