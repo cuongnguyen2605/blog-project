@@ -35,7 +35,6 @@ app.use(express.static(path.join(__dirname, "public")));
 // app.use('/', router);
 
 app.use('/articles', routerArticle);
-
 app.use('/admin/credentials', routerCredential);
 
 // catch 404 and forward to error handler
