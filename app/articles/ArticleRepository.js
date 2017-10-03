@@ -1,4 +1,4 @@
-const mysqlConnection = require('../../database/knexfile');
+const mysqlConnection = require('../../database/mysql-connection');
 const articles = require('./Articles');
 
 class ArticleRepository {
@@ -7,15 +7,18 @@ class ArticleRepository {
     }
 
     getAllArticles() {
-        return mysqlConnection.select('articles.*', 'profiles.fullname').table('articles').innerJoin('profiles', {'profiles.profile_id': 'articles.author'});
+        return mysqlConnection.select('articles.*', 'profiles.fullname').table('articles')
+            .innerJoin('profiles', {'profiles.profile_id': 'articles.author'});
     };
 
     getArticle(articleId) {
-        return mysqlConnection('articles').where('article_id', '=', articleId);
+        return mysqlConnection.select('articles.*', 'profiles.fullname').table('articles')
+            .innerJoin('profiles', {'profiles.profile_id': 'articles.author'})
+            .where('article_id', '=', articleId);
     };
 
     articleCreating(articleInfor) {
-        return mysqlConnection('articles').insert(articleInfor);
+        return mysqlConnection('articles').insert(articleInfor).returning('article_id');
     }
 
     articleEditing(articleInfor) {

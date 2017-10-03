@@ -1,15 +1,14 @@
-const express = require('express');
 const router = require('express').Router();
 
 const articlesMiddleware = require('../http/middlewares/articlesDataConverter');
 const articlesValidator = require('../http/middlewares/articleValidator');
 const articlesController = require('../http/controllers/articleController');
+const articleStatusConverter = require('../http/middlewares/articleStatusConverter');
+const moderatorRequireMiddleware = require('../http/middlewares/moderatorRequireMiddleware');
 // const articleSearchingController = require('../http/controllers/SearchingArticleController');
 // const aritcleSearchingDataFilter = require('../middleware/ArticleSearchingDataFilter');
 
 router.get('/', articlesController.getAllArticlesWithMember);
-
-router.get('/list', articlesController.getAllArticlesWithModerator);
 
 router.get('/detail/:articleId', articlesController.articleDetail);
 
@@ -24,13 +23,15 @@ router.get('/edit/:articleId', articlesController.getArticle);
 router.post('/savechanges/:articleId', articlesValidator.articleDataRequired, articlesMiddleware.articleConverterWithEditing, articlesController.articleEditing);
 
 //Accept, Reject Or Delete a Artilcle
-router.get('/accept/:articleId', articlesController.articleAccepting);
+router.get('/list', moderatorRequireMiddleware, articlesController.getAllArticlesWithModerator);
 
-router.get('/reject/:articleId', articlesController.articleRejecting);
+router.get('/accept/:articleId', moderatorRequireMiddleware, articleStatusConverter.acceptedArticle, articlesController.statusChanging);
 
-router.get('/unreject/:articleId', articlesController.articleUnrejecting);
+router.get('/reject/:articleId', moderatorRequireMiddleware, articleStatusConverter.rejectedArticle, articlesController.statusChanging);
 
-router.get('/delete/:articleId', articlesController.articleDeleting);
+router.get('/unreject/:articleId', moderatorRequireMiddleware, articleStatusConverter.waitingArticle, articlesController.statusChanging);
+
+router.get('/delete/:articleId', moderatorRequireMiddleware, articlesController.articleDeleting);
 
 //Search
 

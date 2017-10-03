@@ -1,7 +1,8 @@
 module.exports.newArticleConverter = (req, res, next) => {
     req.article = {
         title: req.body.title,
-        author: 2,
+        author: 3,
+        // author: session(user_id)
         create_at: new Date(),
         content: req.body.content,
         status: "waiting"
