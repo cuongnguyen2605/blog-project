@@ -1,11 +1,11 @@
-const userStatusChanger = require('../../app/credentials/UserStatusChangingService');
+const userStatusChanger = require('../../app/credentials/user-status-changing-service');
 
 let UserStatusChangingService = new userStatusChanger();
 
 module.exports.getAllCredentials = (req, res, next) => {
     UserStatusChangingService.getAllCredentials()
         .then((credentials) => {
-            res.render(__dirname + '/../../views/CredentialList.ejs', {credentials: credentials})
+            res.render(__dirname + '/../../views/credentials-list.ejs', {credentials: credentials})
         })
         .catch(next);
 }

@@ -1,10 +1,10 @@
 const router = require('express').Router();
 
-const articlesMiddleware = require('../http/middlewares/articlesDataConverter');
-const articlesValidator = require('../http/middlewares/articleValidator');
-const articlesController = require('../http/controllers/articleController');
-const articleStatusConverter = require('../http/middlewares/articleStatusConverter');
-const moderatorRequireMiddleware = require('../http/middlewares/moderatorRequireMiddleware');
+const articlesMiddleware = require('../http/middlewares/article-data-converter');
+const articlesValidator = require('../http/middlewares/article-validator');
+const articlesController = require('../http/controllers/article-controller');
+const articleStatusConverter = require('../http/middlewares/article-status-converter');
+const moderatorRequireMiddleware = require('../http/middlewares/moderator-require-middleware');
 // const articleSearchingController = require('../http/controllers/SearchingArticleController');
 // const aritcleSearchingDataFilter = require('../middleware/ArticleSearchingDataFilter');
 
@@ -13,7 +13,7 @@ router.get('/', articlesController.getAllArticlesWithMember);
 router.get('/detail/:articleId', articlesController.articleDetail);
 
 router.get('/createnew', (req, res) => {
-    return res.render('ArticleCreator.ejs');
+    return res.render('article-creator.ejs');
 });
 
 router.post('/savenew', articlesValidator.articleDataRequired, articlesMiddleware.newArticleConverter, articlesController.articleCreating);

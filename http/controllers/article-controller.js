@@ -1,12 +1,13 @@
-const articles = require('../../app/articles/Articles');
-const articleRepo = require('../../app/articles/ArticleRepository');
+const articles = require('../../app/articles/article');
+const articleRepo = require('../../app/articles/article-repository');
 
 let articleRepository = new articleRepo();
 
 module.exports.getAllArticlesWithMember = (req, res, next) => {
     articleRepository.getAllArticles()
         .then((articles) => {
-            res.render(__dirname + '/../../views/ArticlesListWithMember.ejs', {articles: articles});
+            console.log(articles);
+            res.render(__dirname + '/../../views/articles-list-with-member.ejs', {articles: articles});
         })
         .catch(next);
 }
@@ -14,7 +15,7 @@ module.exports.getAllArticlesWithMember = (req, res, next) => {
 module.exports.getAllArticlesWithModerator = (req, res, next) => {
     articleRepository.getAllArticles()
         .then((articles) => {
-            res.render(__dirname + '/../../views/ArticlesListWithModerator.ejs', {articles: articles});
+            res.render(__dirname + '/../../views/articles-list-with-moderator.ejs', {articles: articles});
         })
         .catch(next);
 }
@@ -23,7 +24,7 @@ module.exports.articleDetail = (req, res, next) => {
 
     articleRepository.getArticle(req.params.articleId)
         .then((article) => {
-            res.render(__dirname + '/../../views/ArticleDetail.ejs', {article: article});
+            res.render(__dirname + '/../../views/article-detail.ejs', {article: article});
         })
         .catch(next);
 }
@@ -38,7 +39,7 @@ module.exports.articleCreating = (req, res) => {
 module.exports.getArticle = (req, res, next) => {
     articleRepository.getArticle(req.params.articleId)
         .then((article) => {
-            res.render(__dirname + '/../../views/ArticleEditor.ejs', {article: article});
+            res.render(__dirname + '/../../views/article-editor.ejs', {article: article});
         })
         .catch(next);
 }

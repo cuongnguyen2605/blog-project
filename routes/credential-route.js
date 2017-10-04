@@ -1,8 +1,8 @@
 const express = require('express');
 const router = require('express').Router();
-const credentialsController = require('../http/controllers/credentialController');
-const roleCredentialConverter = require('../http/middlewares/roleCredentialConverter');
-const adminRequireMiddleware = require('../http/middlewares/adminRequireMiddleware');
+const credentialsController = require('../http/controllers/credential-controller');
+const roleCredentialConverter = require('../http/middlewares/role-credential-convertor');
+const adminRequireMiddleware = require('../http/middlewares/admin-require-middleware');
 
 router.get('/', credentialsController.getAllCredentials);
 
