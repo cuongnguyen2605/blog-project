@@ -4,16 +4,15 @@ const articleRepo = require('../../app/articles/article-repository');
 let articleRepository = new articleRepo();
 
 module.exports.getAllArticlesWithMember = (req, res, next) => {
-    articleRepository.getAllArticles()
+    articleRepository.getAllArticlesForMember()
         .then((articles) => {
-            console.log(articles);
             res.render(__dirname + '/../../views/articles-list-with-member.ejs', {articles: articles});
         })
         .catch(next);
 }
 
 module.exports.getAllArticlesWithModerator = (req, res, next) => {
-    articleRepository.getAllArticles()
+    articleRepository.getAllArticlesForModerator()
         .then((articles) => {
             res.render(__dirname + '/../../views/articles-list-with-moderator.ejs', {articles: articles});
         })
