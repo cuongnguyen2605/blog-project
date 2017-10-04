@@ -15,11 +15,16 @@
 <div class="card" style="width: 80%; margin-right: auto; margin-left: auto">
     <div class="card-body">
         <% article.forEach(function (article) { %>
+        <% // if(session(role)=='member') {   %>
+        <a href="/articles" style="float: right">ck</a>
+        <% // } else {  %>
+        <a href="/articles/list" style="float: right">Ba</a>
+        <% //}   %>
         <h2><%= article.title %></h2>
-        <small>Author: <%= article.fullname %></small>
         <a href="/articles/edit/<%= article.article_id %>" style="margin-right: 10%; float: right">
             <button type="button" class="btn btn-outline-primary">Edit</button>
         </a>
+        <small>Author: <%= article.fullname %></small>
         <br>
         <small>Created Date: <%= article.create_at.toDateString() %></small>
         <br><br>
