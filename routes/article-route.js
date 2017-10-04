@@ -5,8 +5,8 @@ const articlesValidator = require('../http/middlewares/article-validator');
 const articlesController = require('../http/controllers/article-controller');
 const articleStatusConverter = require('../http/middlewares/article-status-converter');
 const moderatorRequireMiddleware = require('../http/middlewares/moderator-require-middleware');
-// const articleSearchingController = require('../http/controllers/SearchingArticleController');
-// const aritcleSearchingDataFilter = require('../middleware/ArticleSearchingDataFilter');
+const articleSearchingController = require('../http/controllers/searching-article-controller');
+const aritcleSearchingDataFilter = require('../http/middlewares/article-searching-data-filter');
 
 router.get('/', articlesController.getAllArticlesWithMember);
 
@@ -35,6 +35,6 @@ router.get('/delete/:articleId', moderatorRequireMiddleware, articlesController.
 
 //Search
 
-// router.post('/search', aritcleSearchingDataFilter.searchingDataFilter, articleSearchingController.search);
+router.post('/search', aritcleSearchingDataFilter.searchingDataFilter, articleSearchingController.search);
 
 module.exports = router;
