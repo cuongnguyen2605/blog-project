@@ -19,6 +19,7 @@
             <h3>Don't have any article!</h3>
             <% } else { %>
             <% articles.forEach(function(article) { %>
+            <% if(article.status === "accepted") {%>
             <a href="/articles/detail/<%= article.article_id %>"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
@@ -30,7 +31,7 @@
                     <small>Created Date: <%= article.create_at.toDateString() %></small>
                 </div>
             </a>
-            <% }); } %>
+            <% } }); } %>
         </div>
     </div>
 

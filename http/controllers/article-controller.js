@@ -20,7 +20,6 @@ module.exports.getAllArticlesWithModerator = (req, res, next) => {
 };
 
 module.exports.articleDetail = (req, res, next) => {
-
     articleRepository.getArticle(req.params.articleId)
         .then((article) => {
             res.render('article-detail', {article: article});
@@ -38,7 +37,7 @@ module.exports.articleCreating = (req, res) => {
 module.exports.getArticle = (req, res, next) => {
     articleRepository.getArticle(req.params.articleId)
         .then((article) => {
-            res.render(__dirname + '/../../views/article-editor.ejs', {article: article});
+            res.render('article-editor', {article: article});
         })
         .catch(next);
 };

@@ -2,9 +2,10 @@ const knex = require('../../database/mysql-connection');
 
 class ArticleSearchingByTime {
     articleSearching(condition) {
-        return knex.select('articles.*', 'profiles.fullname')
-            .table('articles').innerJoin('profiles', {'profiles.profile_id': 'articles.author'})
-            .where('articles.created', 'like', '%' + condition + '%');
+        return knex.select('articles.*', 'credentials.username').table('articles')
+            .leftJoin('credentials', {'credentials.user_id': 'articles.author'})
+            .where('status', '=', 'accepted')
+            .andWhere('articles.create_at', 'like', '%' + condition + '%');
     }
 
     // articleSearchingByYear (condition) {
