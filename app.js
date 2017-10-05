@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 // const flash = require('connect-flash');
 const router = require('./routes/router');
-
+const session = require('express-session');
 const app = express();
 
 // view engine setup
@@ -22,6 +22,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+}))
 // use router
 app.use(router);
 

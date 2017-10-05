@@ -6,7 +6,9 @@ let articleRepository = new articleRepo();
 module.exports.getAllArticlesWithMember = (req, res, next) => {
     articleRepository.getAllArticlesForMember()
         .then((articles) => {
-            res.render(__dirname + '/../../views/articles-list-with-member.ejs', {articles: articles});
+            res.render(__dirname + '/../../views/articles-list-with-member.ejs', {articles: articles
+                                                                                ,username:req.session.username
+                                                                                , role: req.session.role});
         })
         .catch(next);
 }
@@ -14,7 +16,9 @@ module.exports.getAllArticlesWithMember = (req, res, next) => {
 module.exports.getAllArticlesWithModerator = (req, res, next) => {
     articleRepository.getAllArticlesForModerator()
         .then((articles) => {
-            res.render(__dirname + '/../../views/articles-list-with-moderator.ejs', {articles: articles});
+            res.render(__dirname + '/../../views/articles-list-with-moderator.ejs', {articles: articles
+                                                                                    ,username:req.session.username
+                                                                                    , role: req.session.role});
         })
         .catch(next);
 }
@@ -23,7 +27,9 @@ module.exports.articleDetail = (req, res, next) => {
 
     articleRepository.getArticle(req.params.articleId)
         .then((article) => {
-            res.render(__dirname + '/../../views/article-detail.ejs', {article: article});
+            res.render(__dirname + '/../../views/article-detail.ejs', {article: article
+                                                                        , username: req.session.username
+                                                                        , role: req.session.role});
         })
         .catch(next);
 }

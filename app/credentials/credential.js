@@ -1,7 +1,7 @@
 class Credentials {
-    constructor(username, password) {
+    constructor(username, role) {
         this.username = username;
-        this.password = password;
+        this.role = role;
     }
 
     setId(id) {
@@ -18,6 +18,9 @@ class Credentials {
 
     getPassword() {
         return this.password;
+    }
+    getRole(){
+        return this.role;
     }
 }
 
