@@ -6,19 +6,13 @@ class Credentials {
 
     setId(id) {
         this.id = id;
+        return this;
     }
 
     setRole(role) {
         this.role = role;
-    }
-
-    getUsername() {
-        return this.username;
-    }
-
-    getPassword() {
-        return this.password;
+        return this;
     }
 }
 
-module.exports = Credentials;
+module.exports = Credentials;s

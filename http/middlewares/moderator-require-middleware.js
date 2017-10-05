@@ -1,9 +1,6 @@
 module.exports = (req, res, next) => {
-    // if(logined && role== 'moderator'){
-    //     next();
-    // }
-    // else {
-    //     res.redirect('/login');
-    // }
+    if (req.session.role !== "moderators") {
+        res.redirect('login');
+    }
     next();
 };

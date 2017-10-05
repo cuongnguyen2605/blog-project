@@ -5,7 +5,7 @@ let UserStatusChangingService = new userStatusChanger();
 module.exports.getAllCredentials = (req, res, next) => {
     UserStatusChangingService.getAllCredentials()
         .then((credentials) => {
-            res.render(__dirname + '/../../views/credentials-list.ejs', {credentials: credentials})
+            res.render('credentials-list', {credentials: credentials})
         })
         .catch(next);
 }

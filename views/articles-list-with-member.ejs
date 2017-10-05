@@ -15,7 +15,7 @@
         <h1 align="center">Articles List</h1>
         <br>
         <div class="list-group">
-            <% if (articles[0]==null) { %>
+            <% if (articles[0] == null) { %>
             <h3>Don't have any article!</h3>
             <% } else { %>
             <% articles.forEach(function(article) { %>
@@ -26,7 +26,7 @@
                 </div>
                 <p></p>
                 <div class="d-flex w-100 justify-content-between">
-                    <small>Author: <%= article.fullname %></small>
+                    <small>Author: <%= article.username %></small>
                     <small>Created Date: <%= article.create_at.toDateString() %></small>
                 </div>
             </a>
@@ -35,7 +35,7 @@
     </div>
 
     <div class="col-xl-3" style="margin-top: 100px">
-        <a href="/articles/createnew">
+        <a href="/articles/create">
             <button type="button" class="btn btn-outline-primary">Create new Article</button>
         </a>
         <br><br>

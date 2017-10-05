@@ -12,7 +12,7 @@
 <body>
 <div class="container" align="center">
     <h1 align="center">Articles List</h1>
-    <a href="/articles/createnew" style="margin-right: 10%; float: right">
+    <a href="/articles/create" style="margin-right: 10%; float: right">
         <button type="button" class="btn btn-outline-primary">Create new Article</button>
     </a>
     <br><br>
@@ -33,7 +33,7 @@
         <tr>
             <td><%= article.article_id %></td>
             <td><a href="/articles/detail/<%= article.article_id %>"><%= article.title %></a></td>
-            <td><%= article.fullname %></td>
+            <td><%= article.author %></td>
             <td><%= article.create_at.toDateString() %></td>
             <td><%= article.status %></td>
 

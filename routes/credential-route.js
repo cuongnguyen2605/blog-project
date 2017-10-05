@@ -4,7 +4,7 @@ const credentialsController = require('../http/controllers/credential-controller
 const roleCredentialConverter = require('../http/middlewares/role-credential-convertor');
 const adminRequireMiddleware = require('../http/middlewares/admin-require-middleware');
 
-router.get('/', credentialsController.getAllCredentials);
+router.get('/', adminRequireMiddleware, credentialsController.getAllCredentials);
 
 router.get('/up_to_mod/:userId', adminRequireMiddleware, roleCredentialConverter.moderatorRoleData, credentialsController.statusChanging);
 
