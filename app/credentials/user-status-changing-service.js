@@ -1,4 +1,4 @@
-const mysqlConnection = require('../../database/mysql-connection');
+const mysqlConnection = require('../../database/knex-connection');
 
 class UserStatusChangingService {
     constructor() {
@@ -7,7 +7,7 @@ class UserStatusChangingService {
 
     getAllCredentials() {
         return mysqlConnection('credentials').innerJoin('profiles', 'credentials.user_id', '=', 'profiles.user_id');
-    };
+    }
 
     changeStatusUser(newRole, userId) {
         return mysqlConnection('credentials').where('user_id', '=', userId).update({

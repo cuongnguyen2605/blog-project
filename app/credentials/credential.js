@@ -1,23 +1,23 @@
 class Credentials {
-    constructor(username, password) {
+    constructor(username, role) {
         this.username = username;
-        this.password = password;
+        this.role = role;
     }
 
     setId(id) {
         this.id = id;
+        return this;
     }
 
     setRole(role) {
         this.role = role;
+        return this;
     }
-
-    getUsername() {
+    getRole(){
+        return this.role;
+    }
+    getUsername(){
         return this.username;
-    }
-
-    getPassword() {
-        return this.password;
     }
 }
 

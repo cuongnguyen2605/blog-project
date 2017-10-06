@@ -6,19 +6,26 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Articles List</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
 <body>
+<div class="header">
+    <%include partials/navbar.ejs%>
+</div>
 <div class="row" style="width:90%; margin-right: auto; margin-left:auto">
     <div class="container col">
         <h1 align="center">Articles List</h1>
         <br>
         <div class="list-group">
-            <% if (articles[0]==null) { %>
+            <% if (articles[0] == null) { %>
             <h3>Don't have any article!</h3>
             <% } else { %>
             <% articles.forEach(function(article) { %>
+            <% if(article.status === "accepted") {%>
             <a href="/articles/detail/<%= article.article_id %>"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
@@ -26,16 +33,16 @@
                 </div>
                 <p></p>
                 <div class="d-flex w-100 justify-content-between">
-                    <small>Author: <%= article.fullname %></small>
+                    <small>Author: <%= article.username %></small>
                     <small>Created Date: <%= article.create_at.toDateString() %></small>
                 </div>
             </a>
-            <% }); } %>
+            <% } }); } %>
         </div>
     </div>
 
     <div class="col-xl-3" style="margin-top: 100px">
-        <a href="/articles/createnew">
+        <a href="/articles/create">
             <button type="button" class="btn btn-outline-primary">Create new Article</button>
         </a>
         <br><br>

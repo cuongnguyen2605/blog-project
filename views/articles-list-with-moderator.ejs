@@ -6,13 +6,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Articles List</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class="header">
+    <%include partials/navbar.ejs%>
+</div>
 <div class="container" align="center">
     <h1 align="center">Articles List</h1>
-    <a href="/articles/createnew" style="margin-right: 10%; float: right">
+    <a href="/articles/create" style="margin-right: 10%; float: right">
         <button type="button" class="btn btn-outline-primary">Create new Article</button>
     </a>
     <br><br>
@@ -33,7 +38,7 @@
         <tr>
             <td><%= article.article_id %></td>
             <td><a href="/articles/detail/<%= article.article_id %>"><%= article.title %></a></td>
-            <td><%= article.fullname %></td>
+            <td><%= article.username %></td>
             <td><%= article.create_at.toDateString() %></td>
             <td><%= article.status %></td>
 
