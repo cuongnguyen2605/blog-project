@@ -1,5 +1,5 @@
 const ArticleSearchingService = require('../../app/search/article-searching-service');
-const Service = require('../../app/reposity-service');
+const Service = require('../../app/reposity-service/service');
 let articleSearchingService = new ArticleSearchingService();
 let service = new Service();
 module.exports.search = (req, res, next) => {

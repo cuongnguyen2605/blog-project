@@ -35,10 +35,9 @@ router.get('/unreject/:articleId', moderatorRequireMiddleware, articleStatusConv
 router.get('/delete/:articleId', moderatorRequireMiddleware, articlesController.articleDeleting);
 
 //Search
-
-router.post('/search', articleSearchingDataFilter.searchingDataFilter, articleSearchingController.search);
 router.get('/search-advance',(req, res)=>{
     res.render('search-advance',{message:"",username: req.session.username, role: req.session.role});
 });
+router.post('/search', articleSearchingDataFilter.searchingDataFilter, articleSearchingController.search);
 router.post('/search-advance',searchMiddleware, articleSearchingController.searchAdvance);
 module.exports = router;
