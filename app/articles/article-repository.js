@@ -1,4 +1,4 @@
-const knex = require('../../database/mysql-connection');
+const knex = require('../../database/knex-connection');
 const articles = require('./article');
 
 class ArticleRepository {

@@ -1,4 +1,4 @@
-const mysqlConnection = require('../../database/mysql-connection');
+const mysqlConnection = require('../../database/knex-connection');
 
 class UserStatusChangingService {
     constructor() {

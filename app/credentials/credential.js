@@ -16,6 +16,9 @@ class Credentials {
     getRole(){
         return this.role;
     }
+    getUsername(){
+        return this.username;
+    }
 }
 
-module.exports = Credentials;s
+module.exports = Credentials;
