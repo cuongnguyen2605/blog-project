@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
     //     console.log(articleAuthor);
     // });
     // console.log(req.session.user_id);
-    if (articleRepository.getAuthorId(req.params.articleId) === req.session.user_id || req.session.role === "moderators") {
+    if (articleRepository.getAuthorId(req.params.articleId) === req.session.user_id || req.session.role === "moderator") {
         return next();
     }
 
