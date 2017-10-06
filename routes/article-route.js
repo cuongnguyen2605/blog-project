@@ -5,7 +5,7 @@ const articlesController = require('../http/controllers/article-controller');
 const articleStatusConverter = require('../http/middlewares/article-status-converter');
 const moderatorRequireMiddleware = require('../http/middlewares/moderator-require-middleware');
 const canCreatingArticle = require('../http/middlewares/can-creating-article-middleware');
-const canEditingArticle = require('../http/middlewares/can-creating-article-middleware');
+const canEditingArticle = require('../http/middlewares/can-editing-article-middleware');
 const articleSearchingController = require('../http/controllers/searching-article-controller');
 const articleSearchingDataFilter = require('../http/middlewares/article-searching-data-filter');
 

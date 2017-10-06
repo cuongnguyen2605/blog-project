@@ -6,10 +6,11 @@ let articleRepository = new articleRepo();
 module.exports.getAllArticlesWithMember = (req, res, next) => {
     articleRepository.getAllArticles()
         .then((articles) => {
-
-            res.render('articles-list-with-member', {articles: articles
-                                                    , username: req.session.username
-                                                    , role: req.session.role});
+            res.render('articles-list-with-member', {
+                articles: articles
+                , username: req.session.username
+                , role: req.session.role
+            });
         })
         .catch(next);
 };
@@ -18,9 +19,11 @@ module.exports.getAllArticlesWithModerator = (req, res, next) => {
     articleRepository.getAllArticles()
         .then((articles) => {
 
-            res.render('articles-list-with-moderator', {articles: articles
-                                                        , username: req.session.username
-                                                        , role: req.session.role});
+            res.render('articles-list-with-moderator', {
+                articles: articles
+                , username: req.session.username
+                , role: req.session.role
+            });
 
         })
         .catch(next);
@@ -29,11 +32,8 @@ module.exports.getAllArticlesWithModerator = (req, res, next) => {
 module.exports.articleDetail = (req, res, next) => {
     articleRepository.getArticle(req.params.articleId)
         .then((article) => {
-
-            res.render(__dirname + '/../../views/article-detail.ejs', {article: article
-                                                                        , username: req.session.username
-                                                                        , role: req.session.role});
-            res.render('article-detail', {article: article
+            res.render('article-detail', {
+                article: article
                 , username: req.session.username
                 , role: req.session.role
             });

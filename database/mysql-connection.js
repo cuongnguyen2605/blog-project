@@ -1,4 +1,4 @@
-const mysqlConnection = require('knex')({
+const mysqlConnection = require('mysql')({
     client: 'mysql',
     connection: {
         host: 'localhost',
