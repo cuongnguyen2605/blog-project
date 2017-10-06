@@ -9,14 +9,21 @@ class Credentials {
         return this;
     }
 
+    setUserId(user_id) {
+        this.user_id = user_id;
+        return this;
+    }
+
     setRole(role) {
         this.role = role;
         return this;
     }
-    getRole(){
+
+    getRole() {
         return this.role;
     }
-    getUsername(){
+
+    getUsername() {
         return this.username;
     }
 }

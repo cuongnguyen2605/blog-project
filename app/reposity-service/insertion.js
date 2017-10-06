@@ -10,7 +10,7 @@ class Insertion{ // insertion done
                     .then(()=>{
                          knex.select().from('credentials').where('username',username)
                             .then(result=>{
-                               return knex.insert({profile_id: null,user_id: result[0].user_id,fullname: fullname,
+                               return knex.insert(  {profile_id: null,user_id: result[0].user_id,fullname: fullname,
                                phone: null, email: null, address: null, created: knex.fn.now()}).into('profiles');
                             })
                     });
@@ -31,6 +31,10 @@ class Insertion{ // insertion done
                break;
 
        }
+    }
+    insertComment(usern_id, article_id, content){
+        knex.raw('insert into comments values(?,?,?,?,?)'
+            ,[null, article_id, usern_id,content, knex.fn.now()]);
     }
 }
  module.exports = Insertion;
