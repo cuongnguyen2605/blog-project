@@ -1,33 +1,28 @@
 class Articles {
 
-    constructor(title, createdDate, content) {
+    constructor(title, content) {
         this.title = title;
-        this.createdDate = createdDate;
         this.content = content;
     }
 
-    setId(id) {
-        this.id = id;
+    setId(article_id) {
+        this.article_id = article_id;
+        return this;
     }
 
-    setAuthorId(authorId) {
-        this.authorId = authorId;
+    setAuthorId(author) {
+        this.author = author;
+        return this
+    }
+
+    setCreatedDate(create_at) {
+        this.create_at = create_at;
+        return this;
     }
 
     setStatus(status) {
         this.status = status;
-    }
-
-    getTitle() {
-        return this.title;
-    }
-
-    getCreatedDate() {
-        return this.createdDate;
-    }
-
-    getContent() {
-        return this.content;
+        return this;
     }
 }
 

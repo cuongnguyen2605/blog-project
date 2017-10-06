@@ -2,10 +2,10 @@ const knex = require('../../database/mysql-connection');
 
 class ArticleSearchingByAuthor {
     articleSearching(condition) {
-        return knex.select('articles.*', 'profiles.fullname')
-            .table('articles').leftJoin('profiles', {'profiles.profile_id': 'articles.author'})
-            .where('profiles.fullname','like','%'+condition+'%')
-            .andWhere('status', '=', 'accepted');
+        return knex.select('articles.*', 'credentials.username').table('articles')
+            .leftJoin('credentials', {'credentials.user_id': 'articles.author'})
+            .where('status', '=', 'accepted')
+            .andWhere('credentials.username','like','%'+condition+'%');
     }
 }
 

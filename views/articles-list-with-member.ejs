@@ -22,10 +22,11 @@
         <h1 align="center">Articles List</h1>
         <br>
         <div class="list-group">
-            <% if (articles[0]==null) { %>
+            <% if (articles[0] == null) { %>
             <h3>Don't have any article!</h3>
             <% } else { %>
             <% articles.forEach(function(article) { %>
+            <% if(article.status === "accepted") {%>
             <a href="/articles/detail/<%= article.article_id %>"
                class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
@@ -33,16 +34,16 @@
                 </div>
                 <p></p>
                 <div class="d-flex w-100 justify-content-between">
-                    <small>Author: <%= article.fullname %></small>
+                    <small>Author: <%= article.username %></small>
                     <small>Created Date: <%= article.create_at.toDateString() %></small>
                 </div>
             </a>
-            <% }); } %>
+            <% } }); } %>
         </div>
     </div>
 
     <div class="col-xl-3" style="margin-top: 100px">
-        <a href="/articles/createnew">
+        <a href="/articles/create">
             <button type="button" class="btn btn-outline-primary">Create new Article</button>
         </a>
         <br><br>
