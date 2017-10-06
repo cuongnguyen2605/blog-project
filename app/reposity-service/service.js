@@ -1,10 +1,12 @@
 const Selection = require('./selection');
 const Insertion = require('./insertion');
+const Deletion = require('./deletion');
 class Service{
     constructor(){
         this.ServiceList = new Map();
         this.ServiceList.set("select", new Selection());
-        this.ServiceList.set('insert', new Insertion());
+        this.ServiceList.set("insert", new Insertion());
+        this.ServiceList.set("delete", new Deletion());
 
     }
     getServiceSelect(name, user, pass){//overload func getService
@@ -31,6 +33,10 @@ class Service{
                 return this.ServiceList.get(name).run(username, password,fullname, phoneNumber,email, address);
             break;
         }
+    }
+
+    getServiceSearch(arr){
+        return this.ServiceList.get('select').dance(arr);
     }
 
 }

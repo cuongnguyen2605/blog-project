@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+const searchMiddleware = require('../http/middlewares/search-middleware');
 const articlesValidator = require('../http/middlewares/article-validator');
 const articlesController = require('../http/controllers/article-controller');
 const articleStatusConverter = require('../http/middlewares/article-status-converter');
@@ -37,5 +37,8 @@ router.get('/delete/:articleId', moderatorRequireMiddleware, articlesController.
 //Search
 
 router.post('/search', articleSearchingDataFilter.searchingDataFilter, articleSearchingController.search);
-
+router.get('/search-advance',(req, res)=>{
+    res.render('search-advance',{message:"",username: req.session.username, role: req.session.role});
+});
+router.post('/search-advance',searchMiddleware, articleSearchingController.searchAdvance);
 module.exports = router;
