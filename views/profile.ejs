@@ -1,42 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Profile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="header">
-    <%include partials/navGuest.ejs%>
-</div>
+    <%include partials/nav-guest.ejs%>
 
-<div class="content">
-    <div class="container">
-        <div class="row">
-            <div class="panel panel-default">
-                <h1>Profile</h1>
-                <div class="">
-                    <% profile.forEach(function (user) { %>
-                        <ul>
-                            <li><%= user.username %></li>
-                            <li><%= user.email %></li>
-                            <li><%= user.phone %></li>
-                            <li><%= user.address %></li>
-                        </ul>
-                    <% }) %>
+    <div class="profile">
+        <div class="container">
+            <div class="row">
+                <div class="panel panel-default" style="width: 50%; margin: 0px auto; border-radius: 0px;">
+                    <div class="panel-heading">
+                        <h4 style="font-weight: bold">User Profile</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12 col-xs-12 col-sm-6 col-lg-12" >
+                            <div>
+                                <h2 style="font-weight: bold">Information</h2>
+                            </div>
+                            <hr>
+                            <form action="">
+                                <% profile.forEach(function (user) { %>
+                                    <div class="form-group">
+                                        <label>Fullname</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" value="<%= user.fullname %>" style="width: 500px" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" value="<%= user.username %>" style="width: 500px" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" value="<%= user.email %>" style="width: 500px" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" value="<%= user.phone %>" style="width: 500px" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" value="<%= user.address %>" style="width: 500px" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <a href="#" class="btn btn-primary">Update Profile</a>
+                                    </div>
+                                <% }) %>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <a href="update-profile.ejs" class="btn btn-primary">Edit Profile</a>
             </div>
         </div>
     </div>
-</div>
 
-<div class="footer">
-    <%include partials/footer%>
-</div>
-
+    <%include partials/footer.ejs%>
 </body>
 </html>

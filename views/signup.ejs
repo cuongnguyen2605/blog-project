@@ -1,112 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>Sign Up</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheet/signup.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="header">
-    <%include partials/navGuest.ejs%>
-</div>
+    <%include partials/nav-guest.ejs%>
 
-<div class="content">
-    <form class="form-horizontal" action="/signup" method="post">
-    <fieldset>
+    <div class="main-page" style="margin: 0px auto">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-4">
+                    <div class="panel panel-default" style="border-radius: 0px">
+                        <div class="panel-heading" style="background: #f8f8f8; padding: 20px">
+                            <h3 class="panel-title" style="font-weight: bold">
+                                <span class="glyphicon glyphicon-user"></span> Register
+                            </h3>
+                        </div>
+                        <%if(message === 'signup successfuly'){%>
+                        <div class="alert alert-success" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
+                            <strong>Success!</strong> Signup Successfuly.
+                        </div>
+                        <%}%>
 
-    <!-- Form Name -->
-    <legend>Signup new Acount</legend>
-
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="fname">Full Name</label>
-      <div class="col-md-5">
-      <input id="fname" name="fullname" type="text" placeholder="Enter your Full Name" class="form-control input-md" required="">
-
-      </div>
-    </div>
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="lname">User Name</label>
-      <div class="col-md-5">
-      <input id="lname" name="username" type="text" placeholder="Enter your user Name"  class="form-control input-md" required="">
-
-      </div>
-    </div>
-
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="email">Email</label>
-      <div class="col-md-5">
-      <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" required="">
-
-      </div>
-    </div>
-
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="addr1">Phone number</label>
-      <div class="col-md-5">
-      <input id="addr1" name="phoneNumber" type="text" placeholder="enter your phone" class="form-control input-md" required="">
-
-      </div>
-    </div>
-
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="city">Set Password</label>
-      <div class="col-md-4">
-      <input id="city" name="password" type="password" placeholder=" enter your password" class="form-control input-md" required="">
-
-      </div>
-    </div>
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="city">Confirm password</label>
-      <div class="col-md-4">
-      <input id="city" name="passwordConfirm" type="password" placeholder="confirm password" class="form-control input-md" required="">
-
-      </div>
-    </div>
-
-    <!-- Textarea -->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="notes">Address</label>
-      <div class="col-md-4">
-        <textarea class="form-control" id="notes" name="address"></textarea>
-      </div>
-    </div>
-
-
-    <div class="form-group">
-    <label class="col-md-4 control-label" for="submit"></label>
-      <div class="col-md-4">
-        <label class="checkbox-inline" for="submit">
-          <input class="btn btn-info" type="submit" name="submit" id="submit" value="Sign Up">
-        </label>
-      </div>
-    </div>
-
-    </fieldset>
-    </form>
-            <%if(message === 'signup successfuly'){%>
-            <div class="alert alert-success">
-              <strong>Success!</strong> signup successfuly
+                        <%if(message === 'this acount existed'){%>
+                        <div class="alert alert-warning" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
+                            <strong>Warning</strong> This acount existed.
+                        </div>
+                        <%}%>
+                        <div class="panel-body" style="padding: 20px">
+                            <form class="" action="/signup" method="post">
+                                <div class="form-group">
+                                    <label class="control-label" for="fname">Full Name</label>
+                                    <div class="col-sm-12 input-group">
+                                        <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                        <input id="fname" name="fullname" type="text" placeholder="Full Name" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="lname">User Name</label>
+                                    <div class="col-sm-12 input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                        <input id="lname" name="username" type="text" placeholder="User Name"  class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="email">Email</label>
+                                    <div class="col-sm-12 input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                        <input id="email" name="email" type="email" placeholder="Email" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="addr1">Phone number</label>
+                                    <div class="col-sm-12 input-group">
+                                        <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                        <input id="addr1" name="phoneNumber" type="text" placeholder="Phone" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="city">Set Password</label>
+                                    <div class="col-sm-12 input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                        <input id="city" name="password" type="password" placeholder="Password" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="city">Confirm password</label>
+                                    <div class="col-sm-12 input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                        <input id="city" name="passwordConfirm" type="password" placeholder="Confirm Password" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="notes">Address</label>
+                                    <div class="col-sm-12 input-group">
+                                        <textarea class="form-control" id="notes" name="address" placeholder="Address" style="border-radius: 4px"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12 input-group">
+                                        <input class="btn btn-info" type="submit" name="submit" id="submit" value="Sign Up" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <%}%>
+        </div>
+    </div>
 
-            <%if(message === 'this acount existed'){%>
-            <div class="alert alert-warning">
-              <strong>Warning</strong> this acount existed
-            </div>
-            <%}%>
-</div>
-<div class="footer">
     <%include partials/footer%>
-</div>
-
 </body>
 </html>
