@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const searchMiddleware = require('../http/middlewares/search-middleware');
+// const searchMiddleware = require('../http/middlewares/search-middleware');
 const articlesValidator = require('../http/middlewares/article-validator');
 const articlesController = require('../http/controllers/article-controller');
 const articleStatusConverter = require('../http/middlewares/article-status-converter');
 const moderatorRequireMiddleware = require('../http/middlewares/moderator-require-middleware');
 const canCreatingArticle = require('../http/middlewares/can-creating-article-middleware');
 const canEditingArticle = require('../http/middlewares/can-editing-article-middleware');
-const articleSearchingController = require('../http/controllers/searching-article-controller');
-const articleSearchingDataFilter = require('../http/middlewares/article-searching-data-filter');
+// const articleSearchingController = require('../http/controllers/searching-article-controller');
+// const articleSearchingDataFilter = require('../http/middlewares/article-searching-data-filter');
 
 router.get('/', articlesController.getAllArticlesWithMember);
 
@@ -35,9 +35,10 @@ router.get('/unreject/:articleId', moderatorRequireMiddleware, articleStatusConv
 router.get('/delete/:articleId', moderatorRequireMiddleware, articlesController.articleDeleting);
 
 //Search
-router.get('/search-advance',(req, res)=>{
-    res.render('search-advance',{message:"",username: req.session.username, role: req.session.role});
-});
-router.post('/search', articleSearchingDataFilter.searchingDataFilter, articleSearchingController.search);
-router.post('/search-advance',searchMiddleware, articleSearchingController.searchAdvance);
+// router.get('/search-advance',(req, res)=>{
+//     res.render('search-advance',{message:"",username: req.session.username, role: req.session.role});
+// });
+// router.post('/search', articleSearchingDataFilter.searchingDataFilter, articleSearchingController.search);
+// router.post('/search-advance',searchMiddleware, articleSearchingController.searchAdvance);
+
 module.exports = router;
