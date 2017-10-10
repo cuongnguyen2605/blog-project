@@ -13,7 +13,6 @@
 </head>
 <body>
     <%include partials/nav-guest.ejs%>
-
     <div class="profile">
         <div class="container">
             <div class="row">
@@ -27,7 +26,7 @@
                                 <h2 style="font-weight: bold">Information</h2>
                             </div>
                             <hr>
-                            <form action="">
+                            <form action="/profile/update" method="POST">
                                 <% profile.forEach(function (user) { %>
                                     <div class="form-group">
                                         <label>Fullname</label>
@@ -60,7 +59,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <a href="#" class="btn btn-primary">Update Profile</a>
+                                        <button class="btn btn-primary">Update Profile</button>
                                     </div>
                                 <% }) %>
                             </form>
@@ -70,7 +69,6 @@
             </div>
         </div>
     </div>
-
     <%include partials/footer.ejs%>
 </body>
 </html>

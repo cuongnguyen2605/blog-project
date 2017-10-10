@@ -6,75 +6,124 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Articles List</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
 
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({selector: 'textarea'});</script>
+</head>
 <body>
-<div class="header">
-    <%include partials/nav-member.ejs%>
-</div>
-<div class="row" style="width:90%; margin-right: auto; margin-left:auto">
-    <div class="container col">
-        <h1 align="center">Articles List</h1>
-        <br>
-        <div class="list-group">
-            <% if (articles[0] == null) { %>
-            <h3>Don't have any article!</h3>
-            <% } else { %>
-            <% articles.forEach(function(article) { %>
-            <% if(article.status === "accepted") {%>
-            <a href="/articles/detail/<%= article.article_id %>"
-               class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><%= article.title %></h5>
+    <% include partials/nav-member.ejs %>
+
+    <div class="main-page">
+        <div class="container" style="width: 80%">
+            <div class="row">
+                <div class="col-md-8" style="border-right: 1px solid #eee">
+                    <h1 style="margin-bottom: 20px; font-weight: bold; margin-top: 0px">Articles List</h1>
+                    <hr />
+                    <div class="list-group">
+                        <% if (articles[0] == null) { %>
+                            <h3>Don't have any article!</h3>
+                        <% } else { %>
+                        <% articles.forEach(function(article) { %>
+                        <% if(article.status === "accepted") {%>
+                            <div class="media" style="margin-top: 20px">
+                                <div class="media-left" style="padding-right: 20px">
+                                    <img alt="128x128"
+                                         class="media-object"
+                                         data-src="holder.js/100x100"
+                                         src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNWYwNWFjNWViMyB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1ZjA1YWM1ZWIzIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMi4xNzk2ODc1IiB5PSIzNi41Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg=="
+                                         data-holder-rendered="true"
+                                         style="width: 100px; height: 100px;"
+                                    >
+                                </div>
+                                <div class="media-body">
+                                    <a href="/articles/detail/<%= article.article_id %>">
+                                        <h4 style="font-weight: bold; margin-top: 0px"><%= article.title %></h4>
+                                    </a>
+                                    <p style="font-size: 16px">by <a href="#"><%= article.username %></a></p>
+                                    <p style="color: #818181; margin-bottom: -1px;">
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at %>
+                                    </p>
+                                    <span class="label label-success">Success</span>
+                                </div>
+                            </div>
+                        <% } }); } %>
+                    </div>
                 </div>
-                <p></p>
-                <div class="d-flex w-100 justify-content-between">
-                    <small>Author: <%= article.username %></small>
-                    <small>Created Date: <%= article.create_at.toDateString() %></small>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Create new Article
+                            </button>
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Create new Article</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/articles/create" method="post">
+                                                <div class="form-group">
+                                                    <label for="">Article Title</label>
+                                                    <input type="text" class="form-control" name="title" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Article Content</label>
+                                                    <textarea name="content" id="" cols="30" rows="10" style="height: 500px"></textarea>
+                                                </div>
+                                                <div class="form-group" style="text-align: right">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form action="/articles/search" method="post">
+                                <div class="input-group">
+                                    <input type="text" name="title" id="title" placeholder="Search" class="form-control">
+                                    <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </span>
+                                </div>
+                            </form>
+                        </div>
+                        <!--<div class="panel-body">-->
+                            <!--<form action="/articles/search" method="post">-->
+                                <!--<div class="input-group">-->
+                                    <!--<input type="text" name="author" id="author" placeholder="Search by author" class="form-control">-->
+                                    <!--<span class="input-group-btn">-->
+                                    <!--<button class="btn btn-primary" type="submit">Search</button>-->
+                                <!--</span>-->
+                                <!--</div>-->
+                            <!--</form>-->
+                        <!--</div>-->
+                        <!--<div class="panel-body">-->
+                            <!--<form action="/articles/search" method="post">-->
+                                <!--<div class="input-group">-->
+                                    <!--<input type="date" name="date" id="date" placeholder="Search by author" class="form-control">-->
+                                    <!--<span class="input-group-btn">-->
+                                    <!--<button class="btn btn-primary" type="submit">Search</button>-->
+                                <!--</span>-->
+                                <!--</div>-->
+                            <!--</form>-->
+                        <!--</div>-->
+                    </div>
                 </div>
-            </a>
-            <% } }); } %>
+            </div>
         </div>
     </div>
 
-    <div class="col-xl-3" style="margin-top: 100px">
-        <a href="/articles/create">
-            <button type="button" class="btn btn-outline-primary">Create new Article</button>
-        </a>
-        <br><br>
-
-        <form action="/articles/search" method="post">
-            <div class="input-group">
-                <input type="text" name="title" id="title" placeholder="Search by title" class="form-control">
-                <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="submit">Go!</button>
-                </span>
-            </div>
-        </form>
-        <br>
-        <form action="/articles/search" method="post">
-            <div class="input-group">
-                <input type="text" name="author" id="author" placeholder="Search by author" class="form-control">
-                <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="submit">Go!</button>
-                </span>
-            </div>
-        </form>
-        <br>
-        <h4>Search by ...</h4>
-        <form action="/articles/search" method="post">
-            <div class="input-group">
-                <input type="date" name="date" id="date" placeholder="Search by author" class="form-control">
-                <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="submit">Go!</button>
-                </span>
-            </div>
-        </form>
-    </div>
-</div>
+    <% include partials/footer.ejs %>
 </body>
 </html>

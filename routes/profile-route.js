@@ -3,8 +3,8 @@ const router = express.Router();
 
 const ProfileController = require('../http/controllers/profile-controller');
 
-router.get('/profile', ProfileController.getProfile);
+router.get('/:profile_id', ProfileController.getProfile);
 
-router.put('/update-profile', ProfileController.updateProfile);
+router.put('/profile/update', ProfileController.updateProfile);
 
 module.exports = router;
