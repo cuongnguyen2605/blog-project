@@ -5,10 +5,7 @@ const articlesController = require('../http/controllers/article-controller');
 const articleStatusConverter = require('../http/middlewares/article-status-converter');
 const moderatorRequireMiddleware = require('../http/middlewares/moderator-require-middleware');
 const canCreatingArticle = require('../http/middlewares/can-creating-article-middleware');
-const canEditingArticle = require('../http/middlewares/can-editing-article-middleware');
-// const articleSearchingController = require('../http/controllers/searching-article-controller');
-// const articleSearchingDataFilter = require('../http/middlewares/article-searching-data-filter');
-
+const commentConntroller = require('../http/controllers/comment-controller');
 router.get('/', articlesController.getAllArticlesWithMember);
 
 router.get('/detail/:articleId', articlesController.articleDetail);
@@ -19,9 +16,11 @@ router.get('/create', canCreatingArticle, (req, res) => {
 
 router.post('/create', articlesValidator.newArticleConverter, articlesController.articleCreating);
 
-router.get('/edit/:articleId', canEditingArticle, articlesController.getArticle);
+router.get('/edit/:articleId', articlesController.getArticle);
 
 router.post('/edit/:articleId', articlesValidator.articleConverterWithEditing, articlesController.articleEditing);
+
+router.get('/delete/:articleId', articlesController.articleDeleting);
 
 //Accept, Reject Or Delete a Article
 router.get('/list', moderatorRequireMiddleware, articlesController.getAllArticlesWithModerator);
@@ -33,6 +32,9 @@ router.get('/reject/:articleId', moderatorRequireMiddleware, articleStatusConver
 router.get('/unreject/:articleId', moderatorRequireMiddleware, articleStatusConverter.waitingArticle, articlesController.statusChanging);
 
 router.get('/delete/:articleId', moderatorRequireMiddleware, articlesController.articleDeleting);
+
+//Comment
+router.get('/comments/delete/:comment_id', commentConntroller.deleteComment);
 
 //Search
 // router.get('/search-advance',(req, res)=>{

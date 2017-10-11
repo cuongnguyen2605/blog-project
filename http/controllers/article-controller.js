@@ -1,7 +1,10 @@
 const articles = require('../../app/articles/article');
 const articleRepo = require('../../app/articles/article-repository');
+const mysqlConnection = require('../../database/mysql-connection');
+const CommentService = require('../../app/comments/comment-service');
 
 let articleRepository = new articleRepo();
+let commentService = new CommentService(mysqlConnection);
 
 module.exports.getAllArticlesWithMember = (req, res, next) => {
     articleRepository.getAllArticles()
@@ -30,12 +33,19 @@ module.exports.getAllArticlesWithModerator = (req, res, next) => {
 };
 
 module.exports.articleDetail = (req, res, next) => {
-    articleRepository.getArticle(req.params.articleId)
-        .then((article) => {
+    Promise.all([
+        articleRepository.getArticle(req.params.articleId),
+        commentService.getComment(req.params.articleId),
+        articleRepository.getAuthorId(req.params.articleId)
+    ])
+        .then(([article, comments, author]) => {
             res.render('article-detail', {
-                article: article
-                , username: req.session.username
-                , role: req.session.role
+                article: article,
+                comments: comments,
+                authorId: author[0].author,
+                username: req.session.username,
+                role: req.session.role,
+                user_id: req.session.user_id
             });
         })
         .catch(next);
@@ -73,6 +83,11 @@ module.exports.statusChanging = (req, res) => {
 module.exports.articleDeleting = (req, res) => {
     return articleRepository.articleDeleting(req.params.articleId)
         .then(() => {
-            res.redirect('/articles/list');
+            if (req.session.role === 'member') {
+                res.redirect('/articles');
+            }
+            if (req.session.role === 'moderator') {
+                res.redirect('/articles/list');
+            }
         });
 };

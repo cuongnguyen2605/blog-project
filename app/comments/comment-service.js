@@ -7,7 +7,11 @@ class CommentService {
     }
 
     getComment (comment_id) {
-        let query = 'SELECT * FROM comments WHERE comment_id = ?';
+        let query = 'select comments.*, credentials.username, profiles.fullname ' +
+            'from comments ' +
+            'join credentials on credentials.user_id= comments.user_id  ' +
+            'join profiles on credentials.user_id = profiles.user_id ' +
+            'WHERE article_id = ?';
         return this.mysqlConnection.query(query, [comment_id]);
     }
 
@@ -17,6 +21,7 @@ class CommentService {
     }
 
     deleteComment (comment_id) {
+        let query = 'delete from comments where comment_id = ?';
         return this.mysqlConnection.query(query, [comment_id]);
     }
 }

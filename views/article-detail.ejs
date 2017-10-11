@@ -17,15 +17,20 @@
 <div class="card" style="width: 80%; margin-right: auto; margin-left: auto">
     <div class="card-body">
         <% article.forEach(function (article) { %>
-        <% // if(session(role)=='member') {   %>
-        <a href="/articles" style="float: right">ck</a>
-        <% // } else {  %>
-        <a href="/articles/list" style="float: right">Ba</a>
-        <% //}   %>
+        <% if(role ==='moderator') {   %>
+        <a href="/articles/list" style="float: right">Back</a>
+        <%  } else {  %>
+        <a href="/articles" style="float: right">Back</a>
+        <% }   %>
         <h2><%= article.title %></h2>
-        <a href="/articles/edit/<%= article.article_id %>" style="margin-right: 10%; float: right">
+        <% if(authorId === user_id || role === 'moderator') {%>
+        <a href="/articles/delete/<%= article.article_id %>" style="margin-right: 10%; float: right">
+            <button type="button" class="btn btn-danger">Delete</button>
+        </a>
+        <a href="/articles/edit/<%= article.article_id %>" style="margin-right: 2%; float: right">
             <button type="button" class="btn btn-outline-primary">Edit</button>
         </a>
+        <% } %>
         <small>Author: <%= article.username %></small>
         <br>
         <small>Created Date: <%= article.create_at.toDateString() %></small>
@@ -35,25 +40,28 @@
     </div>
 
     <div style="width:95%; margin-right: auto; margin-left: auto">
+        <form action="/articles/comments" method="post">
         <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">User</span>
+            <span class="input-group-addon" id="basic-addon1"><%= username %></span>
             <input type="text" class="form-control" placeholder="Your comment" aria-describedby="basic-addon1"
                    name="comment">
         </div>
+        </form>
         <br>
         <ul class="list-group">
+            <% comments.forEach(function (comment) { %>
             <li class="list-group-item">
-                <p><strong>User(Commenter)</strong>
-                    <small>Created(Date Time)</small>
+                <p>
+                    <strong><%= comment.username %></strong>
+                    <strong><%= comment.fullname %></strong>
+                    <small><%= comment.created_at.toDateString() %></small>
+                    <% if(comment.user_id === user_id) {%>
+                    <a href="/articles/comments/delete/<%= comment.comment_id%>" style="float: right">Delete</a>
+                    <% }%>
                 </p>
-                <p>Content..............................</p>
+                <p><%= comment.content %></p>
             </li>
-            <li class="list-group-item">
-                <p><strong>User(Commenter)</strong>
-                    <small>Created(Date Time)</small>
-                </p>
-                <p>Content..............................</p>
-            </li>
+            <% }); %>
         </ul>
         <br>
     </div>

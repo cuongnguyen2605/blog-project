@@ -22,9 +22,9 @@ createComment = (req, res, next) => {
 }
 
 deleteComment = (req, res, next) => {
-    commentService.deleteComment(req.params.comment)
+    commentService.deleteComment(req.params.comment_id)
         .then(() => {
-            res.redirect('/')
+            res.redirect('/articles')
         })
         .catch(next)
 }
