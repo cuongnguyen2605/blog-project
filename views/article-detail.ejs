@@ -4,67 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Article Detail</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Article Detail</title>
 </head>
 <body>
-<div class="header">
-    <%include partials/navbar.ejs%>
-</div>
-<br>
-<div class="card" style="width: 80%; margin-right: auto; margin-left: auto">
-    <div class="card-body">
-        <% article.forEach(function (article) { %>
-        <% if(role ==='moderator') {   %>
-        <a href="/articles/list" style="float: right">Back</a>
-        <%  } else {  %>
-        <a href="/articles" style="float: right">Back</a>
-        <% }   %>
-        <h2><%= article.title %></h2>
-        <% if(authorId === user_id || role === 'moderator') {%>
-        <a href="/articles/delete/<%= article.article_id %>" style="margin-right: 10%; float: right">
-            <button type="button" class="btn btn-danger">Delete</button>
-        </a>
-        <a href="/articles/edit/<%= article.article_id %>" style="margin-right: 2%; float: right">
-            <button type="button" class="btn btn-outline-primary">Edit</button>
-        </a>
-        <% } %>
-        <small>Author: <%= article.username %></small>
-        <br>
-        <small>Created Date: <%= article.create_at.toDateString() %></small>
-        <br><br>
-        <div><%- article.content %></div>
-        <% }); %>
-    </div>
+<% include partials/nav-member.ejs %>
 
-    <div style="width:95%; margin-right: auto; margin-left: auto">
-        <form action="/articles/comments" method="post">
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1"><%= username %></span>
-            <input type="text" class="form-control" placeholder="Your comment" aria-describedby="basic-addon1"
-                   name="comment">
-        </div>
-        </form>
-        <br>
-        <ul class="list-group">
-            <% comments.forEach(function (comment) { %>
-            <li class="list-group-item">
-                <p>
-                    <strong><%= comment.username %></strong>
-                    <strong><%= comment.fullname %></strong>
-                    <small><%= comment.created_at.toDateString() %></small>
-                    <% if(comment.user_id === user_id) {%>
-                    <a href="/articles/comments/delete/<%= comment.comment_id%>" style="float: right">Delete</a>
-                    <% }%>
-                </p>
-                <p><%= comment.content %></p>
-            </li>
+<div class="container" style="width: 80%">
+    <div class="row">
+        <div class="col-md-12">
+            <% article.forEach(function (article) { %>
+            <% if(role === 'moderator') { %>
+            <a href="/articles/list" style="float: right">Back</a>
+            <% } else { %>
+            <a href="/articles" style="float: right">Back</a>
+            <% } %>
+
+            <h2 style="font-weight: bold"><%= article.title %></h2>
+
+            <% if(authorId === user_id || role === 'moderator') { %>
+            <a href="/articles/delete/<%= article.article_id %>" style="margin-right: 10%; float: right">
+                <button type="button" class="btn btn-danger">Delete</button>
+            </a>
+            <a href="/articles/edit/<%= article.article_id %>" style="margin-right: 2%; float: right">
+                <button type="button" class="btn btn-outline-primary">Edit</button>
+            </a>
+            <% } %>
+
+            <p>by <a href="#"><strong><%= article.username %></strong></a></p>
+            <p style="color: #818181">
+                <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at %>
+            </p>
+            <hr>
+            <article style="font-size: 16px">
+                <p><%- article.content %></p>
+            </article>
+            <hr>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5>Write a Comment:</h5>
+                </div>
+                <div class="panel-body">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" placeholder="Write a Comment..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Comment</button>
+                    </form>
+                </div>
+            </div>
+
+            <ul class="list-group">
+                <% comments.forEach(function (comment) { %>
+                <li class="list-group-item">
+                    <p>
+                        <strong><%= comment.username %></strong>
+                        <strong><%= comment.fullname %></strong>
+                        <small><%= comment.created_at.toDateString() %></small>
+                        <% if(comment.user_id === user_id) { %>
+                        <a href="/articles/comments/delete/<%= comment.comment_id %>/<%= article.article_id %>" style="float: right">Delete</a>
+                        <% } %>
+                    </p>
+                    <p><%= comment.content %></p>
+                </li>
+                <% }); %>
+            </ul>
+
             <% }); %>
-        </ul>
-        <br>
+        </div>
     </div>
 </div>
+
+<% include partials/footer.ejs %>
 </body>
 </html>

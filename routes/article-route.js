@@ -34,7 +34,7 @@ router.get('/unreject/:articleId', moderatorRequireMiddleware, articleStatusConv
 router.get('/delete/:articleId', moderatorRequireMiddleware, articlesController.articleDeleting);
 
 //Comment
-router.get('/comments/delete/:comment_id', commentConntroller.deleteComment);
+router.get('/comments/delete/:comment_id/:article_id', commentConntroller.deleteComment);
 
 //Search
 // router.get('/search-advance',(req, res)=>{

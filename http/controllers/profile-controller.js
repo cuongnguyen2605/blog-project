@@ -16,10 +16,11 @@ getProfile = (req, res, next) => {
 updateProfile = (req, res, next) => {
     profileService.updateProfile(req.profile)
         .then((profile) => {
-                res.render('update-profile', {
-                    profile: profile
-                })
+            res.render('profile', {
+                profile: profile
             })
+            res.redirect('/profile')
+        })
         .catch(next)
 }
 

@@ -24,7 +24,7 @@ createComment = (req, res, next) => {
 deleteComment = (req, res, next) => {
     commentService.deleteComment(req.params.comment_id)
         .then(() => {
-            res.redirect('/articles')
+            res.redirect('/articles/detail/'+req.params.article_id)
         })
         .catch(next)
 }
