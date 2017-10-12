@@ -22,8 +22,15 @@ class ProfileService {
     }
 
     updateProfile (profile) {
-        let query = 'UPDATE profiles SET fullname = ?, email = ?, phone = ?, address = ?';
-        return this.mysqlConnection.query(query, [profile.fullname], [profile.email], [profile.phone], [profile.address]);
+        let query = 'UPDATE profiles SET fullname = ?, email = ?, phone = ?, address = ? WHERE profile_id = ?';
+        return this.mysqlConnection.query (
+            query,
+            [profile.fullname],
+            [profile.email],
+            [profile.phone],
+            [profile.address],
+            [profile.profile_id]
+        );
     }
 
     deleteProfile (profile_id) {

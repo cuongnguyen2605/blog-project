@@ -19,7 +19,6 @@ updateProfile = (req, res, next) => {
             res.render('profile', {
                 profile: profile
             })
-            res.redirect('/profile')
         })
         .catch(next)
 }

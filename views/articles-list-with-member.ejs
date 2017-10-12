@@ -24,14 +24,14 @@
             <div class="row">
                 <div class="col-md-8" style="border-right: 1px solid #eee">
                     <h1 style="margin-bottom: 20px; font-weight: bold; margin-top: 0px">Articles List</h1>
-                    <hr />
-                    <div class="list-group">
+                    <hr style="margin: 0"/>
+                    <div class="list-group" style="margin: 0">
                         <% if (articles[0] == null) { %>
                             <h3>Don't have any article!</h3>
                         <% } else { %>
                         <% articles.forEach(function(article) { %>
                         <% if(article.status === "accepted") {%>
-                            <div class="media" style="margin-top: 20px">
+                            <div class="media" style="margin: 0;padding: 20px 0; border-bottom: 1px solid #eee">
                                 <div class="media-left" style="padding-right: 20px">
                                     <img alt="128x128"
                                          class="media-object"
@@ -90,6 +90,9 @@
                         </div>
                         <div class="panel-body">
                             <form action="/articles/search" method="post">
+                                <div class="form-group" style="margin-bottom: 5px">
+                                    <label for="">Search by Title</label>
+                                </div>
                                 <div class="input-group">
                                     <input type="text" name="title" id="title" placeholder="Search" class="form-control">
                                     <span class="input-group-btn">
