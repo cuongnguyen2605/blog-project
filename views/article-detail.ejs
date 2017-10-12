@@ -21,19 +21,19 @@
         <div class="col-md-12">
             <% article.forEach(function (article) { %>
             <% if(role === 'moderator') { %>
-            <a href="/articles/list" style="float: right">Back</a>
+            <a href="/articles/list" style="float: right"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</a>
             <% } else { %>
-            <a href="/articles" style="float: right">Back</a>
+            <a href="/articles" style="float: right"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</a>
             <% } %>
 
-            <h2 style="font-weight: bold"><%= article.title %></h2>
+            <h2 style="font-weight: bold; margin-top: 0"><%= article.title %></h2>
 
             <% if(authorId === user_id || role === 'moderator') { %>
-            <a href="/articles/delete/<%= article.article_id %>" style="margin-right: 10%; float: right">
-                <button type="button" class="btn btn-danger">Delete</button>
+            <a href="/articles/delete/<%= article.article_id %>" style="float: right">
+                <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
             </a>
-            <a href="/articles/edit/<%= article.article_id %>" style="margin-right: 2%; float: right">
-                <button type="button" class="btn btn-outline-primary">Edit</button>
+            <a href="/articles/edit/<%= article.article_id %>" style="float: right; margin-right: 10px">
+                <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
             </a>
             <% } %>
 

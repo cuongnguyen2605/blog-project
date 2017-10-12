@@ -6,12 +6,12 @@ module.exports.newArticleConverter = (req, res, next) => {
     let create_at = new Date();
     let content = req.body.content;
     let status = "waiting";
-    if (req.session.role = "moderator") {
+    if (req.session.role === "moderator") {
         status = "accepted";
     }
 
-    req.checkBody('title', 'Title is not empty.').notEmpty();
-    req.checkBody('content', 'Content is not empty.').notEmpty();
+    req.checkBody('title', 'Title must be 10 to 100 character.').isLength({min: 10, max:100});
+    req.checkBody('content', 'Content must be more 100 character.').isLength({min:100});
 
     let errors = req.validationErrors();
     if (errors) {
@@ -30,12 +30,12 @@ module.exports.articleConverterWithEditing = (req, res, next) => {
     let title = req.body.title;
     let content = req.body.content;
 
-    req.checkBody('title', 'Title is not empty').notEmpty();
-    req.checkBody('content', 'Content is not empty').notEmpty();
+    req.checkBody('title', 'Title must be 10 to 100 character.').isLength({min: 10, max:100});
+    req.checkBody('content', 'Content must be more 100 character.').isLength({min:100});
 
     let errors = req.validationErrors();
     if (errors) {
-        res.render('article-editor', {errors: errors});
+        res.redirect('/articles/edit/'+req.params.articleId);
     } else {
         req.article = new Article(title, content);
         req.article.setId(id);

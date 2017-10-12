@@ -17,16 +17,16 @@
     <h1>Create new article</h1>
     <div align="center" style="width: 70%">
         <form action="" method="post">
-            <% if (errors !== ""){ %>
-            <% errors.forEach(function (error) { %>
-            <div align="left"><%= error.msg %></div>
-            <% }); %>
-            <% } %>
             <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1">Title</span>
                 <input type="text" class="form-control" aria-describedby="sizing-addon1"
                        name="title" placeholder="Input new article title">
             </div>
+            <% if (errors !== ""){ %>
+            <% errors.forEach(function (error) { %>
+            <div align="left" style="color: red"><%= error.msg %></div>
+            <% }); %>
+            <% } %>
             <br>
             <textarea name="content" id="" cols="30" rows="10"></textarea>
             <br>

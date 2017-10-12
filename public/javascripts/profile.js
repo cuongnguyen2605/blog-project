@@ -3,7 +3,8 @@ $(document).ready(function () {
         e.preventDefault();
         $.ajax({
             type: 'PUT',
-            url: '/profile/' + $(e.target).val()
+            url: '/profile/' + $(e.target).val(),
+            data: $("#profileForm").serialize()
         }).done(function () {
             console.log('Success!');
         }).fail(function (exception) {
