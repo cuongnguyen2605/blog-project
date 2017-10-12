@@ -13,42 +13,26 @@
           integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container" style="width: 80%">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 style="margin: 0; font-weight: bold">Edit article</h1>
-                <hr />
-                <% article.forEach(function (article) { %>
-                    <form action="" method="post">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="sizing-addon1">Title</span>
-                            <input type="text" class="form-control" aria-describedby="sizing-addon1" name="title" placeholder="Input new article title" value="<%= article.title %>">
-                        </div>
-                        <br>
-                        <textarea name="content" id="" cols="30" rows="10"><%= article.content %></textarea>
-                        <br>
-                        <input type="submit" value="Save" class="btn btn-primary" />
-                        <input type="reset" value="Clear" class="btn btn-secondary" />
-                    </form>
-                <% }); %>
+<div class="container" style="width: 80%">
+             <div class="row">
+                     <div class="col-md-12">
+                             <h1 style="margin: 0; font-weight: bold">Edit article</h1>
+                             <hr />
+                             <% article.forEach(function (article) { %>
+                                 <form action="" method="post">
+                                         <div class="input-group">
+                                                 <span class="input-group-addon" id="sizing-addon1">Title</span>
+                                                 <input type="text" class="form-control" aria-describedby="sizing-addon1" name="title" placeholder="Input new article title" value="<%= article.title %>">
+                                             </div>
+                                         <br>
+                                         <textarea name="content" id="" cols="30" rows="10"><%= article.content %></textarea>
+                                         <br>
+                                         <input type="submit" value="Save" class="btn btn-primary" />
+                                         <input type="reset" value="Clear" class="btn btn-secondary" />
+                                     </form>
+                             <% }); %>
             </div>
-<<<<<<< HEAD
         </div>
-=======
-
-            <div align="left" style="color: red">
-                Title must be 10 to 100 character.<br>
-                Content must be more 100 character.
-            </div>
-            <br>
-            <textarea name="content" id="" cols="30" rows="10"><%= article.content %></textarea>
-            <br>
-
-            <input type="submit" value="Save" class="btn btn-primary btn-lg">
-            <input type="reset" value="Clear" class="btn btn-secondary btn-lg">
-        </form>
-        <% }); %>
->>>>>>> 292e0c935e291548449c21d1010beed1011cd97a
     </div>
 </body>
 </html>
