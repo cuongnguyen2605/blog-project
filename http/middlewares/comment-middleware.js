@@ -1,20 +1,20 @@
-const Comment = require('../../app/comments/comment')
+const Comment = require('../../app/comments/comment');
 
 module.exports = (req, res, next) => {
-    let content = req.body.content;
-    let create_at = new Date();
+    let comment = req.body.comment;
 
-    req.checkBody('content', 'Content is null.');
+    req.checkBody('comment', 'Content is not empty!').notEmpty();
 
-    let errors = req.validationErrors();
+    let error = req.validationErrors();
 
-    if (errors) {
-        res.render('comment', {
-            errors: errors
-        });
+    if (error) {
+        res.redirect('/articles/detail/' + req.params.article_id);
     } else {
-        req.comment = new Comment(content, create_at);
+        req.comment = new Comment(comment, new Date());
+        req.comment.setCommentId(null);
+        req.comment.setUserId(req.session.user_id);
+        req.comment.setArticleId(req.params.article_id);
         console.log(req.comment);
-        // next();
+        next();
     }
-}
+};

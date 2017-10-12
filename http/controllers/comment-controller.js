@@ -11,23 +11,23 @@ getComment = (req, res, next) => {
             })
         })
         .catch(next)
-}
+};
 
 createComment = (req, res, next) => {
     commentService.createComment(req.comment)
         .then(() => {
-            res.redirect('/')
+            res.redirect('/articles/detail/' + req.params.article_id)
         })
         .catch(next)
-}
+};
 
 deleteComment = (req, res, next) => {
     commentService.deleteComment(req.params.comment_id)
         .then(() => {
-            res.redirect('/articles/detail/'+req.params.article_id)
+            res.redirect('/articles/detail/' + req.params.article_id)
         })
         .catch(next)
-}
+};
 
 exports.getComment = getComment;
 exports.createComment = createComment;

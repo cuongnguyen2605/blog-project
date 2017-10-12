@@ -5,7 +5,9 @@ const articlesController = require('../http/controllers/article-controller');
 const articleStatusConverter = require('../http/middlewares/article-status-converter');
 const moderatorRequireMiddleware = require('../http/middlewares/moderator-require-middleware');
 const canCreatingArticle = require('../http/middlewares/can-creating-article-middleware');
-const commentConntroller = require('../http/controllers/comment-controller');
+const commentController = require('../http/controllers/comment-controller');
+const commentValidator = require('../http/middlewares/comment-middleware');
+
 router.get('/', articlesController.getAllArticlesWithMember);
 
 router.get('/detail/:articleId', articlesController.articleDetail);
@@ -34,7 +36,9 @@ router.get('/unreject/:articleId', moderatorRequireMiddleware, articleStatusConv
 router.get('/delete/:articleId', moderatorRequireMiddleware, articlesController.articleDeleting);
 
 //Comment
-router.get('/comments/delete/:comment_id/:article_id', commentConntroller.deleteComment);
+router.post('/comment/:article_id', commentValidator, commentController.createComment);
+
+router.get('/comments/delete/:comment_id/:article_id', commentController.deleteComment);
 
 //Search
 // router.get('/search-advance',(req, res)=>{

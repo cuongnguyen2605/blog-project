@@ -51,9 +51,9 @@
                     <h5>Write a Comment:</h5>
                 </div>
                 <div class="panel-body">
-                    <form action="" method="post">
+                    <form action="/articles/comment/<%= article.article_id %>" method="post">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" placeholder="Write a Comment..."></textarea>
+                            <textarea name="comment" class="form-control" rows="3" placeholder="Write a Comment..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Comment</button>
                     </form>
