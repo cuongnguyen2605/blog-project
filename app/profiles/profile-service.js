@@ -1,41 +1,27 @@
 const Promise = require('bluebird');
 
 class ProfileService {
-    constructor (mysqlConnection) {
+    constructor(mysqlConnection) {
         this.mysqlConnection = mysqlConnection;
         this.mysqlConnection.query = Promise.promisify(mysqlConnection.query);
     }
 
-    getProfile (profile_id) {
-        let query = 'SELECT * FROM profiles WHERE profile_id = ?';
-        return this.mysqlConnection.query(query, [profile_id]);
+    getProfile(username) {
+        let query = 'SELECT * FROM profiles WHERE username = ?';
+        return this.mysqlConnection.query(query, [username]);
     }
 
-    getProfiles () {
-        let query = 'SELECT * FROM profiles';
-        return this.mysqlConnection.query(query);
-    }
-
-    createProfile (profile) {
-        let query = 'INSERT INTO profiles SET ?';
-        return this.mysqlConnection.query(query, [profile]);
-    }
-
-    updateProfile (profile) {
-        let query = 'UPDATE profiles SET fullname = ?, email = ?, phone = ?, address = ? WHERE profile_id = ?';
-        return this.mysqlConnection.query (
-            query,
-            [profile.fullname],
-            [profile.email],
-            [profile.phone],
-            [profile.address],
-            [profile.profile_id]
+    updateProfile(profile) {
+        let query = 'UPDATE profiles SET fullname = ?, email = ?, phone = ?, address = ? WHERE username = ?';
+        return this.mysqlConnection.query(query,
+            [
+                profile.fullname,
+                profile.email,
+                profile.phone,
+                profile.address,
+                profile.username
+            ]
         );
-    }
-
-    deleteProfile (profile_id) {
-        let query = 'DELETE FROM profiles WHERE profile_id = ?';
-        return this.mysqlConnection.query(query, [profile_id])
     }
 
 }
