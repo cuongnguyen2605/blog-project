@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/javascripts/profile.js"></script>
 </head>
 <body>
     <%include partials/nav-guest.ejs%>
@@ -23,10 +24,10 @@
                     <div class="panel-body">
                         <div class="col-md-12 col-xs-12 col-sm-6 col-lg-12" >
                             <div>
-                                <h2 style="font-weight: bold">Information</h2>
+                                <h2 style="font-weight: bold; margin: 0">Information</h2>
                             </div>
                             <hr>
-                            <form action="/profile/update" method="POST">
+                            <form>
                                 <% profile.forEach(function (user) { %>
                                     <div class="form-group">
                                         <label>Fullname</label>
@@ -34,12 +35,12 @@
                                             <input type="text" class="form-control" value="<%= user.fullname %>" style="width: 500px" />
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Username</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" value="<%= user.username %>" style="width: 500px" />
-                                        </div>
-                                    </div>
+                                    <!--<div class="form-group">-->
+                                        <!--<label>Username</label>-->
+                                        <!--<div class="input-group">-->
+                                            <!--<input type="text" class="form-control" value="" style="width: 500px" />-->
+                                        <!--</div>-->
+                                    <!--</div>-->
                                     <div class="form-group">
                                         <label>Email</label>
                                         <div class="input-group">
@@ -59,7 +60,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn btn-primary">Update Profile</button>
+                                        <button class="update btn btn-primary" value="<%= user.profile_id %>">Update Profile</button>
                                     </div>
                                 <% }) %>
                             </form>
