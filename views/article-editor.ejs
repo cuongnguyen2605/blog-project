@@ -23,6 +23,11 @@
                 <input type="text" class="form-control" aria-describedby="sizing-addon1"
                        name="title" placeholder="Input new article title" value="<%= article.title %>">
             </div>
+
+            <div align="left" style="color: red">
+                Title must be 10 to 100 character.<br>
+                Content must be more 100 character.
+            </div>
             <br>
             <textarea name="content" id="" cols="30" rows="10"><%= article.content %></textarea>
             <br>
