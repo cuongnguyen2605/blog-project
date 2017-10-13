@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const SignupMiddleware = require('../http/middlewares/signupMiddleware');
+const SignupMiddleware = require('../http/middlewares/signup-validator');
 const IsExistedAcountMiddleware = require('../http/middlewares/isExistedAcountMiddleware');
 const SignupController = require('../http/controllers/signup-controller');
 const LoginRequire = require('../http/middlewares/loginRequire');
