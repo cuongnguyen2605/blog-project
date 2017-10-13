@@ -1,5 +1,5 @@
 const knex = require('../../database/knex-connection');
-const ServiceDatabase = require('../reposity-service/service');
+const md5 = require('md5');
 class Authenticator{
     constructor(username, password){
         this.username = username;
@@ -10,12 +10,12 @@ class Authenticator{
         return this.username;
     }
     getPassword(){
-        return this.password;
-    }
-    authenticate(username, password){
-        let obj = new ServiceDatabase();
-        return obj.getServiceSelect('select', username, password);
 
+        return md5(this.password);
+    }
+    authenticate(){
+        return knex('credentials').where('username', this.getUsername())
+            .andWhere('password',this.getPassword());
     }
 }
 //
