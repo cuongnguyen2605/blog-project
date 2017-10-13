@@ -49,7 +49,7 @@
                             <h3>Don't have any article!</h3>
                         <% } else { %>
                         <% articles.forEach(function(article) { %>
-                        <% if(article.status === "accepted") {%>
+                        <% if(article.status === "accepted" || article.author === user_id) {%>
                             <div class="media" style="margin: 0;padding: 20px 0; border-bottom: 1px solid #eee">
                                 <div class="media-left" style="padding-right: 20px">
                                     <img alt="128x128"
@@ -68,7 +68,12 @@
                                     <p style="color: #818181; margin-bottom: -1px;">
                                         <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at.toDateString() %>
                                     </p>
-                                    <span class="label label-success">Success</span>
+                                    <% if(article.status === "accepted") {%>
+                                    <span class="label label-success"><%=article.status%></span>
+                                    <% } %>
+                                    <% if(article.status !== "accepted") {%>
+                                    <span class="label label-warning"><%=article.status%></span>
+                                    <% } %>
                                 </div>
                             </div>
                         <% } }); } %>
@@ -95,10 +100,10 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Article Content</label>
-                                                    <textarea name="content" id="" cols="30" rows="10" style="height: 500px"></textarea>
+                                                    <textarea name="content" id="" cols="30" rows="10" style="height: 180px"></textarea>
                                                 </div>
                                                 <div class="form-group" style="text-align: right">
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                    <button type="submit" class="btn btn-primary">Save</button>
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                 </div>
                                             </form>
@@ -120,26 +125,6 @@
                                 </div>
                             </form>
                         </div>
-                        <!--<div class="panel-body">-->
-                            <!--<form action="/articles/search" method="post">-->
-                                <!--<div class="input-group">-->
-                                    <!--<input type="text" name="author" id="author" placeholder="Search by author" class="form-control">-->
-                                    <!--<span class="input-group-btn">-->
-                                    <!--<button class="btn btn-primary" type="submit">Search</button>-->
-                                <!--</span>-->
-                                <!--</div>-->
-                            <!--</form>-->
-                        <!--</div>-->
-                        <!--<div class="panel-body">-->
-                            <!--<form action="/articles/search" method="post">-->
-                                <!--<div class="input-group">-->
-                                    <!--<input type="date" name="date" id="date" placeholder="Search by author" class="form-control">-->
-                                    <!--<span class="input-group-btn">-->
-                                    <!--<button class="btn btn-primary" type="submit">Search</button>-->
-                                <!--</span>-->
-                                <!--</div>-->
-                            <!--</form>-->
-                        <!--</div>-->
                     </div>
                 </div>
             </div>

@@ -42,6 +42,11 @@
                                 <span class="glyphicon glyphicon-user"></span> Register
                             </h3>
                         </div>
+                        <%if(message === '4'){%>
+                        <div class="alert alert-warning" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
+                            <strong>Warning! </strong> Please, enter required fields!
+                        </div>
+                        <%}%>
                         <%if(message === 'signup successfuly'){%>
                         <div class="alert alert-success" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
                             <strong>Success!</strong> Signup Successfuly.
@@ -73,28 +78,28 @@
                         <div class="panel-body" style="padding: 20px">
                             <form class="" action="/signup" method="post">
                                 <div class="form-group">
-                                    <label class="control-label" for="fname">Full Name</label>
+                                    <label class="control-label" for="fname">Full Name *</label>
                                     <div class="col-sm-12 input-group">
                                         <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                                         <input id="fname" name="fullname" type="text" placeholder="Full Name" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="lname">User Name</label>
+                                    <label class="control-label" for="lname">User Name *</label>
                                     <div class="col-sm-12 input-group">
                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                         <input id="lname" name="username" type="text" placeholder="User Name"  class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="city">Set Password</label>
+                                    <label class="control-label" for="city">Set Password *</label>
                                     <div class="col-sm-12 input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                                         <input id="city" name="password" type="password" placeholder="Password" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="city">Confirm password</label>
+                                    <label class="control-label" for="city">Confirm password *</label>
                                     <div class="col-sm-12 input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                                         <input id="city" name="passwordConfirm" type="password" placeholder="Confirm Password" class="form-control" />

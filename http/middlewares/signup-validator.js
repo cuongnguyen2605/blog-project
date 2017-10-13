@@ -16,27 +16,27 @@ module.exports = (req, res, next)=>{
 
 
     if(!listValue.fullname){
-        res.render('signup',{message: 'Please enter fullname again'});
+       return res.render('signup',{message: '4'});
     }
     if(!listValue.username){
-        res.render('signup',{message: 'Please enter username again'});
+        return res.render('signup',{message: 'Please enter username again'});
     }
     if(!listValue.password || !checkPass.test(listValue.password)){
-        res.render('signup',{message: '1'});
+        return res.render('signup',{message: '1'});
     }
     if(!listValue.passwordConfirm || !checkPass.test(listValue.passwordConfirm)){
-        res.render('signup',{message: 'you must capitalize the first character, the number of password between 8 to 16 character'});
+        return res.render('signup',{message: 'you must capitalize the first character, the number of password between 8 to 16 character'});
     }
     if(listValue.password !== listValue.passwordConfirm){
-        res.render('signup',{message: 'password and confirm password different'});
+        return res.render('signup',{message: 'password and confirm password different'});
     }
     if(!checkPhone.test(listValue.phoneNumber)){
-        res.render('signup',{message: '2'});
+        return res.render('signup',{message: '2'});
     }
     if(!checkGmail.test(listValue.email)){
-        res.render('signup',{message: '3'});
+        return res.render('signup',{message: '3'});
     }
 
     next();
 
-}
+};

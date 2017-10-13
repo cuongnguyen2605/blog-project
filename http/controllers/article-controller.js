@@ -13,6 +13,7 @@ module.exports.getAllArticlesWithMember = (req, res, next) => {
                 articles: articles
                 , username: req.session.username
                 , role: req.session.role
+``                , user_id: req.session.user_id
             });
         })
         .catch(next);

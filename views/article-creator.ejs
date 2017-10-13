@@ -26,11 +26,10 @@
                                 <input type="text" class="form-control" aria-describedby="sizing-addon1" name="title" placeholder="Input new article title" />
                             </div>
                             <br />
-                            <textarea name="content" id="" cols="30" rows="10" style="height: 500px"></textarea>
-                            <br />
+                            <textarea name="content" id="" cols="30" rows="10" style="height: 230px"></textarea>
                             <% if (errors !== ""){ %>
                             <% errors.forEach(function (error) { %>
-                                <div style="color: red"><%= error.msg %></div>
+                                <div style="color: red">*<%= error.msg %></div>
                             <% }); %>
                             <% } %>
                             <br />
