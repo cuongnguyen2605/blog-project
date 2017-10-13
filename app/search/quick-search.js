@@ -1,15 +1,18 @@
 //Search by key word
 const knex= require('../../database/knex-connection');
 
-class quickSearch{
-    articleSearching(condition) {
-        return knex.select('articles.*','credentials.username')
-            .table('articles')
-            .leftJoin('credentials',{'credentials.user_id':'articles.author'})
-            .where('articles.title','like','%'+condition+'%')
-            .orWhere('credentials.username','like','%'+condition+'%')
-            .orWhere('articles.content','like','%'+condition+'%');
+class QuickSearch{
+    setValue(value){
+        this.value = value;
+    }
+    getValue(){
+        return this.value;
+    }
+    getQuery(){
+        return knex.table('articles').innerJoin('credentials','articles.author','=','credentials.user_id')
+            .whereRaw('articles.title=? or credentials.username=?'
+                , [this.getValue(), this.getValue()]);
     }
 }
 
-module.exports=quickSearch;
+module.exports=QuickSearch;
