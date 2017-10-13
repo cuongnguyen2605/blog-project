@@ -7,6 +7,11 @@ const moderatorRequireMiddleware = require('../http/middlewares/moderator-requir
 const canCreatingArticle = require('../http/middlewares/can-creating-article-middleware');
 const commentController = require('../http/controllers/comment-controller');
 const commentValidator = require('../http/middlewares/comment-middleware');
+const SearchAdvanceValidator = require('../http/middlewares/search-advance-validator');
+const ConditionFactory = require('../http/middlewares/condition-factory');
+const SearchAdvanceController = require('../http/controllers/search-advance-controller');
+const SearchQuickController = require('../http/controllers/search-quick-controller');
+const SearchQuickMiddleware = require('../http/middlewares/search-quick-middleware');
 
 router.get('/', articlesController.getAllArticlesWithMember);
 
@@ -41,10 +46,10 @@ router.post('/comment/:article_id', commentValidator, commentController.createCo
 router.get('/comments/delete/:comment_id/:article_id', commentController.deleteComment);
 
 //Search
-// router.get('/search-advance',(req, res)=>{
-//     res.render('search-advance',{message:"",username: req.session.username, role: req.session.role});
-// });
-// router.post('/search', articleSearchingDataFilter.searchingDataFilter, articleSearchingController.search);
-// router.post('/search-advance',searchMiddleware, articleSearchingController.searchAdvance);
+router.get('/search-advance',(req, res)=>{
+    res.render('search-advance',{message:"",username: req.session.username, role: req.session.role});
+});
+ router.post('/search',SearchQuickMiddleware,SearchQuickController);
+router.post('/search-advance',SearchAdvanceValidator,ConditionFactory,SearchAdvanceController);
 
 module.exports = router;

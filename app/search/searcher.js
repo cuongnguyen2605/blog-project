@@ -1,6 +1,6 @@
 class searcher{
-    search(searchType, condition) {
-        return searchType.articleSearching(condition);
+    search(searchType) {
+        return searchType.getQuery();
     }
 }
 
