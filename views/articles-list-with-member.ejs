@@ -12,8 +12,6 @@
     <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>tinymce.init({selector: 'textarea'});</script>
 </head>
 <body>
     <header>
@@ -85,35 +83,9 @@
                 <div class="col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            <a class="btn btn-primary" href="/articles/create">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Create new Article
-                            </button>
-                            <div id="myModal" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Create new Article</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="/articles/create" method="post">
-                                                <div class="form-group">
-                                                    <label for="">Article Title</label>
-                                                    <input type="text" class="form-control" name="title" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">Article Content</label>
-                                                    <textarea name="content" id="" cols="30" rows="10" style="height: 180px"></textarea>
-                                                </div>
-                                                <div class="form-group" style="text-align: right">
-                                                    <button type="submit" class="btn btn-primary">Save</button>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="panel-body">
                             <form action="/articles/search" method="post">

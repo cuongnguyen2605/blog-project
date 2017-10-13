@@ -30,10 +30,10 @@ module.exports = (req, res, next)=>{
     if(listValue.password !== listValue.passwordConfirm){
         return res.render('signup',{message: 'password and confirm password different'});
     }
-    if(!checkPhone.test(listValue.phoneNumber)){
+    if(listValue.phoneNumber && !checkPhone.test(listValue.phoneNumber)){
         return res.render('signup',{message: '2'});
     }
-    if(!checkGmail.test(listValue.email)){
+    if(listValue.email && !checkGmail.test(listValue.email)){
         return res.render('signup',{message: '3'});
     }
 
