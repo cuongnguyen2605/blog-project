@@ -26,6 +26,14 @@
                         </div>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
+                                <div class="input-group" style="width: 225px; margin-top: 7px">
+                                    <input type="text" name="" id="title" placeholder="Search Advanced" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
                                 <a href="/profile/<%= username %>"><span class="glyphicon glyphicon-user"></span> <%= username %></a>
                             </li>
                             <li>
@@ -115,8 +123,8 @@
                                 <div class="input-group">
                                     <input type="text" name="title" id="title" placeholder="Search" class="form-control">
                                     <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="submit">Search</button>
-                                </span>
+                                        <button class="btn btn-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+                                    </span>
                                 </div>
                             </form>
                         </div>
