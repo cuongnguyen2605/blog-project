@@ -82,7 +82,7 @@
                                 <% if (article.status == "accepted") { %>
                                 <td>
                                     <a href="/articles/reject/<%= article.article_id %>">
-                                        <button type="button" class="btn btn-primary"><i class="fa fa-ban" aria-hidden="true"></i> Reject</button>
+                                        <button type="button" class="btn btn-primary"><i class="fa fa-lock" aria-hidden="true"></i> Reject</button>
                                     </a>
                                 </td>
                                 <td>
@@ -94,7 +94,7 @@
                                 <% if (article.status == "rejected") { %>
                                 <td colspan="2">
                                     <a href="/articles/unreject/<%= article.article_id %>">
-                                        <button type="button" class="btn btn-warning"><i class="fa fa-unlock" aria-hidden="true"></i> Unreject</button>
+                                        <button type="button" class="btn btn-warning"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Unreject</button>
                                     </a>
                                 </td>
                                 <% } %>

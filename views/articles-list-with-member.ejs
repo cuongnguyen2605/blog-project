@@ -66,7 +66,7 @@
                                     </a>
                                     <p style="font-size: 16px">by <a href="#"><%= article.username %></a></p>
                                     <p style="color: #818181; margin-bottom: -1px;">
-                                        <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at %>
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at.toDateString() %>
                                     </p>
                                     <span class="label label-success">Success</span>
                                 </div>

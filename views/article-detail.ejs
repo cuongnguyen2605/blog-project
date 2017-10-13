@@ -62,7 +62,7 @@
 
                 <p>by <a href="#"><strong><%= article.username %></strong></a></p>
                 <p style="color: #818181">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at %>
+                    <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at.toDateString() %>
                 </p>
                 <hr>
                 <article style="font-size: 16px">
@@ -87,11 +87,11 @@
                     <% comments.forEach(function (comment) { %>
                     <li class="list-group-item">
                         <p>
-                            <strong><%= comment.username %></strong>
-                            <strong><%= comment.fullname %></strong>
-                            <small><%= comment.created_at.toDateString() %></small>
+                            <strong><%= comment.username %></strong> - <small><%= comment.created_at.toDateString() %></small>
                             <% if(comment.user_id === user_id) { %>
-                            <a href="/articles/comments/delete/<%= comment.comment_id %>/<%= article.article_id %>" style="float: right">Delete</a>
+                                <a href="/articles/comments/delete/<%= comment.comment_id %>/<%= article.article_id %>" style="float: right">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
                             <% } %>
                         </p>
                         <p><%= comment.content %></p>
