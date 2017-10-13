@@ -14,73 +14,95 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<% include partials/nav-member.ejs %>
-
-<div class="container" style="width: 80%">
-    <div class="row">
-        <div class="col-md-12">
-            <% article.forEach(function (article) { %>
-            <% if(role === 'moderator') { %>
-            <a href="/articles/list" style="float: right"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</a>
-            <% } else { %>
-            <a href="/articles" style="float: right"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</a>
-            <% } %>
-
-            <h2 style="font-weight: bold; margin-top: 0"><%= article.title %></h2>
-
-            <% if(authorId === user_id || role === 'moderator') { %>
-            <a href="/articles/delete/<%= article.article_id %>" style="float: right">
-                <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-            </a>
-            <a href="/articles/edit/<%= article.article_id %>" style="float: right; margin-right: 10px">
-                <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
-            </a>
-            <% } %>
-
-            <p>by <a href="#"><strong><%= article.username %></strong></a></p>
-            <p style="color: #818181">
-                <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at %>
-            </p>
-            <hr>
-            <article style="font-size: 16px">
-                <p><%- article.content %></p>
-            </article>
-            <hr>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h5>Write a Comment:</h5>
-                </div>
-                <div class="panel-body">
-                    <form action="/articles/comment/<%= article.article_id %>" method="post">
-                        <div class="form-group">
-                            <textarea name="comment" class="form-control" rows="3" placeholder="Write a Comment..."></textarea>
+    <header>
+        <nav class="navbar navbar-default" style="border-radius: 0px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="/">Blog Project</a>
                         </div>
-                        <button type="submit" class="btn btn-primary">Comment</button>
-                    </form>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/articles"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Articles</a>
+                            </li>
+                            <li>
+                                <a href="/profile/<%= username %>"><span class="glyphicon glyphicon-user"></span> <%= username %></a>
+                            </li>
+                            <li>
+                                <a href="/"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </nav>
+    </header>
 
-            <ul class="list-group">
-                <% comments.forEach(function (comment) { %>
-                <li class="list-group-item">
-                    <p>
-                        <strong><%= comment.username %></strong>
-                        <strong><%= comment.fullname %></strong>
-                        <small><%= comment.created_at.toDateString() %></small>
-                        <% if(comment.user_id === user_id) { %>
-                        <a href="/articles/comments/delete/<%= comment.comment_id %>/<%= article.article_id %>" style="float: right">Delete</a>
-                        <% } %>
-                    </p>
-                    <p><%= comment.content %></p>
-                </li>
+    <div class="container" style="width: 80%">
+        <div class="row">
+            <div class="col-md-12">
+                <% article.forEach(function (article) { %>
+                <% if(role === 'moderator') { %>
+                <a href="/articles/list" style="float: right"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</a>
+                <% } else { %>
+                <a href="/articles" style="float: right"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</a>
+                <% } %>
+
+                <h2 style="font-weight: bold; margin-top: 0"><%= article.title %></h2>
+
+                <% if(authorId === user_id || role === 'moderator') { %>
+                <a href="/articles/delete/<%= article.article_id %>" style="float: right">
+                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                </a>
+                <a href="/articles/edit/<%= article.article_id %>" style="float: right; margin-right: 10px">
+                    <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                </a>
+                <% } %>
+
+                <p>by <a href="#"><strong><%= article.username %></strong></a></p>
+                <p style="color: #818181">
+                    <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at %>
+                </p>
+                <hr>
+                <article style="font-size: 16px">
+                    <p><%- article.content %></p>
+                </article>
+                <hr>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5>Write a Comment:</h5>
+                    </div>
+                    <div class="panel-body">
+                        <form action="/articles/comment/<%= article.article_id %>" method="post">
+                            <div class="form-group">
+                                <textarea name="comment" class="form-control" rows="3" placeholder="Write a Comment..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Comment</button>
+                        </form>
+                    </div>
+                </div>
+
+                <ul class="list-group">
+                    <% comments.forEach(function (comment) { %>
+                    <li class="list-group-item">
+                        <p>
+                            <strong><%= comment.username %></strong>
+                            <strong><%= comment.fullname %></strong>
+                            <small><%= comment.created_at.toDateString() %></small>
+                            <% if(comment.user_id === user_id) { %>
+                            <a href="/articles/comments/delete/<%= comment.comment_id %>/<%= article.article_id %>" style="float: right">Delete</a>
+                            <% } %>
+                        </p>
+                        <p><%= comment.content %></p>
+                    </li>
+                    <% }); %>
+                </ul>
                 <% }); %>
-            </ul>
-
-            <% }); %>
+            </div>
         </div>
     </div>
-</div>
 
-<% include partials/footer.ejs %>
+    <% include partials/footer.ejs %>
 </body>
 </html>

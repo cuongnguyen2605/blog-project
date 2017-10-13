@@ -12,12 +12,31 @@
     <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
     <script>tinymce.init({selector: 'textarea'});</script>
 </head>
 <body>
-    <% include partials/nav-member.ejs %>
+    <header>
+        <nav class="navbar navbar-default" style="border-radius: 0px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="/">Blog Project</a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/profile/<%= username %>"><span class="glyphicon glyphicon-user"></span> <%= username %></a>
+                            </li>
+                            <li>
+                                <a href="/"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <div class="main-page">
         <div class="container" style="width: 80%">
