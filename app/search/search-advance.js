@@ -1,34 +1,47 @@
-const knex= require('../../database/knex-connection');
+const knex = require('../../database/knex-connection');
 
 class SearchAdvance {
-    setTitle(title){
+    setTitle(title) {
         this.title = title;
     }
-    getTitle(){
+
+    getTitle() {
         return this.title;
     }
-    setAuthor(author){
+
+    setAuthor(author) {
         this.author = author;
     }
-    getAuthor(){
+
+    getAuthor() {
         return this.author;
     }
-    setStartDate(start){
+
+    setStartDate(start) {
         this.start = start;
     }
-    getStartDate(){
+
+    getStartDate() {
         return this.start;
     }
-    setEndDate(end){
+
+    setEndDate(end) {
         this.end = end;
     }
-    getEndDate(){
+
+    getEndDate() {
         return this.end;
     }
-    getQuery(){
-        return knex.table('articles').innerJoin('credentials','articles.author','=','credentials.user_id')
-            .whereRaw('articles.title=? and credentials.username=? and create_at between ? and ?'
-            , [this.getTitle(),this.getAuthor(),this.getStartDate(), this.getEndDate()]);
+
+    getQuery() {
+        return knex.select('articles.*', 'credentials.username')
+            .table('articles')
+            .innerJoin('credentials', 'articles.author', '=', 'credentials.user_id')
+            .where('articles.title', 'like', '%' + this.getTitle() + '%')
+            .andWhere('credentials.username', 'like', '%' + this.getAuthor() + '%')
+            .andWhereBetween('articles.create_at', [this.getStartDate(), this.getEndDate()])
+            .where('articles.status', '=', 'accepted')
+            .orderBy('articles.create_at', 'desc');
     }
 }
 

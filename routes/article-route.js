@@ -1,26 +1,28 @@
 const router = require('express').Router();
-// const searchMiddleware = require('../http/middlewares/search-middleware');
+
+//Middlewares
 const articlesValidator = require('../http/middlewares/article-validator');
-const articlesController = require('../http/controllers/article-controller');
 const articleStatusConverter = require('../http/middlewares/article-status-converter');
 const moderatorRequireMiddleware = require('../http/middlewares/moderator-require-middleware');
 const canCreatingArticle = require('../http/middlewares/can-creating-article-middleware');
-const commentController = require('../http/controllers/comment-controller');
 const commentValidator = require('../http/middlewares/comment-middleware');
-const SearchAdvanceValidator = require('../http/middlewares/search-advance-validator');
-const ConditionFactory = require('../http/middlewares/condition-factory');
+const quickSearchCondition = require('../http/middlewares/condition-factory').quickSearchCondition;
+const searchAdvanceCondition = require('../http/middlewares/condition-factory').searchAdvanceCondition;
+//Controlles
+const articlesController = require('../http/controllers/article-controller');
 const SearchAdvanceController = require('../http/controllers/search-advance-controller');
 const SearchQuickController = require('../http/controllers/search-quick-controller');
-const SearchQuickMiddleware = require('../http/middlewares/search-quick-middleware');
+const commentController = require('../http/controllers/comment-controller');
 
+//List
 router.get('/', articlesController.getAllArticlesWithMember);
 
 router.get('/detail/:articleId', articlesController.articleDetail);
 
 router.get('/create', canCreatingArticle, (req, res) => {
-    return res.render('article-creator.ejs',{errors: ""});
+    return res.render('article-creator.ejs', {errors: ""});
 });
-
+//Create, Edit
 router.post('/create', articlesValidator.newArticleConverter, articlesController.articleCreating);
 
 router.get('/edit/:articleId', articlesController.getArticle);
@@ -46,10 +48,10 @@ router.post('/comment/:article_id', commentValidator, commentController.createCo
 router.get('/comments/delete/:comment_id/:article_id', commentController.deleteComment);
 
 //Search
-router.get('/search-advance',(req, res)=>{
-    res.render('search-advance',{message:"",username: req.session.username, role: req.session.role});
+router.get('/search-advance', (req, res) => {
+    res.render('search-advance', {message: "", username: req.session.username, role: req.session.role});
 });
- router.post('/search',SearchQuickMiddleware,SearchQuickController);
-router.post('/search-advance',SearchAdvanceValidator,ConditionFactory,SearchAdvanceController);
+router.post('/search', quickSearchCondition, SearchQuickController);
+router.post('/search-advance', searchAdvanceCondition, SearchAdvanceController);
 
 module.exports = router;

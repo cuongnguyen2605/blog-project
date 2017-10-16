@@ -50,7 +50,7 @@
                             <h3>Don't have any article!</h3>
                         <% } else { %>
                         <% articles.forEach(function(article) { %>
-                        <% if(article.status === "accepted" || article.author === user_id) {%>
+                        <% //if(article.status === "accepted") {%>
                             <div class="media" style="margin: 0;padding: 20px 0; border-bottom: 1px solid #eee">
                                 <div class="media-left" style="padding-right: 20px">
                                     <img alt="128x128"
@@ -69,15 +69,10 @@
                                     <p style="color: #818181; margin-bottom: -1px;">
                                         <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at.toDateString() %>
                                     </p>
-                                    <% if(article.status === "accepted") {%>
-                                    <span class="label label-success"><%=article.status%></span>
-                                    <% } %>
-                                    <% if(article.status !== "accepted") {%>
-                                    <span class="label label-warning"><%=article.status%></span>
-                                    <% } %>
+                                    <span class="label label-success">Success</span>
                                 </div>
                             </div>
-                        <% } }); } %>
+                        <%  }); } %>
                     </div>
                 </div>
                 <div class="col-md-4">
