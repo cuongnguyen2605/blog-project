@@ -1,19 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Articles List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css"/>
 </head>
 <body>
+<div class="page">
     <header>
         <nav class="navbar navbar-default" style="border-radius: 0px">
             <div class="container">
@@ -24,9 +22,7 @@
                         </div>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="/articles/create">
-                                    <i class="fa fa-plus" aria-hidden="true"></i> Create Article
-                                </a>
+                                <a href="/articles/create"><i class="fa fa-plus" aria-hidden="true"></i> Create Article</a>
                             </li>
                             <li>
                                 <a href="/articles/my-articles/<%= user_id %>"><i class="fa fa-file-text-o" aria-hidden="true"></i> My Articles</a>
@@ -43,15 +39,15 @@
             </div>
         </nav>
     </header>
-
-    <div class="container" style="width: 80%">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 style="font-weight: bold; margin: 0">Articles list of Member</h1>
-                <hr />
-                <div style="border: 1px solid #ddd; padding: 10px">
-                    <table class="table table-hover" style="margin-bottom: 0">
-                        <thead>
+    <div class="main-page">
+        <div class="container" style="width: 80%">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 style="font-weight: bold; margin: 0">Articles list of Member</h1>
+                    <hr/>
+                    <div style="border: 1px solid #ddd; padding: 10px">
+                        <table class="table table-hover" style="margin-bottom: 0">
+                            <thead>
                             <tr>
                                 <th>Id</th>
                                 <th style="width: 200px">Title</th>
@@ -61,12 +57,14 @@
                                 <th style="width: 160px">Set Status</th>
                                 <th style="width: 160px">Delete</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                        <% articles.forEach(function(article) { %>
+                            </thead>
+                            <tbody>
+                            <% articles.forEach(function(article) { %>
                             <tr>
                                 <td><%= article.article_id %></td>
-                                <td><a href="/articles/detail/<%= article.article_id %>"><%= article.title %></a></td>
+                                <td>
+                                    <a href="/articles/detail/<%= article.article_id %>"><%= article.title %></a>
+                                </td>
                                 <td><%= article.username %></td>
                                 <td><%= article.create_at.toDateString() %></td>
                                 <td><%= article.status %></td>
@@ -77,21 +75,56 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="/articles/delete/<%= article.article_id %>">
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
-                                    </a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
+                                    <div id="myModal" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Delete Post!</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete the post?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="/articles/delete/<%= article.article_id %>">
+                                                        <button type="button" class="btn btn-primary">Yes</button>
+                                                    </a>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                                 <% } %>
                                 <% if (article.status == "accepted") { %>
                                 <td>
-                                    <a href="/articles/reject/<%= article.article_id %>">
+                                    <a href="/articles/reject/<%= article.article_id %>" style="text-decoration: none">
                                         <button type="button" class="btn btn-primary"><i class="fa fa-lock" aria-hidden="true"></i> Reject</button>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="/articles/delete/<%= article.article_id %>">
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
-                                    </a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
+                                    <div id="myModal" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;
+                                                    </button>
+                                                    <h4 class="modal-title">Delete Post!</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete the post?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="/articles/delete/<%= article.article_id %>">
+                                                        <button type="button" class="btn btn-primary">Yes</button>
+                                                    </a>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                                 <% } %>
                                 <% if (article.status == "rejected") { %>
@@ -102,14 +135,16 @@
                                 </td>
                                 <% } %>
                             </tr>
-                        <% }); %>
-                        </tbody>
-                    </table>
+                            <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <%include partials/footer.ejs%>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

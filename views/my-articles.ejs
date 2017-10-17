@@ -26,11 +26,11 @@
                             </li>
                             <% if(role === 'moderator') { %>
                             <li>
-                                <a href="/articles/list" style="float: right"><i class="fa fa-newspaper-o" aria-hidden="true"></i>Articles</a>
+                                <a href="/articles/list" style="float: right"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Articles</a>
                             </li>
                             <% } else { %>
                             <li>
-                                <a href="/articles" style="float: right"><i class="fa fa-newspaper-o" aria-hidden="true"></i>Articles</a>
+                                <a href="/articles" style="float: right"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Articles</a>
                             </li>
                             <% } %>
                             <li>
@@ -93,22 +93,5 @@
         </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    $().ready(function () {
-        $('form[name="quick-search"]').validate({
-            rules: {
-                value: {
-                    required: true
-                }
-            },
-            submitHandler: function (form) {
-                form.submit();
-            }
-        });
-    });
-</script>
 </body>
 </html>

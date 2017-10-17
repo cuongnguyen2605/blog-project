@@ -15,7 +15,7 @@ class CommentService {
         return this.mysqlConnection.query(query, [comment_id]);
     }
 
-    createComment(comment) {
+    createComment (comment) {
         let query = 'INSERT INTO comments SET ?';
         console.log(comment);
         return this.mysqlConnection.query(query, [comment]);

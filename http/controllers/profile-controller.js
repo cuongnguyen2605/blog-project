@@ -9,14 +9,14 @@ getProfile = (req, res, next) => {
             res.render('profile', {
                 profile: profile,
                 username: req.session.username
-            })
+            });
         })
         .catch(next)
 };
 
 updateProfile = (req, res, next) => {
     profileService.updateProfile(req.profile)
-        .then((profile) => {
+        .then(() => {
             res.redirect('/profile/' + req.session.username);
         })
         .catch(next)

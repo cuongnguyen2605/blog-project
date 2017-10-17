@@ -1,45 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create new Article</title>
-
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>tinymce.init({selector: 'textarea'});</script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <title>Create Article</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css"/>
 </head>
 <body>
-    <div class="container" style="width: 80%">
-        <div class="row">
-            <div class="col-md-12">
-                <article>
-                    <h1 style="font-weight: bold">Create new article</h1>
-                    <hr />
-                    <div>
-                        <form action="" method="post">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="sizing-addon1">Title</span>
-                                <input type="text" class="form-control" aria-describedby="sizing-addon1" name="title" placeholder="Input new article title" />
-                            </div>
-                            <br />
-                            <textarea name="content" id="" cols="30" rows="10" style="height: 230px"></textarea>
-                            <% if (errors !== ""){ %>
-                            <% errors.forEach(function (error) { %>
-                                <div style="color: red">*<%= error.msg %></div>
-                            <% }); %>
-                            <% } %>
-                            <br />
-                            <input type="submit" value="Save" class="btn btn-primary /">
-                            <input type="reset" value="Clear" class="btn btn-secondary /">
-                        </form>
+<div class="page">
+    <header>
+        <nav class="navbar navbar-default" style="border-radius: 0px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="/">Blog Project</a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                            </li>
+                        </ul>
                     </div>
-                </article>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="main-page">
+        <div class="container" style="width: 80%">
+            <div class="row">
+                <div class="col-md-12">
+                    <article>
+                        <h1 style="font-weight: bold; margin: 0">Create new article</h1>
+                        <hr/>
+                        <div>
+                            <form action="" method="post">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="sizing-addon1">Title</span>
+                                    <input type="text" class="form-control" aria-describedby="sizing-addon1" name="title" placeholder="Input new article title"/>
+                                </div>
+                                <br/>
+                                <textarea name="content" id="" cols="30" rows="10" style="height: 230px"></textarea>
+                                <% if (errors !== ""){ %>
+                                <% errors.forEach(function (error) { %>
+                                    <div style="color: red"><%= error.msg %></div>
+                                <% }); %>
+                                <% } %>
+                                <br/>
+                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="reset" class="btn btn-warning">Reset</button>
+                            </form>
+                        </div>
+                    </article>
+                </div>
             </div>
         </div>
     </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>tinymce.init({selector: 'textarea'})</script>
 </body>
 </html>
