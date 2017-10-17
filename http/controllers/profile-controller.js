@@ -8,7 +8,8 @@ getProfile = (req, res, next) => {
         .then((profile) => {
             res.render('profile', {
                 profile: profile,
-                username: req.session.username
+                username: req.session.username,
+                role: req.session.role
             });
         })
         .catch(next)
