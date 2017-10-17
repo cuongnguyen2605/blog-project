@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
     <title>Login</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css"/>
 </head>
 <body>
+<div class="page">
     <header>
         <nav class="navbar navbar-default" style="border-radius: 0px">
             <div class="container">
@@ -20,8 +19,6 @@
                         <div class="navbar-header">
                             <a class="navbar-brand" href="/">Blog Project</a>
                         </div>
-                        <ul class="nav navbar-nav">
-                        </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <a href="/signup"><span class="glyphicon glyphicon-user"></span> Create Account</a>
@@ -35,18 +32,18 @@
     <div class="main-page">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="panel panel-default" style="border-radius: 0px">
+                <div class="col-md-12">
+                    <div class="panel panel-default" style="width: 40%; margin: 0 auto; border-radius: 0;">
                         <div class="panel-heading" style="background: #f8f8f8; padding: 20px">
                             <h3 class="panel-title" style="font-weight: bold">
                                 <i class="fa fa-lock fa-lg" aria-hidden="true"></i> You need Login.
                             </h3>
                         </div>
-                        <%if(message != ""){%>
+                        <% if(message != ""){ %>
                         <div class="alert alert-warning" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
-                            <strong>Warning! </strong><%=message%>.
+                            <strong>Warning! </strong><%= message %>.
                         </div>
-                        <%}%>
+                        <% } %>
                         <div class="panel-body" style="padding: 20px">
                             <form accept-charset="UTF-8" role="form" action="/signin" method="post">
                                 <fieldset>
@@ -54,17 +51,17 @@
                                         <label for="">Username</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                            <input class="form-control" placeholder="Username" name="username" type="text" />
+                                            <input class="form-control" placeholder="Username" name="username" type="text"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Password</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                            <input class="form-control" placeholder="Password" name="password" type="password" />
+                                            <input class="form-control" placeholder="Password" name="password" type="password"/>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary" type="submit"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Login</button>
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-key" aria-hidden="true"></i> Login</button>
                                 </fieldset>
                             </form>
                             <br/>
@@ -75,6 +72,8 @@
             </div>
         </div>
     </div>
-    <%include partials/footer%>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

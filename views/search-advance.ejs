@@ -1,70 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>searchAdvance</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Search Advance</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
 </head>
 <body>
-<div class="header">
-    <%include partials/nav-member.ejs%>
-</div>
-<div class="container">
-    <div class="row">
-        <legend><span class="glyphicon glyphicon-search"></span> Search</legend>
-        <div class="col-sm-4">
-        </div>
-        <!-- panel preview -->
-        <div class="col-sm-4">
-            <div class="panel panel-default">
-                <form action="/articles/search-advance" method="post">
-                <div  class="panel-body form-horizontal payment-form">
-
-                        <div class="form-group">
-                            <label for="concept" class="col-sm-3 control-label">Title</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="concept" name="title">
+    <div class="container">
+        <div class="row">
+            <legend><span class="glyphicon glyphicon-search"></span> Search</legend>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <form action="/articles/search-advance" method="post">
+                        <div class="panel-body form-horizontal payment-form">
+                            <div class="form-group">
+                                <label for="concept" class="col-sm-3 control-label">Title</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="concept" name="title">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="col-sm-3 control-label">Author</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="description" name="author">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="amount" class="col-sm-3 control-label">StartDate</label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" id="amount" name="start">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="amount" class="col-sm-3 control-label">EndDate</label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" id="amount" name="end">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12 text-right">
+                                    <button type="submit" class="btn btn-info">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="description" class="col-sm-3 control-label">Author</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="description" name="author">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="amount" class="col-sm-3 control-label">StartDate</label>
-                            <div class="col-sm-9">
-                                <input type="date" class="form-control" id="amount" name="start">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="amount" class="col-sm-3 control-label">EndDate</label>
-                            <div class="col-sm-9">
-                                <input type="date" class="form-control" id="amount" name="end">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12 text-right">
-                                <button type="submit" class="btn btn-info">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </div>
-                        </div>
-
-
-
+                    </form>
                 </div>
-                </form>
             </div>
-        </div> <!-- / panel preview -->
-
+        </div>
     </div>
-</div>
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

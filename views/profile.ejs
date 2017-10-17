@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
     <title>Profile</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css"/>
 </head>
 <body>
+<div class="page">
     <header>
         <nav class="navbar navbar-default" style="border-radius: 0px">
             <div class="container">
@@ -33,49 +32,48 @@
             </div>
         </nav>
     </header>
-
-    <div class="profile">
+    <div class="main-page">
         <div class="container">
             <div class="row">
-                <div class="panel panel-default" style="width: 50%; margin: 0px auto; border-radius: 0px;">
+                <div class="panel panel-default" style="width: 40%; margin: 0 auto; border-radius: 0;">
                     <div class="panel-heading">
                         <h4 style="font-weight: bold"><i class="fa fa-user" aria-hidden="true"></i> User Profile</h4>
                     </div>
                     <div class="panel-body">
-                        <div class="col-md-12 col-xs-12 col-sm-6 col-lg-12" >
+                        <div class="col-md-12 col-xs-12 col-sm-6 col-lg-12">
                             <div>
                                 <h2 style="font-weight: bold; margin: 0">Information</h2>
                             </div>
                             <hr>
-                            <form action="/profile/<%= username %>" method="post">
+                            <form name="profile-form" action="/profile/<%= username %>" method="post">
                                 <% profile.forEach(function (user) { %>
-                                    <div class="form-group">
-                                        <label>Fullname</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" value="<%= user.fullname %>" name="fullname" style="width: 500px" />
-                                        </div>
+                                <div class="form-group">
+                                    <label class="control-label">Fullname *</label>
+                                    <div class="col-sm-12 input-group">
+                                        <input type="text" class="form-control" value="<%= user.fullname %>" id="fullname" name="fullname" style="border-radius: 4px"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" value="<%= user.email %>" name="email" style="width: 500px" />
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Email *</label>
+                                    <div class="col-sm-12 input-group">
+                                        <input type="email" class="form-control" value="<%= user.email %>" id="email" name="email" style="border-radius: 4px"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Phone</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" value="<%= user.phone %>" name="phone" style="width: 500px" />
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Phone</label>
+                                    <div class="col-sm-12 input-group">
+                                        <input type="number" class="form-control" value="<%= user.phone %>" id="phone" name="phone" style="border-radius: 4px"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Address</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" value="<%= user.address %>" name="address" style="width: 500px" />
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Address</label>
+                                    <div class="col-sm-12 input-group">
+                                        <input type="text" class="form-control" value="<%= user.address %>" id="address" name="address" style="border-radius: 4px"/>
                                     </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-primary" value="<%= user.profile_id %>">Update Profile</button>
-                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary" value="<%= user.profile_id %>"><i class="fa fa-check" aria-hidden="true"></i> Update</button>
+                                </div>
                                 <% }) %>
                             </form>
                         </div>
@@ -84,6 +82,35 @@
             </div>
         </div>
     </div>
-    <%include partials/footer.ejs%>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('form[name="profile-form"]').validate({
+            rules: {
+                fullname: {
+                    required: true,
+                    minlength: 6
+                },
+                email: {
+                    required: true,
+                    email: true,
+                },
+            },
+            messages: {
+                fullname: {
+                    required: 'Please enter Full Name',
+                    minlength: 'Your Full Name must be at least 6 characters long.'
+                },
+                email: 'Please enter a valid email address.'
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
+</script>
 </body>
 </html>
