@@ -7,7 +7,7 @@ let articleRepository = new articleRepo();
 let commentService = new CommentService(mysqlConnection);
 
 module.exports.getAllArticlesWithMember = (req, res, next) => {
-    articleRepository.getAllArticles()
+    articleRepository.getAllArticlesForMember()
         .then((articles) => {
             res.render('articles-list-with-member', {
                 articles: articles
@@ -20,7 +20,7 @@ module.exports.getAllArticlesWithMember = (req, res, next) => {
 };
 
 module.exports.getAllArticlesWithModerator = (req, res, next) => {
-    articleRepository.getAllArticles()
+    articleRepository.getAllArticlesForMod()
         .then((articles) => {
 
             res.render('articles-list-with-moderator', {

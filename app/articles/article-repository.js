@@ -6,7 +6,13 @@ class ArticleRepository {
 
     }
 
-    getAllArticles() {
+    getAllArticlesForMember() {
+        return knex.select('articles.*', 'credentials.username').table('articles')
+            .leftJoin('credentials', {'credentials.user_id': 'articles.author'})
+            .where('articles.status', '=', 'accepted');
+    }
+
+    getAllArticlesForMod() {
         return knex.select('articles.*', 'credentials.username').table('articles')
             .leftJoin('credentials', {'credentials.user_id': 'articles.author'});
     }

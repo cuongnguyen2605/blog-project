@@ -47,6 +47,7 @@
                         <h3>Don't have any article!</h3>
                         <% } else { %>
                         <% articles.forEach(function(article) { %>
+<<<<<<< HEAD
                         <% if(article.status === "accepted" || article.author === user_id) {%>
                         <div class="media" style="margin: 0;padding: 20px 0; border-bottom: 1px solid #eee">
                             <div class="media-left" style="padding-right: 20px">
@@ -78,6 +79,31 @@
                             </div>
                         </div>
                         <% } }); } %>
+=======
+                        <% //if(article.status === "accepted") {%>
+                            <div class="media" style="margin: 0;padding: 20px 0; border-bottom: 1px solid #eee">
+                                <div class="media-left" style="padding-right: 20px">
+                                    <img alt="128x128"
+                                         class="media-object"
+                                         data-src="holder.js/100x100"
+                                         src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNWYwNWFjNWViMyB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1ZjA1YWM1ZWIzIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMi4xNzk2ODc1IiB5PSIzNi41Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg=="
+                                         data-holder-rendered="true"
+                                         style="width: 100px; height: 100px;"
+                                    >
+                                </div>
+                                <div class="media-body">
+                                    <a href="/articles/detail/<%= article.article_id %>">
+                                        <h4 style="font-weight: bold; margin-top: 0px"><%= article.title %></h4>
+                                    </a>
+                                    <p style="font-size: 16px">by <a href="#"><%= article.username %></a></p>
+                                    <p style="color: #818181; margin-bottom: -1px;">
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at.toDateString() %>
+                                    </p>
+                                    <span class="label label-success">Success</span>
+                                </div>
+                            </div>
+                        <%  }); } %>
+>>>>>>> 0ff11bd11b310ab722ca8bd24e2be4bd5ef68d45
                     </div>
                 </div>
                 <div class="col-md-4">
