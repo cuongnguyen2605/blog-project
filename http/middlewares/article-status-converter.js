@@ -1,4 +1,4 @@
-module.exports.waitingArticle = (req, res, next) => {
+exports.waitingArticle = (req, res, next) => {
     req.article = {
         article_id: req.params.articleId,
         status: "waiting"
@@ -6,7 +6,7 @@ module.exports.waitingArticle = (req, res, next) => {
     next();
 };
 
-module.exports.acceptedArticle = (req, res, next) => {
+exports.acceptedArticle = (req, res, next) => {
     req.article = {
         article_id: req.params.articleId,
         status: "accepted"
@@ -14,7 +14,7 @@ module.exports.acceptedArticle = (req, res, next) => {
     next();
 };
 
-module.exports.rejectedArticle = (req, res, next) => {
+exports.rejectedArticle = (req, res, next) => {
     req.article = {
         article_id: req.params.articleId,
         status: "rejected"

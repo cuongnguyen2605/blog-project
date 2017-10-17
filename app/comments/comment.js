@@ -4,11 +4,6 @@ class Comment {
         this.created_at = created_at;
     }
 
-    setCommentId(comment_id) {
-        this.comment_id = comment_id;
-        return this;
-    }
-
     setArticleId(article_id) {
         this.article_id = article_id;
         return this;

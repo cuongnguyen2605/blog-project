@@ -11,10 +11,8 @@ module.exports = (req, res, next) => {
         res.redirect('/articles/detail/' + req.params.article_id);
     } else {
         req.comment = new Comment(comment, new Date());
-        req.comment.setCommentId(null);
         req.comment.setUserId(req.session.user_id);
         req.comment.setArticleId(req.params.article_id);
-        console.log(req.comment);
         next();
     }
 };

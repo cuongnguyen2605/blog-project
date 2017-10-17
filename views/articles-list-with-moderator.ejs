@@ -25,8 +25,11 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <a href="/articles/create">
-                                    <i class="fa fa-file-text-o" aria-hidden="true"></i> Create Article
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Create Article
                                 </a>
+                            </li>
+                            <li>
+                                <a href="/articles/my-articles/<%= user_id %>"><i class="fa fa-file-text-o" aria-hidden="true"></i> My Articles</a>
                             </li>
                             <li>
                                 <a href="/profile/<%= username %>"><span class="glyphicon glyphicon-user"></span> <%= username %></a>

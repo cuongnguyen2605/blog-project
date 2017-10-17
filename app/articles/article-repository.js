@@ -9,12 +9,21 @@ class ArticleRepository {
     getAllArticlesForMember() {
         return knex.select('articles.*', 'credentials.username').table('articles')
             .leftJoin('credentials', {'credentials.user_id': 'articles.author'})
-            .where('articles.status', '=', 'accepted');
+            .where('articles.status', '=', 'accepted')
+            .orderBy('articles.create_at', 'desc');
     }
 
     getAllArticlesForMod() {
         return knex.select('articles.*', 'credentials.username').table('articles')
-            .leftJoin('credentials', {'credentials.user_id': 'articles.author'});
+            .leftJoin('credentials', {'credentials.user_id': 'articles.author'})
+            .orderBy('articles.create_at', 'desc');
+    }
+
+    getMyArticles(authorId) {
+        return knex.select('articles.*', 'credentials.username').table('articles')
+            .innerJoin('credentials', {'credentials.user_id': 'articles.author'})
+            .where('author', '=', authorId)
+            .orderBy('articles.create_at', 'desc');
     }
 
     getArticle(articleId) {

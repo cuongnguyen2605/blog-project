@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Articles</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
+</head>
+<body>
+<div class="page">
+    <header>
+        <nav class="navbar navbar-default" style="border-radius: 0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="/">Blog Project</a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/articles/create"><i class="fa fa-plus" aria-hidden="true"></i> Create Article</a>
+                            </li>
+                            <% if(role === 'moderator') { %>
+                            <li>
+                                <a href="/articles/list" style="float: right"><i class="fa fa-newspaper-o" aria-hidden="true"></i>Articles</a>
+                            </li>
+                            <% } else { %>
+                            <li>
+                                <a href="/articles" style="float: right"><i class="fa fa-newspaper-o" aria-hidden="true"></i>Articles</a>
+                            </li>
+                            <% } %>
+                            <li>
+                                <a href="/profile/<%= username %>"><span class="glyphicon glyphicon-user"></span> <%= username %></a>
+                            </li>
+                            <li>
+                                <a href="/"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="main-page">
+        <div class="container" style="width: 80%">
+            <div class="row">
+                <div class="col-md-12" style="border-right: 1px solid #eee">
+                    <h1 style="margin: 0; font-weight: bold;">My Articles</h1>
+                    <hr/>
+                    <div class="list-group" style="margin: 0">
+                        <% if (articles[0] == null) { %>
+                        <h3>Don't have any article!</h3>
+                        <% } else { %>
+                        <% articles.forEach(function(article) { %>
+                        <div class="media" style="margin: 0;padding: 20px 0; border-bottom: 1px solid #eee">
+                            <div class="media-left" style="padding-right: 20px">
+                                <img alt="128x128"
+                                     class="media-object"
+                                     data-src="holder.js/100x100"
+                                     src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNWYwNWFjNWViMyB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1ZjA1YWM1ZWIzIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMi4xNzk2ODc1IiB5PSIzNi41Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg=="
+                                     data-holder-rendered="true"
+                                     style="width: 100px; height: 100px;"
+                                >
+                            </div>
+                            <div class="media-body">
+                                <a href="/articles/detail/<%= article.article_id %>">
+                                    <h4 style="font-weight: bold; margin-top: 0px"><%= article.title %></h4>
+                                </a>
+                                <p style="font-size: 16px">by <a href="#"><%= article.username %></a></p>
+                                <p style="color: #818181; margin-bottom: -1px;">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at.toDateString() %>
+                                </p>
+                                <% if (article.status === "accepted") {%>
+                                <span class="label label-success"><%= article.status %></span>
+                                <% } %>
+                                <% if (article.status === "waiting") {%>
+                                <span class="label label-warning"><%= article.status %></span>
+                                <% } %>
+                                <% if(article.status === "rejected") {%>
+                                <span class="label label-danger"><%= article.status %></span>
+                                <% } %>
+                            </div>
+                        </div>
+                        <%  }); } %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $().ready(function () {
+        $('form[name="quick-search"]').validate({
+            rules: {
+                value: {
+                    required: true
+                }
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
+</script>
+</body>
+</html>

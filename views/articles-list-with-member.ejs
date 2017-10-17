@@ -24,7 +24,17 @@
                         </div>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="/articles/search-advance"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                                <form class="form-inline" style="margin-top: 8px" action="/articles/search" method="post">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+                                            <input type="text" class="form-control" name="value" id="value" placeholder="Search">
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                            <li>
+                                <a href="/articles/my-articles/<%= user_id %>"><i class="fa fa-file-text-o" aria-hidden="true"></i> My Articles</a>
                             </li>
                             <li>
                                 <a href="/profile/<%= username %>"><span class="glyphicon glyphicon-user"></span> <%= username %></a>
@@ -75,28 +85,38 @@
                         <%  }); } %>
                     </div>
                 </div>
+
                 <div class="col-md-4">
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" style="border-radius: 0">
                         <div class="panel-heading">
                             <a class="btn btn-primary" href="/articles/create">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Create new Article
                             </a>
                         </div>
                         <div class="panel-body">
-                            <form action="/articles/search" method="post">
-                                <div class="form-group" style="margin-bottom: 5px">
-                                    <label for="">Quick Search</label>
-                                </div>
-                                <div class="input-group">
-                                    <input type="text" name="value" id="title" placeholder="Search" class="form-control">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
-                                    </span>
+
+                            <form name="advance-search" action="/articles/search-advance" method="post">
+                                <div class="form-group">
+                                    <label for="">Advance Search</label>
+                                    <div class="col-xs-12 input-group">
+                                        <input type="text" class="form-control" id="title" name="title" placeholder="Search by title"/>
+                                    </div>
+                                    <div class="col-xs-12 input-group">
+                                        <input type="text" class="form-control" id="author" name="author" placeholder="Search by Author"/>
+                                    </div>
+                                    <h4>Search in range time</h4>
+                                    <div class="col-xs-12 input-group">
+                                        <label for="start">Start:</label> <input type="date" class="form-control" id="start" name="start"/>
+                                    </div>
+                                    <div class="col-xs-12 input-group">
+                                        <label for="end">End: </label>
+                                        <input type="date" class="form-control" id="end" name="end"/>
+                                    </div>
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
                                 </div>
                             </form>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
