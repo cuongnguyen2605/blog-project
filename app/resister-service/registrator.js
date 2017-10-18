@@ -11,7 +11,7 @@ class Registrator{
             })
     }
     register(credential, profile){
-        return knex.insert({user_id: null, username: credential.getUsername()
+        knex.insert({user_id: null, username: credential.getUsername()
                     , password: credential.getPassword(), role: 'member'}).into('credentials')
             .then(()=>{
                return knex.select().from('credentials').where('username', credential.getUsername());
@@ -25,20 +25,10 @@ class Registrator{
                             ,email: profile.getEmail()
                             , phone: profile.getPhone()
                             ,address: profile.getAddress()
-                            , created: knex.fn.now()}).into(profile);
+                            , created: knex.fn.now()}).into('profiles');
             })
 
     }
 }
 //
-// const Credential = require('../../app/credentials/credential');
-// const Profile = require('../../app/profiles/profile');
-// var registrator = new Registrator();
-// var credential = new Credential('hoangdvv','Anhhuy12');
-// var profile = new Profile();
-// profile.setFullname('Do hong quan');
-// profile.setPhone('');
-// profile.setAddress('');
-// profile.setEmail('');
-// registrator.register(credential,profile);
 module.exports = Registrator;

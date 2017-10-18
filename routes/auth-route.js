@@ -18,7 +18,13 @@ router.post('/signin', LoginMiddleware, LoginController);
 // cuc nay la sign up
 router.get('/signup',(req, res)=>{
     "use strict";
-    res.render('signup',{message:''}) ;
+    res.render('signup',{message:""
+                        ,fullname:""
+                        ,username:""
+                        ,password: ""
+                        , email:""
+                        , phone:""
+                        , address: ""}) ;
 });
 router.post('/signup',SignupValidator,IsExistedAcountMiddleware,SignupController);
 //

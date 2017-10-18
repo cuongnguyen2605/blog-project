@@ -13,32 +13,68 @@ module.exports = (req, res, next)=>{
         address: req.body.address
     };
     if(!listValue.fullname){
-        res.redirect('/signup');
-       return res.render('signup',{message: '4'});
+       return res.render('signup',{message: '4'
+                                    ,fullname: listValue.fullname
+                                    ,username: listValue.username
+                                    ,password: listValue.password
+                                    , email: listValue.email
+                                    , phone: listValue.phoneNumber
+                                    , address: listValue.address});
     }
     if(!listValue.username){
-        res.redirect('/signup');
-        return res.render('signup',{message: 'Please enter username again'});
+        return res.render('signup',{message: 'Please enter username again'
+                                    ,fullname: listValue.fullname
+                                    ,username: listValue.username
+                                    ,password: listValue.password
+                                    , email: listValue.email
+                                    , phone: listValue.phoneNumber
+                                    , address: listValue.address});
     }
     if(!listValue.password || !checkPass.test(listValue.password)){
-        res.redirect('/signup');
-        return res.render('signup',{message: '1'});
+        return res.render('signup',{message: '1'
+                                    ,username: listValue.username
+                                    ,password: listValue.password
+                                    , email: listValue.email
+                                    , phone: listValue.phoneNumber
+                                    ,fullname: listValue.fullname
+                                    , address: listValue.address});
     }
     if(!listValue.passwordConfirm || !checkPass.test(listValue.passwordConfirm)){
-        res.redirect('/signup');
-        return res.render('signup',{message: 'you must capitalize the first character, the number of password between 8 to 16 character'});
+        return res.render('signup',{message: 'you must capitalize the first character, the number of password between 8 to 16 character'
+                                    ,fullname: listValue.fullname
+                                    ,username: listValue.username
+                                    ,password: listValue.password
+                                    , email: listValue.email
+                                    , phone: listValue.phoneNumber
+                                    , address: listValue.address});
     }
     if(listValue.password !== listValue.passwordConfirm){
-        res.redirect('/signup');
-        return res.render('signup',{message: 'password and confirm password different'});
+
+        return res.render('signup',{message: 'password and confirm password different'
+                                    ,username: listValue.username
+                                    ,password: listValue.password
+                                    , email: listValue.email
+                                    , phone: listValue.phoneNumber
+                                    ,fullname: listValue.fullname
+                                    , address: listValue.address});
     }
     if(listValue.phoneNumber && !checkPhone.test(listValue.phoneNumber)){
-        res.redirect('/signup');
-        return res.render('signup',{message: '2'});
+        return res.render('signup',{message: '2'
+                                    ,username: listValue.username
+                                    ,password: listValue.password
+                                    , email: listValue.email
+                                    , phone: listValue.phoneNumber
+                                     ,fullname: listValue.fullname
+                                    , address: listValue.address});
     }
     if(listValue.email && !checkGmail.test(listValue.email)){
-        res.redirect('/signup');
-        return res.render('signup',{message: '3'});
+        return res.render('signup',{message: '3'
+                                    ,username: listValue.username
+                                    ,password: listValue.password
+                                    , email: listValue.email
+                                    , phone: listValue.phoneNumber
+                                    ,fullname: listValue.fullname
+                                    , address: listValue.address});
     }
     req.credential = new Credential(listValue.username, listValue.password);
     req.listValue = listValue;
