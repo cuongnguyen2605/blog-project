@@ -4,6 +4,7 @@
     <title>Profile</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
@@ -20,6 +21,24 @@
                             <a class="navbar-brand" href="/">Blog Project</a>
                         </div>
                         <ul class="nav navbar-nav navbar-right">
+                            <% if (role === 'member') { %>
+                                <li>
+                                    <a href="/articles"><i class="fa fa-list" aria-hidden="true"></i> Articles</a>
+                                </li>
+                            <% } %>
+                            <% if (role === 'moderator') { %>
+                                <li>
+                                    <a href="/articles/list"><i class="fa fa-list-alt" aria-hidden="true"></i> Articles Management</a>
+                                </li>
+                                <li>
+                                    <a href="/articles"><i class="fa fa-list" aria-hidden="true"></i> Articles</a>
+                                </li>
+                            <% } %>
+                            <% if (role === 'admin') { %>
+                                <li>
+                                    <a href="/admin/credentials"><i class="fa fa-users" aria-hidden="true"></i> Users List</a>
+                                </li>
+                            <% } %>
                             <li>
                                 <a href="/profile/<%= username %>"><span class="glyphicon glyphicon-user"></span> <%= username %></a>
                             </li>
@@ -98,6 +117,10 @@
                     required: true,
                     email: true,
                 },
+                phone: {
+                    minlength: 10,
+                    maxlength: 11
+                }
             },
             messages: {
                 fullname: {

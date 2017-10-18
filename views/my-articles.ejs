@@ -26,13 +26,12 @@
                             </li>
                             <% if(role === 'moderator') { %>
                             <li>
-                                <a href="/articles/list" style="float: right"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Articles</a>
-                            </li>
-                            <% } else { %>
-                            <li>
-                                <a href="/articles" style="float: right"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Articles</a>
+                                <a href="/articles/list"><i class="fa fa-list-alt" aria-hidden="true"></i> Articles Management</a>
                             </li>
                             <% } %>
+                            <li>
+                                <a href="/articles"><i class="fa fa-list" aria-hidden="true"></i> Articles</a>
+                            </li>
                             <li>
                                 <a href="/profile/<%= username %>"><span class="glyphicon glyphicon-user"></span> <%= username %></a>
                             </li>
@@ -75,18 +74,17 @@
                                     <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at.toDateString() %>
                                 </p>
                                 <% if (article.status === "accepted") {%>
-                                <span class="label label-success"><%= article.status %></span>
+                                    <span class="label label-success"><%= article.status %></span>
                                 <% } %>
                                 <% if (article.status === "waiting") {%>
-                                <span class="label label-warning"><%= article.status %></span>
+                                    <span class="label label-warning"><%= article.status %></span>
                                 <% } %>
                                 <% if(article.status === "rejected") {%>
-                                <span class="label label-danger"><%= article.status %></span>
+                                    <span class="label label-danger"><%= article.status %></span>
                                 <% } %>
                             </div>
                         </div>
-                        <%  }); } %>
-
+                        <% }); } %>
                     </div>
                 </div>
             </div>
