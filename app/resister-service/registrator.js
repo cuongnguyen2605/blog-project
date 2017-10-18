@@ -1,8 +1,13 @@
 const md5 = require('md5');
 const knex = require('../../database/knex-connection');
+const CredentialService = require('../../app/credentials/credential-service');
+const ProfileService = require('../../app/profiles/profile-service');
+const mysqlConnection = require('../../database/mysql-connection');
+let credentialService = new CredentialService();
+let profileService = new ProfileService(mysqlConnection);
 class Registrator{
     checkExistedAcount(credential){
-        return knex.select().from('credentials').where('username', credential.getUsername())
+        return credentialService.selectCredential(credential)
             .then(result=>{
                 if(!result[0]){
                     return true;
@@ -11,24 +16,17 @@ class Registrator{
             })
     }
     register(credential, profile){
-        knex.insert({user_id: null, username: credential.getUsername()
-                    , password: credential.getPassword(), role: 'member'}).into('credentials')
+        credentialService.insertCredential(credential)
             .then(()=>{
-               return knex.select().from('credentials').where('username', credential.getUsername());
+                return credentialService.selectCredential(credential);
             })
             .then(result=>{
-                console.log(credential);
-                console.log(profile);
-                knex.insert({profile_id: null
-                            , user_id: result[0].user_id
-                            ,fullname: profile.getFullname()
-                            ,email: profile.getEmail()
-                            , phone: profile.getPhone()
-                            ,address: profile.getAddress()
-                            , created: knex.fn.now()}).into('profiles');
+                profile.setUserId(result[0].user_id);
+                profileService.insertProfile(profile);
             })
 
     }
 }
+
 module.exports = Registrator;
 //

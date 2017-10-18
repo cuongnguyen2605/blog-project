@@ -7,7 +7,12 @@ class Profile {
     //     this.address = address;
     //     this.created = created;
     // }
-
+    setUserId(user_id){
+        this.user_id = user_id;
+    }
+    getUserId(){
+        return this.user_id;
+    }
     setFullname(fullname){
         this.fullname = fullname;
     }
