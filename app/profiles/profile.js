@@ -14,6 +14,12 @@ class Profile {
     getFullname(){
         return this.fullname;
     }
+    setUsername(username){
+        this.username = username;
+    }
+    getUsername(){
+        return this.username;
+    }
     setEmail(email){
         this.email = email;
     }

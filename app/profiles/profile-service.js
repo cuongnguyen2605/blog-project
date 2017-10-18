@@ -12,6 +12,7 @@ class ProfileService {
     }
 
     updateProfile (profile) {
+        console.log(profile);
         let query = 'UPDATE profiles SET fullname = ?, email = ?, phone = ?, address = ? WHERE username = ?';
         return this.mysqlConnection.query(query,
             [
