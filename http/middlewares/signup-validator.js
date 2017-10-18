@@ -1,6 +1,6 @@
 const Credential = require('../../app/credentials/credential');
 module.exports = (req, res, next)=>{
-    let checkPass = /^[A-Z]{1}.[a-zA-Z0-9!@#$%^&*]{6,15}$/;
+    let checkPass = /^[a-zA-Z0-9!@#$%^&*]{5,15}$/;
     let checkPhone =/^0.[0-9]{8,10}$/;
     let checkGmail = /^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/;
     let listValue ={
@@ -40,7 +40,7 @@ module.exports = (req, res, next)=>{
                                     , address: listValue.address});
     }
     if(!listValue.passwordConfirm || !checkPass.test(listValue.passwordConfirm)){
-        return res.render('signup',{message: 'you must capitalize the first character, the number of password between 8 to 16 character'
+        return res.render('signup',{message: 'you password must between 6 to 16 character'
                                     ,fullname: listValue.fullname
                                     ,username: listValue.username
                                     ,password: listValue.password

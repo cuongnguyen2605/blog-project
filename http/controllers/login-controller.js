@@ -20,7 +20,7 @@ module.exports = function (req, res) {
             res.cookie('status','yes');
             //
             if(result instanceof Admin){
-              return res.redirect('/admins/credentials');
+              return res.redirect('/admin/credentials');
             }
             if(result instanceof Member){
                 return res.redirect('/articles');
@@ -30,4 +30,4 @@ module.exports = function (req, res) {
             }
         })
 
-}
+};

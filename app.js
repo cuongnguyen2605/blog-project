@@ -20,7 +20,6 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(flash());
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -31,6 +30,7 @@ app.use(session({
     saveUninitialized: true
 }));
 
+app.use(flash());
 // use router
 app.use(router);
 
