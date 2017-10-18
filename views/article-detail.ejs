@@ -53,9 +53,28 @@
                     <h2 style="font-weight: bold; margin-top: 0"><%= article.title %></h2>
 
                     <% if(authorId === user_id || role === 'moderator') { %>
-                    <a href="/articles/delete/<%= article.article_id %>" style="float: right">
-                        <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                    </a>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" style="float: right">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                    </button>
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Delete Post!</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete the post?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="/articles/delete/<%= article.article_id %>">
+                                        <button type="button" class="btn btn-primary">Yes</button>
+                                    </a>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <a href="/articles/edit/<%= article.article_id %>" style="float: right; margin-right: 10px">
                         <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
                     </a>

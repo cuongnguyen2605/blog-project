@@ -30,101 +30,105 @@
         </nav>
     </header>
     <div class="main-page">
-        <div class="container">
+        <div class="container" style="width: 60%">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="panel panel-default" style="width: 40%; margin: 0 auto; border-radius: 0;">
+                    <div class="panel panel-default" style="margin: 0 auto; border-radius: 0;">
                         <div class="panel-heading" style="background: #f8f8f8; padding: 20px">
                             <h3 class="panel-title" style="font-weight: bold">
                                 <span class="glyphicon glyphicon-user"></span> Register
                             </h3>
                         </div>
                         <% if(message === '4'){ %>
-                        <div class="alert alert-warning" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
+                        <div class="alert alert-warning" style="margin-bottom: 0; border-radius: 0; padding: 20px">
                             <strong>Warning! </strong> Please, enter required fields!
                         </div>
                         <% } %>
                         <% if(message === 'signup successfuly'){ %>
-                        <div class="alert alert-success" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
+                        <div class="alert alert-success" style="margin-bottom: 0; border-radius: 0; padding: 20px">
                             <strong>Success!</strong> Signup Successfuly.
                         </div>
                         <% } %>
                         <% if(message === '3'){ %>
-                        <div class="alert alert-warning" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
+                        <div class="alert alert-warning" style="margin-bottom: 0; border-radius: 0; padding: 20px">
                             <strong>Warning! </strong> Fomat email not correct, please enter again!
                         </div>
                         <% } %>
                         <% if(message === 'this acount existed'){ %>
-                        <div class="alert alert-warning" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
+                        <div class="alert alert-warning" style="margin-bottom: 0; border-radius: 0; padding: 20px">
                             <strong>Warning</strong> This acount existed.
                         </div>
                         <% } %>
 
                         <% if(message === '1'){ %>
-                        <div class="alert alert-warning" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
+                        <div class="alert alert-warning" style="margin-bottom: 0; border-radius: 0; padding: 20px">
                             <strong>Warning</strong>you must capitalize the first character,
                             the number of password between 8 to 16 character
                         </div>
                         <% } %>
 
                         <% if(message === '2'){ %>
-                        <div class="alert alert-warning" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
+                        <div class="alert alert-warning" style="margin-bottom: 0; border-radius: 0; padding: 20px">
                             <strong>Warning</strong> Phone number not a number, please enter again!
                         </div>
                         <% } %>
                         <div class="panel-body" style="padding: 20px">
                             <form class="" action="/signup" method="post">
-                                <div class="form-group">
-                                    <label class="control-label" for="fname">Full Name *</label>
-                                    <div class="col-sm-12 input-group">
-                                        <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                        <input id="fname" name="fullname" type="text" placeholder="Full Name" class="form-control"/>
+                                <div class="col-md-6" style="padding-left: 0">
+                                    <div class="form-group">
+                                        <label class="control-label" for="lname">User Name *</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                            <input id="lname" name="username" type="text" placeholder="User Name" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="city">Password *</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                            <input id="city" name="password" type="password" placeholder="Password" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="city">Confirm password *</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                            <input id="city" name="passwordConfirm" type="password" placeholder="Confirm Password" class="form-control"/>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="lname">User Name *</label>
-                                    <div class="col-sm-12 input-group">
-                                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                        <input id="lname" name="username" type="text" placeholder="User Name" class="form-control"/>
+                                <div class="col-md-6" style="padding-right: 0">
+                                    <div class="form-group">
+                                        <label class="control-label" for="fname">Full Name *</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                            <input id="fname" name="fullname" type="text" placeholder="Full Name" class="form-control"/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="city">Set Password *</label>
-                                    <div class="col-sm-12 input-group">
-                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                        <input id="city" name="password" type="password" placeholder="Password" class="form-control"/>
+                                    <div class="form-group">
+                                        <label class="control-label" for="email">Email</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                            <input id="email" name="email" type="email" placeholder="Email" class="form-control"/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="city">Confirm password *</label>
-                                    <div class="col-sm-12 input-group">
-                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                        <input id="city" name="passwordConfirm" type="password" placeholder="Confirm Password" class="form-control"/>
+                                    <div class="form-group">
+                                        <label class="control-label" for="addr1">Phone number</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                            <input id="addr1" name="phoneNumber" type="number" placeholder="Phone" class="form-control"/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="email">Email</label>
-                                    <div class="col-sm-12 input-group">
-                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                        <input id="email" name="email" type="email" placeholder="Email" class="form-control"/>
+                                    <div class="form-group">
+                                        <label class="control-label" for="notes">Address</label>
+                                        <div class="col-sm-12 input-group">
+                                            <textarea class="form-control" id="notes" name="address" placeholder="Address" style="border-radius: 4px"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="addr1">Phone number</label>
-                                    <div class="col-sm-12 input-group">
-                                        <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                                        <input id="addr1" name="phoneNumber" type="number" placeholder="Phone" class="form-control"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="notes">Address</label>
-                                    <div class="col-sm-12 input-group">
-                                        <textarea class="form-control" id="notes" name="address" placeholder="Address" style="border-radius: 4px"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-12 input-group">
-                                        <button class="btn btn-primary" type="submit" name="submit" id="submit">Sign Up</button>
+                                    <div class="form-group">
+                                        <div class="col-sm-12 input-group">
+                                            <button class="btn btn-primary" type="submit" name="submit" id="submit">Sign Up</button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
