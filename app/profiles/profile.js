@@ -1,11 +1,37 @@
 class Profile {
-    constructor (fullname, username, email, phone, address, created) {
+    // constructor () {
+    //     this.fullname = fullname;
+    //     this.username = username;
+    //     this.email = email;
+    //     this.phone = phone;
+    //     this.address = address;
+    //     this.created = created;
+    // }
+
+    setFullname(fullname){
         this.fullname = fullname;
-        this.username = username;
+    }
+    getFullname(){
+        return this.fullname;
+    }
+    setEmail(email){
         this.email = email;
+    }
+    getEmail(){
+        return this.email;
+    }
+    setPhone(phone){
+
         this.phone = phone;
+    }
+    getPhone(){
+        return this.phone;
+    }
+    setAddress(address){
         this.address = address;
-        this.created = created;
+    }
+    getAddress(){
+        return this.address;
     }
 
     getProfileId (profile_id) {

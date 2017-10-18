@@ -21,7 +21,6 @@
                         <div class="navbar-header">
                             <a class="navbar-brand" href="/">Blog Project</a>
                         </div>
-                        <ul class="nav navbar-nav"></ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <form class="form-inline" style="margin-top: 8px" action="/articles/search" method="post">
@@ -39,9 +38,9 @@
                                 <a href="/articles/my-articles/<%= user_id %>"><i class="fa fa-file-text-o" aria-hidden="true"></i> My Articles</a>
                             </li>
                             <% if (role === 'moderator') { %>
-                                <li>
-                                    <a href="/articles/list"><i class="fa fa-list-alt" aria-hidden="true"></i> Articles Management</a>
-                                </li>
+                            <li>
+                                <a href="/articles/list"><i class="fa fa-list-alt" aria-hidden="true"></i> Management</a>
+                            </li>
                             <% } %>
                             <li>
                                 <a href="/profile/<%= username %>"><span class="glyphicon glyphicon-user"></span> <%= username %></a>
@@ -99,23 +98,56 @@
                             </a>
                         </div>
                         <div class="panel-body">
-                            <form name="advance-search" action="/articles/search-advance" method="post">
+                            <h3 style="margin: 0; font-weight: bold">Advance Search</h3>
+                            <hr>
+                            <form action="/articles/search-advance" method="post">
                                 <div class="form-group">
-                                    <label for="">Advance Search</label>
+                                    <label for="">Title</label>
                                     <div class="col-xs-12 input-group">
-                                        <input type="text" class="form-control" id="title" name="title" placeholder="Search by title"/>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="title"
+                                               name="title"
+                                               placeholder="Search by Title"
+                                               style="border-radius: 4px"
+                                        />
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Author</label>
                                     <div class="col-xs-12 input-group">
-                                        <input type="text" class="form-control" id="author" name="author" placeholder="Search by Author"/>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="author"
+                                               name="author"
+                                               placeholder="Search by Author"
+                                               style="border-radius: 4px"
+                                        />
                                     </div>
-                                    <h4>Search in range time</h4>
+                                </div>
+                                <div class="form-group">
+                                    <label for="start">Start</label>
                                     <div class="col-xs-12 input-group">
-                                        <label for="start">Start:</label> <input type="date" class="form-control" id="start" name="start"/>
+                                        <input type="date"
+                                               class="form-control"
+                                               id="start"
+                                               name="start"
+                                               style="border-radius: 4px"
+                                        />
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="end">End</label>
                                     <div class="col-xs-12 input-group">
-                                        <label for="end">End: </label>
-                                        <input type="date" class="form-control" id="end" name="end"/>
+                                        <input type="date"
+                                               class="form-control"
+                                               id="end"
+                                               name="end"
+                                               style="border-radius: 4px"
+                                        />
                                     </div>
+                                </div>
+                                <div class="form-group">
                                     <button class="btn btn-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
                                 </div>
                             </form>

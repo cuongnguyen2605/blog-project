@@ -1,59 +1,34 @@
 const md5 = require('md5');
 const knex = require('../../database/knex-connection');
 class Registrator{
-    constructor(username, password, fullname){
-        this.fullname = fullname;
-        this.username = username;
-        this.password = password;
+    checkExistedAcount(credential){
+        return knex.select().from('credentials').where('username', credential.getUsername())
+            .then(result=>{
+                if(!result[0]){
+                    return true;
+                }
+                return false;
+            })
     }
-
-    getFullname(){
-        return this.fullname;
-    }
-    getPassword(){
-        let password = md5(this.password);
-        return password;
-    }
-    getUsername(){
-        return this.username;
-    }
-
-    setPhone(phone){
-        this.phone = phone;
-    }
-    getPhone(){
-        return this.phone;
-    }
-    setEmail(email){
-        this.email = email;
-    }
-    getEmail(){
-        return this.email;
-    }
-    setAddress(address){
-        return this.address = address;
-    }
-    getAddress(){
-        return this.address;
-    }
-    checkExistedAcount(){
-        return knex('credentials').where('username', this.getUsername());
-    }
-    register(){
-        knex.raw('insert into credentials values(?, ?, ?, ?)'
-            ,[null,this.getUsername(), this.getPassword(), 'member'])
+    register(credential, profile){
+        knex.insert({user_id: null, username: credential.getUsername()
+                    , password: credential.getPassword(), role: 'member'}).into('credentials')
             .then(()=>{
-                knex.select().from('credentials').where('username',this.getUsername())
-                    .then(result=>{
-                        return knex.insert({profile_id: null,user_id: result[0].user_id,
-                            fullname: this.getFullname()
-                            ,username: this.getUsername()
-                            ,email: this.getEmail(), phone: this.getPhone(), address: this.getAddress()
-                            ,created: knex.fn.now()})
-                            .into('profiles');
-                    })
-            });
+               return knex.select().from('credentials').where('username', credential.getUsername());
+            })
+            .then(result=>{
+                console.log(credential);
+                console.log(profile);
+                knex.insert({profile_id: null
+                            , user_id: result[0].user_id
+                            ,fullname: profile.getFullname()
+                            ,email: profile.getEmail()
+                            , phone: profile.getPhone()
+                            ,address: profile.getAddress()
+                            , created: knex.fn.now()}).into('profiles');
+            })
+
     }
 }
-
 module.exports = Registrator;
+//

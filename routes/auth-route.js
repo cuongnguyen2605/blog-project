@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const SignupMiddleware = require('../http/middlewares/signup-validator');
-const IsExistedAcountMiddleware = require('../http/middlewares/isExistedAcountMiddleware');
+const SignupValidator = require('../http/middlewares/signup-validator');
+const IsExistedAcountMiddleware = require('../http/middlewares/is-acount-exist-middleware');
 const SignupController = require('../http/controllers/signup-controller');
-const LoginRequire = require('../http/middlewares/loginRequire');
-const IsExistedUserMiddleware = require('../http/middlewares/loginMiddleware');
+const LoginMiddleware = require('../http/middlewares/login-middleware');
+//const IsExistedUserMiddleware = require('../http/middlewares/loginMiddleware');
 const LoginController = require('../http/controllers/login-controller');
 
 // cuc nay cua sign in
@@ -11,16 +11,22 @@ router.get('/',(req, res)=>{
     "use strict";
     res.render('login', {message: ""});
 });
-router.post('/signin', LoginRequire,IsExistedUserMiddleware , LoginController);
+router.post('/signin', LoginMiddleware, LoginController);
 //
 
 
 // cuc nay la sign up
 router.get('/signup',(req, res)=>{
     "use strict";
-    res.render('signup',{message:''}) ;
+    res.render('signup',{message:""
+                        ,fullname:""
+                        ,username:""
+                        ,password: ""
+                        , email:""
+                        , phone:""
+                        , address: ""}) ;
 });
-router.post('/signup',SignupMiddleware,IsExistedAcountMiddleware,SignupController);
+router.post('/signup',SignupValidator,IsExistedAcountMiddleware,SignupController);
 //
 
 //sign out

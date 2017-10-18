@@ -26,7 +26,7 @@
                             </li>
                             <% if(role === 'moderator') { %>
                             <li>
-                                <a href="/articles/list"><i class="fa fa-list-alt" aria-hidden="true"></i> Articles Management</a>
+                                <a href="/articles/list"><i class="fa fa-list-alt" aria-hidden="true"></i> Management</a>
                             </li>
                             <% } %>
                             <li>
@@ -47,7 +47,7 @@
     <div class="main-page">
         <div class="container" style="width: 80%">
             <div class="row">
-                <div class="col-md-12" style="border-right: 1px solid #eee">
+                <div class="col-md-8" style="border-right: 1px solid #eee">
                     <h1 style="margin: 0; font-weight: bold;">My Articles</h1>
                     <hr/>
                     <div class="list-group" style="margin: 0">
@@ -63,7 +63,7 @@
                                      src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNWYwNWFjNWViMyB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1ZjA1YWM1ZWIzIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMi4xNzk2ODc1IiB5PSIzNi41Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg=="
                                      data-holder-rendered="true"
                                      style="width: 100px; height: 100px;"
-                                >
+                                />
                             </div>
                             <div class="media-body">
                                 <a href="/articles/detail/<%= article.article_id %>">
