@@ -30,4 +30,5 @@ class Registrator{
 
     }
 }
+module.exports = Registrator;
 //
