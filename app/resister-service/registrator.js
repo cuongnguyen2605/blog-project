@@ -27,17 +27,6 @@ class Registrator{
 
     }
 }
-// //
-// const Credential = require('../../app/credentials/credential');
-// const Profile = require('../../app/profiles/profile');
-// let credential = new Credential('lol', 'Anhhuy12');
-// let profile = new Profile();
-// profile.setFullname('Do Manh LOL');
-// profile.setEmail('');
-// profile.setPhone('');
-// profile.setAddress('');
-// let regis = new Registrator();
-// regis.register(credential, profile);
 
 module.exports = Registrator;
 //
