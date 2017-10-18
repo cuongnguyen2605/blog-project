@@ -1,7 +1,8 @@
+const md5 = require('md5');
 class Credentials {
-    constructor(username, role) {
+    constructor(username, password) {
         this.username = username;
-        this.role = role;
+        this.password = password;
     }
 
     setId(id) {
@@ -22,10 +23,16 @@ class Credentials {
     getRole() {
         return this.role;
     }
-
+    getUserId(){
+        return this.user_id;
+    }
+    getPassword(){
+        return md5(this.password);
+    }
     getUsername() {
         return this.username;
     }
 }
+
 
 module.exports = Credentials;
