@@ -1,4 +1,5 @@
 const Promise = require('bluebird');
+const knex = require('../../database/knex-connection');
 
 class ProfileService {
     constructor (mysqlConnection) {
@@ -22,6 +23,13 @@ class ProfileService {
                 profile.username,
             ]
         );
+    }
+    insertProfile(profile){
+        return knex.insert({profile_id: null},{fullname: profile.getFullname()}
+                            ,{email: profile.getEmail()}, {phone: profile.getPhone()}
+                            , {address: profile.getAddress()}
+                            ,{created: knex.fn.now()}
+                            ,{user_id: profile.getUserId()}).into('profiles');
     }
 }
 
