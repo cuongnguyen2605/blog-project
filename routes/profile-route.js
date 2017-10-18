@@ -1,11 +1,27 @@
 const express = require('express');
 const router = express.Router();
 
-const ProfileMiddleware = require('../http/middlewares/profile-middleware');
-const ProfileController = require('../http/controllers/profile-controller');
+const profileMiddleware = require('../http/middlewares/profile-middleware');
+const changePasswordMiddleware = require('../http/middlewares/change-password-middleware');
 
-router.get('/:username', ProfileController.getProfile);
+const getMyProfile = require('../http/controllers/profile-controller').getProfile;
+const updateProfile = require('../http/controllers/profile-controller').updateProfile;
+const changePassword = require('../http/controllers/change-password-controller').changePassword;
 
-router.post('/:username', ProfileMiddleware, ProfileController.updateProfile);
+router.get('/:username', getMyProfile);
+
+router.post('/:username', profileMiddleware, updateProfile);
+
+router.get('/change-password/:user_id', (req, res) => {
+    res.render('change-password',
+        {
+            error: "",
+            username: req.session.username,
+            role: req.session.role,
+            user_id: req.session.user_id
+        });
+});
+
+router.post('/change-password/:user_id', changePasswordMiddleware, changePassword);
 
 module.exports = router;

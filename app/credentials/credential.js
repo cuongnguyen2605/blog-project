@@ -14,6 +14,11 @@ class Credentials {
         return this;
     }
 
+    setPassword(password) {
+        this.password = password;
+        return this;
+    }
+
     setRole(role) {
         this.role = role;
         return this;
