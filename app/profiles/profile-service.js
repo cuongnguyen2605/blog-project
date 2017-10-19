@@ -29,10 +29,12 @@ class ProfileService {
         return this.mysqlConnection.query(query,
             [   null,
                 profile.getFullname(),
+                profile.getUsername(),
+                profile.getUserId(),
                 profile.getEmail(),
                 profile.getPhone(),
                 profile.getAddress(),
-                profile.getUserId()
+
             ]);
     }
 }
