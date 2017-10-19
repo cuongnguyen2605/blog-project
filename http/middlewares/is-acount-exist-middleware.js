@@ -16,6 +16,13 @@ module.exports = (req, res, next)=>{
                 next();
             }
 
-            else return res.render('signup',{message:"username existed !"});
+            else return res.render('signup',{message:"username existed !"
+                                            , username:""
+                                            ,password:""
+                                            ,passwordConfirm:""
+                                            ,fullname: req.listValue.fullname
+                                            , email: req.listValue.email
+                                            , address: req.listValue.address
+                                            , phone: req.listValue.phoneNumber});
         })
 }
