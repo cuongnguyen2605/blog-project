@@ -9,6 +9,7 @@ class CredentialService{
     selectCredential(credential){
         return knex('credentials').where('username','=',credential.getUsername());
     }
-}
 
+
+}
 module.exports = CredentialService;

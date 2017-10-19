@@ -11,10 +11,18 @@ module.exports = (req, res, next)=>{
                 profile.setFullname(req.listValue.fullname);
                 profile.setEmail(req.listValue.email);
                 profile.setAddress(req.listValue.address);
+                profile.setUsername(req.listValue.username);
                 req.profile= profile;
                 next();
             }
 
-            else return res.render('signup',{message:"username existed !"});
+            else return res.render('signup',{message:"username existed !"
+                                            , username:""
+                                            ,password:""
+                                            ,passwordConfirm:""
+                                            ,fullname: req.listValue.fullname
+                                            , email: req.listValue.email
+                                            , address: req.listValue.address
+                                            , phone: req.listValue.phoneNumber});
         })
 }
