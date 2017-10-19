@@ -4,6 +4,7 @@
     <title>Sign Up</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
@@ -33,7 +34,7 @@
         <div class="container" style="width: 60%">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="panel panel-default" style="margin: 0 auto; border-radius: 0;">
+                    <div class="panel panel-default" style="margin: 0 auto; border-radius: 5px;">
                         <div class="panel-heading" style="background: #f8f8f8; padding: 20px">
                             <h3 class="panel-title" style="font-weight: bold">
                                 <span class="glyphicon glyphicon-user"></span> Register
@@ -72,56 +73,58 @@
                         </div>
                         <% } %>
                         <div class="panel-body" style="padding: 20px">
-                            <form class="" action="/signup" method="post">
+                            <form id='signup-form' action="/signup" method="post">
                                 <div class="col-md-6" style="padding-left: 0">
                                     <div class="form-group">
-                                        <label class="control-label" for="lname">User Name *</label>
+                                        <span><i class="fa fa-user fa" aria-hidden="true"></i> </span><label class="control-label" for="lname">User Name *</label>
                                         <div class="col-sm-12 input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                            <input id="lname" name="username" type="text" placeholder="User Name" class="form-control" value="<%=username%>"/>
+
+                                            <input id="username" name="username" type="text" placeholder="User Name" class="form-control" value="<%=username%>"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label" for="city">Password *</label>
+                                        <span><i class="fa fa-lock fa-lg" aria-hidden="true"></i> </span><label class="control-label" for="city">Password *</label>
                                         <div class="col-sm-12 input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                            <input id="city" name="password" type="password" placeholder="Password" class="form-control" value="<%=password%>"/>
+
+                                            <input id="password" name="password" type="password" placeholder="Password" class="form-control" value="<%=password%>"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label" for="city">Confirm password *</label>
+                                        <span><i class="fa fa-lock fa-lg" aria-hidden="true"></i> </span><label class="control-label" for="city">Confirm password *</label>
                                         <div class="col-sm-12 input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                            <input id="city" name="passwordConfirm" type="password" placeholder="Confirm Password" class="form-control" value=""/>
+
+                                            <input id="passwordConfirm" name="passwordConfirm" type="password" placeholder="Confirm Password" class="form-control" value=""/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6" style="padding-right: 0">
                                     <div class="form-group">
-                                        <label class="control-label" for="fname">Full Name *</label>
+                                        <span><i class="fa fa-users fa" aria-hidden="true"></i> </span><label class="control-label" for="fname">Full Name *</label>
                                         <div class="col-sm-12 input-group">
-                                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                            <input id="fname" name="fullname" type="text" placeholder="Full Name" class="form-control" value="<%=fullname%>"/>
+
+                                            <input id="fullname" name="fullname" type="text" placeholder="Full Name" class="form-control" value="<%=fullname%>"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label" for="email">Email</label>
+                                         <span><i class="fa fa-envelope fa" aria-hidden="true"></i> </span><label class="control-label" for="email">Email</label>
                                         <div class="col-sm-12 input-group">
-                                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+
                                             <input id="email" name="email" type="email" placeholder="Email" class="form-control" value="<%=email%>"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label" for="addr1">Phone number</label>
+                                        <span><i class="fa fa-phone" aria-hidden="true"></i> </span><label class="control-label" for="addr1">Phone number</label>
                                         <div class="col-sm-12 input-group">
-                                            <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                                            <input id="addr1" name="phoneNumber" type="number" placeholder="Phone" class="form-control" value="<%=phone%>"/>
+
+                                            <div>
+                                                <input id="phoneNumber" name="phoneNumber" type="number" placeholder="Phone" class="form-control" value="<%=phone%>"/>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label" for="notes">Address</label>
                                         <div class="col-sm-12 input-group">
-                                            <textarea class="form-control" id="notes" name="address" placeholder="Address" style="border-radius: 4px" value="<%=address%>"></textarea>
+                                            <textarea class="form-control" id="address" name="address" placeholder="Address" style="border-radius: 4px" value="<%=address%>"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -138,7 +141,43 @@
         </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+    // just for the demos, avoids form submit
+    jQuery.validator.setDefaults({
+      debug: true,
+      success: "valid"
+    });
+    $( "#signup-form" ).validate({
+      rules: {
+        fullname:{
+          required: true
+        },
+        username: {
+           required: true
+        },
+        password: {
+            required: true
+        },
+        passwordConfirm:{
+            required: true
+        },
+        phoneNumber:{
+            minlength: 10,
+            maxlength: 11
+        },
+
+      },
+      messages:{
+        fullname: 'Please enter full name',
+        username: 'Please enter username',
+        password: 'Please enter password',
+        passwordConfirm: 'Please enter password confirm',
+        phoneNumber: 'the number of phone number must between 10 and 11'
+      }
+    });
+</script>
 </body>
 </html>
