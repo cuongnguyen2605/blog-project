@@ -18,7 +18,7 @@ class Registrator{
     register(credential, profile){
         credentialService.insertCredential(credential)
             .then(()=>{
-                return credentialService.selectCredential(credential);
+                return credentialService.selectCredentials(credential);
             })
             .then(result=>{
                 profile.setUserId(result[0].user_id);

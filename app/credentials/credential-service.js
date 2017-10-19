@@ -6,8 +6,12 @@ class CredentialService{
                             , role: 'member'}).into('credentials');
     }
 
-    selectCredential(credential){
+    selectCredentials(credential){
         return knex('credentials').where('username','=',credential.getUsername());
+    }
+    selectCredential(credential){
+        return knex('credentials').where('username','=',credential.getUsername())
+                .andWhere('password','=',credential.getPassword());
     }
 
 
