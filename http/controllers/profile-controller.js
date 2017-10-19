@@ -7,6 +7,8 @@ getProfile = (req, res, next) => {
     profileService.getProfile(req.params.username)
         .then((profile) => {
             res.render('profile', {
+                message: req.message || '',
+                type: req.type || '',
                 profile: profile,
                 username: req.session.username,
                 role: req.session.role,
@@ -19,7 +21,8 @@ getProfile = (req, res, next) => {
 updateProfile = (req, res, next) => {
     profileService.updateProfile(req.profile)
         .then(() => {
-            req.flash('success', 'Your profile was change!');
+        req.message = "bla bla";
+        req.type = "gi day";
             res.redirect('/profile/' + req.session.username);
         })
         .catch(next)

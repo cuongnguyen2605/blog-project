@@ -15,7 +15,7 @@ router.post('/:username', profileMiddleware, updateProfile);
 router.get('/change-password/:user_id', (req, res) => {
     res.render('change-password',
         {
-            error: "",
+            message: "",
             username: req.session.username,
             role: req.session.role,
             user_id: req.session.user_id

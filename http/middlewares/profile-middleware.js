@@ -4,7 +4,9 @@ let profile = new Profile();
 
 module.exports = function (req, res, next) {
     let fullname = req.body.fullname;
+    let username = req.params.username;
     let email = req.body.email;
+    let address = req.body.address;
 
     req.checkBody('fullname', 'Fullname is require.').notEmpty();
     req.checkBody('email', 'Email is require.').notEmpty();
@@ -13,13 +15,13 @@ module.exports = function (req, res, next) {
     let errors = req.validationErrors();
 
     if (errors) {
-        res.redirect('/profile/' + req.params.username);
+        res.redirect('/profile/' + username);
     }
     else {
         profile.setFullname(fullname);
-        profile.setUsername(req.params.username);
+        profile.setUsername(username);
         profile.setEmail(email);
-        profile.setAddress(req.body.address);
+        profile.setAddress(address);
         req.profile = profile;
         next();
     }

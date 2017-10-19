@@ -11,12 +11,21 @@ module.exports = (req, res, next) => {
         .then((Password) => {
             if (Password[0].password === md5(oldPass)) {
                 req.newPassword = md5(newPass);
+                res.render('change-password',
+                    {
+                        message: "Your password was change!",
+                        status: 'success',
+                        username: req.session.username,
+                        role: req.session.role,
+                        user_id: req.session.user_id
+                    });
                 next();
             }
             else {
                 res.render('change-password',
                     {
-                        error: "Old password is not correct",
+                        message: "Old password is not correct!",
+                        status: 'warning',
                         username: req.session.username,
                         role: req.session.role,
                         user_id: req.session.user_id

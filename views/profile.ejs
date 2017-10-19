@@ -55,15 +55,11 @@
         <div class="container">
             <div class="row">
                 <div class="panel panel-default" style="width: 40%; margin: 0 auto; border-radius: 0;">
-                    <div class="panel-heading">
-                        <h4 style="font-weight: bold"><i class="fa fa-user" aria-hidden="true"></i> User Profile</h4>
+                    <div class="panel-heading" style="padding: 10px 30px">
+                        <h4 style="font-weight: bold">Change Profile</h4>
                     </div>
                     <div class="panel-body">
                         <div class="col-md-12 col-xs-12 col-sm-6 col-lg-12">
-                            <div>
-                                <h2 style="font-weight: bold; margin: 0">Information</h2>
-                            </div>
-                            <hr>
                             <form name="profile-form" action="/profile/<%= username %>" method="post">
                                 <% profile.forEach(function (user) { %>
                                 <div class="form-group">
@@ -87,7 +83,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Address</label>
                                     <div class="col-sm-12 input-group">
-                                        <input type="text" class="form-control" value="<%= user.address %>" id="address" name="address" style="border-radius: 4px"/>
+                                        <textarea class="form-control" id="address" name="address" style="border-radius: 4px"><%= user.address %></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -120,6 +116,9 @@
                 phone: {
                     minlength: 10,
                     maxlength: 11
+                },
+                address: {
+                    maxlength: 200
                 }
             },
             messages: {
@@ -127,7 +126,7 @@
                     required: 'Please enter Full Name',
                     minlength: 'Your Full Name must be at least 6 characters long.'
                 },
-                email: 'Please enter a valid email address.'
+                email: 'Please enter a valid email address.',
             },
             submitHandler: function (form) {
                 form.submit();
