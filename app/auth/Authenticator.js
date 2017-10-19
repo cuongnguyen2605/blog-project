@@ -3,11 +3,11 @@ const Admin = require('../../app/credentials/admin');
 const Member = require('../../app/credentials/member');
 const Moderator = require('../../app/credentials/moderator');
 const Banner = require('../../app/credentials/banner');
-// const Credential = require('../../app/credentials/credential');
+const CredentialService = require('../../app/credentials/credential-service');
+let credentialService = new CredentialService();
 class Authenticator{
     authenticate(credential){ // return new promise
-        return knex('credentials').where('username',credential.getUsername())
-            .andWhere('password',credential.getPassword())
+        return credentialService.selectCredential(credential)
         .then(result =>{
             if(!result[0]){
                 return 0;
@@ -28,10 +28,4 @@ class Authenticator{
         });
     }
 }
-//
-// let credential = new Credential('toanreu', 'Anhhuy12');
-// let auth = new Authenticator();
-// auth.authenticate(credential).then(result=>{
-//     console.log(result.getRole());
-// })
 module.exports = Authenticator;
