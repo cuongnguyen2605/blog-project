@@ -58,6 +58,11 @@
                     <div class="panel-heading" style="padding: 10px 30px">
                         <h4 style="font-weight: bold">Change Profile</h4>
                     </div>
+                    <% if (message !== "") {%>
+                    <div class="alert alert-<%= type %>" style="margin-bottom: 0; border-radius: 0; padding: 20px 30px">
+                        <strong><%= message %></strong>
+                    </div>
+                    <% }%>
                     <div class="panel-body">
                         <div class="col-md-12 col-xs-12 col-sm-6 col-lg-12">
                             <form name="profile-form" action="/profile/<%= username %>" method="post">
