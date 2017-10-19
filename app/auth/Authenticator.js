@@ -8,8 +8,7 @@ let credentialService = new CredentialService();
 
 class Authenticator {
     authenticate(credential) { // return new promise
-        return knex('credentials').where('username', credential.getUsername())
-            .andWhere('password', credential.getPassword())
+        return credentialService.selectCredential(credential)
             .then(result => {
                 if (!result[0]) {
                     return 0;
