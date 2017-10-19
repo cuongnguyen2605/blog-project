@@ -11,6 +11,7 @@ module.exports = (req, res, next)=>{
                 profile.setFullname(req.listValue.fullname);
                 profile.setEmail(req.listValue.email);
                 profile.setAddress(req.listValue.address);
+                profile.setUsername(req.listValue.username);
                 req.profile= profile;
                 next();
             }
