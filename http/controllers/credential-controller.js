@@ -9,6 +9,7 @@ exports.getAllCredentials = (req, res, next) => {
                 credentials: credentials
                 , username: req.session.username
                 , role: req.session.role
+                , user_id: req.session.user_id
             })
         })
         .catch(next);

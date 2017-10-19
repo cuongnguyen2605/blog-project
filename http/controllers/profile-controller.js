@@ -9,7 +9,8 @@ getProfile = (req, res, next) => {
             res.render('profile', {
                 profile: profile,
                 username: req.session.username,
-                role: req.session.role
+                role: req.session.role,
+                user_id: req.session.user_id
             });
         })
         .catch(next)
@@ -18,6 +19,7 @@ getProfile = (req, res, next) => {
 updateProfile = (req, res, next) => {
     profileService.updateProfile(req.profile)
         .then(() => {
+            req.flash('success', 'Your profile was change!');
             res.redirect('/profile/' + req.session.username);
         })
         .catch(next)
