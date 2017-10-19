@@ -30,8 +30,9 @@ router.post('/signup',SignupValidator,IsExistedAcountMiddleware,SignupController
 //
 
 //sign out
-router.get('/signout',(req, res)=>{
+router.get('/',(req, res)=>{
     res.cookie('status','no');
+    req.session = null;
     res.render('login',{message: ""});
 });
 module.exports= router;
