@@ -124,7 +124,7 @@
                                     <div class="form-group">
                                         <label class="control-label" for="notes">Address</label>
                                         <div class="col-sm-12 input-group">
-                                            <textarea class="form-control" id="address" name="address" placeholder="Address" style="border-radius: 4px" value=""><%=listValue.address%></textarea>
+                                            <textarea class="form-control" id="address" name="address" rows="3" placeholder="Address" style="border-radius: 4px; resize: none" value="<%=address%>"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -141,5 +141,71 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
+=======
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+    $("#signup-form").validate({
+        rules: {
+            fullname: {
+                required: true,
+                minlength: 6
+
+            },
+            username: {
+                required: true,
+                minlength: 6
+            },
+            password: {
+                required: true,
+                minlength: 6,
+                maxlength: 16
+            },
+            passwordConfirm: {
+                required: true,
+                minlength: 6,
+                maxlength: 16,
+                equalTo: "#password"
+            },
+            email: {
+                email: true
+            },
+            phoneNumber: {
+                minlength: 10,
+                maxlength: 11
+            },
+
+        },
+        messages: {
+            fullname: {
+                required: 'Please enter fullname',
+                minlength: 'Fullname must be at least 6 characters long'
+            },
+            username: {
+                required: 'Please enter username',
+                minlength: 'Username must be at least 6 characters long'
+            },
+            password: {
+                required: 'Please enter password',
+                minlength: 'Password must be at least 6 characters long',
+                maxlength: 'Maximum 16 characters long'
+            },
+            passwordConfirm: {
+                required: 'Please enter password',
+                minlength: 'Password must be at least 6 characters long',
+                maxlength: 'Maximum 16 characters long',
+                equalTo: 'Password confirm is not correct'
+            },
+            phoneNumber: 'The number of phone number must between 10 and 11 character'
+        },
+        submitHandler: function (form) {
+            form.submit();
+        }
+
+    });
+</script>
+>>>>>>> develop
 </body>
 </html>

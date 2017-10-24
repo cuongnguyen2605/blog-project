@@ -9,6 +9,21 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css"/>
+    <style>
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .upload-btn-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
 <div class="page">
@@ -36,25 +51,45 @@
                 <div class="col-md-12">
                     <article>
                         <h1 style="font-weight: bold; margin: 0">Create new article</h1>
-                        <hr/>
+                        <hr>
                         <div>
                             <form name="article-form" action="" method="post">
-                                <div class="form-group">
+                                <div class="form-group col-md-12">
                                     <label class="control-label">Title</label>
-                                    <input type="text" class="form-control" id="title" name="title" placeholder="Input new article title">
+                                    <input type="text" class="form-control" id="title" name="title"
+                                           placeholder="Input new article title">
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label">Content</label>
-                                    <textarea style="height:230px" name="content" id="content" cols="30" rows="10"></textarea>
+                                <div class="col-md-3">
+                                    <label class="control-label" for="image-article">Image</label>
+                                    <img class="article-image img-responsive hoverZoomLink"
+                                         alt="Choose a image"
+                                         id="img-preview" onchange="PreviewImage();"
+                                         style="width: 200px; height: 200px;"
+                                         data-src="holder.js/100x100"
+                                         data-holder-rendered="true"
+                                         src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNWYwNWFjNWViMyB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1ZjA1YWM1ZWIzIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMi4xNzk2ODc1IiB5PSIzNi41Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==">
+                                    <br>
+                                    <div class="upload-btn-wrapper">
+                                        <button class="btn">Upload a image</button>
+                                        <input type="file" name="myfile" id="img-upload"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <label class="control-label">Content</label>
+                                        <textarea style="height:200px" name="content" id="content"></textarea>
+                                    </div>
                                 </div>
                                 <% if (errors !== ""){ %>
                                 <% errors.forEach(function (error) { %>
-                                    <div style="color: red"><%= error.msg %></div>
+                                <div style="color: red"><%= error.msg %></div>
                                 <% }); %>
                                 <% } %>
                                 <br/>
-                                <button type="submit" class="btn btn-primary">Create</button>
-                                <button type="reset" class="btn btn-warning">Reset</button>
+                                <div class="col-md-12" align="center">
+                                    <button type="submit" class="btn btn-primary">Create</button>
+                                    <button type="reset" class="btn btn-warning">Clear</button>
+                                </div>
                             </form>
                         </div>
                     </article>
@@ -97,6 +132,23 @@
                 form.submit();
             }
         });
+    });
+
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img-preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#img-upload").change(function () {
+        readURL(this);
     });
 </script>
 </body>

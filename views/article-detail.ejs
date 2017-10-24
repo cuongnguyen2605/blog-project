@@ -3,7 +3,8 @@
 <head>
     <title>Article Detail</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
@@ -11,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css"/>
 </head>
 <body>
-<div class="page">
+<div>
     <header>
         <nav class="navbar navbar-default" style="border-radius: 0px">
             <div class="container">
@@ -23,18 +24,23 @@
                         <ul class="nav navbar-nav navbar-right">
                             <% if(role === 'moderator') { %>
                             <li>
-                                <a href="/articles/list" style="float: right"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Articles</a>
+                                <a href="/articles/list" style="float: right"><i class="fa fa-newspaper-o"
+                                                                                 aria-hidden="true"></i> Articles</a>
                             </li>
                             <% } else { %>
                             <li>
-                                <a href="/articles" style="float: right"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Articles</a>
+                                <a href="/articles" style="float: right"><i class="fa fa-newspaper-o"
+                                                                            aria-hidden="true"></i> Articles</a>
                             </li>
                             <% } %>
                             <li>
-                                <a href="/articles/my-articles/<%= user_id %>"><i class="fa fa-file-text-o" aria-hidden="true"></i> My Articles</a>
+                                <a href="/articles/my-articles/<%= user_id %>"><i class="fa fa-file-text-o"
+                                                                                  aria-hidden="true"></i> My
+                                    Articles</a>
                             </li>
                             <li>
-                                <a href="/profile/<%= username %>"><span class="glyphicon glyphicon-user"></span> <%= username %></a>
+                                <a href="/profile/<%= username %>"><span
+                                            class="glyphicon glyphicon-user"></span> <%= username %></a>
                             </li>
                             <li>
                                 <a href="/signout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
@@ -49,96 +55,85 @@
         <div class="container" style="width: 80%">
             <div class="row">
                 <div class="col-md-12">
-                    <% article.forEach(function (article) { %>
-                    <h2 style="font-weight: bold; margin-top: 0"><%= article.title %></h2>
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <img alt="120x100px"
+                                 class="media-object"
+                                 data-src="holder.js/100x100"
+                                 src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNWYwNWFjNWViMyB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1ZjA1YWM1ZWIzIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMi4xNzk2ODc1IiB5PSIzNi41Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg=="
+                                 data-holder-rendered="true"
+                                 style="width: 100px; height: 100px;"
+                            >
+                        </div>
+                        <% article.forEach(function (article) { %>
+                        <div class="col-md-10">
+                            <h2 style="font-weight: bold; margin-top: 0"><%= article.title %></h2>
 
-                    <% if(authorId === user_id || role === 'moderator') { %>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" style="float: right">
-                        <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
-                    </button>
-                    <div id="myModal" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Delete Post!</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Are you sure you want to delete the post?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <a href="/articles/delete/<%= article.article_id %>">
-                                        <button type="button" class="btn btn-primary">Yes</button>
+                            <% if(authorId === user_id || role === 'moderator') { %>
+                            <a href="/articles/delete/<%= article.article_id %>" class="del-article">
+                                <button type="button" class="btn btn-danger" style="float: right">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                </button>
+                            </a>
+                            <a href="/articles/edit/<%= article.article_id %>" style="float: right; margin-right: 10px">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o"
+                                                                                 aria-hidden="true"></i> Edit
+                                </button>
+                            </a>
+                            <% } %>
+
+                            <p>by <a href="#"><strong><%= article.username %></strong></a></p>
+                            <p style="color: #818181">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> Posted
+                                on <%= article.create_at.toDateString() %>
+                            </p>
+                        </div>
+                        <div class="col-md-12">
+                            <hr>
+                            <article style="font-size: 16px">
+                                <%- article.content %>
+                            </article>
+                            <hr>
+                        </div>
+                    </div>
+                    <% comments.forEach(function (comment) { %>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <p>
+                                    <strong><%= comment.username %></strong> -
+                                    <small><%= comment.created_at.toDateString() %></small>
+                                    <% if(comment.user_id === user_id) { %>
+                                    <a href="/articles/comments/delete/<%= comment.comment_id %>/<%= article.article_id %> %>"
+                                       class="del-comment" style="float: right">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
                                     </a>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                </div>
+                                    <% } %>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <p><%= comment.content %></p>
                             </div>
                         </div>
                     </div>
-                    <a href="/articles/edit/<%= article.article_id %>" style="float: right; margin-right: 10px">
-                        <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
-                    </a>
-                    <% } %>
-
-                    <p>by <a href="#"><strong><%= article.username %></strong></a></p>
-                    <p style="color: #818181">
-                        <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at.toDateString() %>
-                    </p>
-                    <hr>
-                    <article style="font-size: 16px">
-                        <p><%- article.content %></p>
-                    </article>
-                    <hr>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h5>Write a Comment:</h5>
-                        </div>
-                        <div class="panel-body">
-                            <form action="/articles/comment/<%= article.article_id %>" method="post">
-                                <div class="form-group">
-                                    <textarea name="comment" class="form-control" rows="3" placeholder="Write a Comment..."></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Comment</button>
-                            </form>
-                        </div>
-                    </div>
-                    <hr>
-                    <% comments.forEach(function (comment) { %>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <p>
-                                <strong><%= comment.username %></strong> - <small><%= comment.created_at.toDateString() %></small>
-                                <% if(comment.user_id === user_id) { %>
-                                <a data-toggle="modal" data-target="#myModal2" style="float: right">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </a>
-                                <div id="myModal2" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Delete Post!</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Are you sure you want to delete the comment?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a href="/articles/comments/delete/<%= comment.comment_id %>/<%= article.article_id %> %>">
-                                                    <button type="button" class="btn btn-primary">Yes</button>
-                                                </a>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <% } %>
-                            </p>
-                        </div>
-                        <div class="panel-body">
-                            <p><%= comment.content %></p>
-                        </div>
-                    </div>
                     <% }); %>
+                    <div class="col-md-12">
+                        <hr>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h5>Write a Comment:</h5>
+                            </div>
+                            <div class="panel-body">
+                                <form action="/articles/comment/<%= article.article_id %>" method="post">
+                                    <div class="form-group">
+                                        <textarea name="comment" class="form-control" rows="5"
+                                                  placeholder="Write a Comment..." style="resize: none"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" style="float:right">Comment</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <% }); %>
 
                 </div>
@@ -148,5 +143,35 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+<script>
+    $('a.del-article').confirm({
+        title: "Delete Article",
+        content: "Are you sure you want to delete the post?",
+        autoClose: 'cancel|5000',
+        buttons: {
+            delete: function () {
+                location.href = this.$target.attr('href');
+            },
+            cancel: function () {
+            }
+        }
+    });
+
+    $('a.del-comment').confirm({
+        title: "Delete Comment",
+        content: "Are you sure you want to delete the comment?",
+        autoClose: 'cancel|5000',
+        buttons: {
+            delete: function () {
+                location.href = this.$target.attr('href');
+            },
+            cancel: function () {
+            }
+        }
+    });
+</script>
 </body>
 </html>
