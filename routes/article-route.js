@@ -1,15 +1,8 @@
 const router = require('express').Router();
 
 //Middlewares
-const articlesValidator = require('../http/middlewares/article-validator');
-const articleStatusConverter = require('../http/middlewares/article-status-converter');
-
 const newArticleConverter = require('../http/middlewares/article-validator').newArticleConverter;
 const articleEditingConverter = require('../http/middlewares/article-validator').articleConverterWithEditing;
-const acceptedArticleStatusConverter = require('../http/middlewares/article-status-converter').acceptedArticle;
-const rejectedArticleStatusConverter = require('../http/middlewares/article-status-converter').rejectedArticle;
-const waitingArticleStatusConverter = require('../http/middlewares/article-status-converter').waitingArticle;
-
 const moderatorRequireMiddleware = require('../http/middlewares/moderator-require-middleware');
 const canCreatingArticle = require('../http/middlewares/can-creating-article-middleware');
 const commentValidator = require('../http/middlewares/comment-middleware');
@@ -20,9 +13,12 @@ const searchAdvanceCondition = require('../http/middlewares/condition-factory').
 const getAllArticlesForMember = require('../http/controllers/article-controller').getAllArticlesWithMember;
 const getAllArticlesForModerator = require('../http/controllers/article-controller').getAllArticlesWithModerator;
 const getMyArticles = require('../http/controllers/article-controller').getMyArticles;
-const statusChangingArticle = require('../http/controllers/article-controller').statusChanging;
-
 const getArticleForEdit = require('../http/controllers/article-controller').getArticle;
+
+const articleAccepting = require('../http/controllers/article-controller').articleAccepting;
+const articleRejecting = require('../http/controllers/article-controller').articleRejecting;
+const articleUnrejecting = require('../http/controllers/article-controller').articleUnrejecting;
+
 const articleDetail = require('../http/controllers/article-controller').articleDetail;
 const articleCreating = require('../http/controllers/article-controller').articleCreating;
 const articleEditing = require('../http/controllers/article-controller').articleEditing;
@@ -55,11 +51,11 @@ router.get('/delete/:articleId', articleDeleting);
 //Accept, Reject Or Delete a Article
 router.get('/list', moderatorRequireMiddleware, getAllArticlesForModerator);
 
-router.get('/accept/:articleId', moderatorRequireMiddleware, acceptedArticleStatusConverter, statusChangingArticle);
+router.get('/accept/:articleId', moderatorRequireMiddleware, articleAccepting);
 
-router.get('/reject/:articleId', moderatorRequireMiddleware, rejectedArticleStatusConverter, statusChangingArticle);
+router.get('/reject/:articleId', moderatorRequireMiddleware, articleRejecting);
 
-router.get('/unreject/:articleId', moderatorRequireMiddleware, waitingArticleStatusConverter, statusChangingArticle);
+router.get('/unreject/:articleId', moderatorRequireMiddleware, articleUnrejecting);
 
 //Comment
 router.post('/comment/:article_id', commentValidator, createComment);
@@ -68,6 +64,7 @@ router.get('/comments/delete/:comment_id/:article_id', deleteComment);
 
 //Search
 router.post('/search', quickSearchCondition, SearchQuickController);
+
 router.post('/search-advance', searchAdvanceCondition, SearchAdvanceController);
 
 module.exports = router;

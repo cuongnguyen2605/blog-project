@@ -15,8 +15,22 @@ exports.getAllCredentials = (req, res, next) => {
         .catch(next);
 };
 
-exports.statusChanging = (req, res) => {
-    return UserStatusChangingService.changeStatusUser(req.credential.role, req.credential.user_id)
+exports.setMemberRole = (req, res) => {
+    return UserStatusChangingService.changeStatusUser("member", req.params.userId)
+        .then(() => {
+            res.redirect('/admin/credentials');
+        });
+};
+
+exports.setModeratorRole = (req, res) => {
+    return UserStatusChangingService.changeStatusUser("moderator", req.params.userId)
+        .then(() => {
+            res.redirect('/admin/credentials');
+        });
+};
+
+exports.setBannerRole = (req, res) => {
+    return UserStatusChangingService.changeStatusUser("banner", req.params.userId)
         .then(() => {
             res.redirect('/admin/credentials');
         });
