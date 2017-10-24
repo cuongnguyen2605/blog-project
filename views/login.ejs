@@ -39,9 +39,14 @@
                                 <i class="fa fa-lock fa-lg" aria-hidden="true"></i> You need Login.
                             </h3>
                         </div>
-                        <% if(message != ""){ %>
+                        <% if(message != "" && message != "Signup successfully"){ %>
                         <div class="alert alert-warning" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
                             <strong>Warning! </strong><%= message %>.
+                        </div>
+                        <% } %>
+                        <% if(message === "Signup successfully"){ %>
+                        <div class="alert alert-success" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
+                            <strong>Success! </strong><%= message %>.
                         </div>
                         <% } %>
                         <div class="panel-body" style="padding: 20px">

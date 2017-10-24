@@ -1,6 +1,6 @@
 const express = require('express');
 const router = require('express').Router();
-
+const CheckAliveSession = require('../http/middlewares/check-alive-session');
 const getAllCredentials = require('../http/controllers/credential-controller').getAllCredentials;
 const statusChangingCredentials = require('../http/controllers/credential-controller').statusChanging;
 
@@ -9,7 +9,7 @@ memberRoleData = require('../http/middlewares/role-credential-convertor').member
 moderatorRoleData = require('../http/middlewares/role-credential-convertor').moderatorRoleData;
 bannerRoleData = require('../http/middlewares/role-credential-convertor').bannerRoleData;
 
-router.get('/', adminRequireMiddleware, getAllCredentials);
+router.get('/',CheckAliveSession, adminRequireMiddleware, getAllCredentials);
 
 router.get('/up_to_mod/:userId', adminRequireMiddleware, moderatorRoleData, statusChangingCredentials);
 
