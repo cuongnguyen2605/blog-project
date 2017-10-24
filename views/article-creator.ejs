@@ -37,8 +37,17 @@
                     <article>
                         <h1 style="font-weight: bold; margin: 0">Create new article</h1>
                         <hr/>
-                        <div>
-                            <form name="article-form" action="" method="post">
+                        <div class="upload">
+                            <form action="/articles/upload" method="POST" enctype="multipart/form-data">
+                                <input type="file" name="articlePhoto" id="articlePhoto" />
+                                <input type="submit" value="Upload" />
+                            </form>
+                        </div>
+                        <div class="create-article">
+                            <form name="article-form" method="post">
+                                <!--<div class="form-group">-->
+                                    <!--<input type="file" name="articlePhoto" id="articlePhoto" />-->
+                                <!--</div>-->
                                 <div class="form-group">
                                     <label class="control-label">Title</label>
                                     <input type="text" class="form-control" id="title" name="title" placeholder="Input new article title">
@@ -54,7 +63,7 @@
                                 <% } %>
                                 <br/>
                                 <button type="submit" class="btn btn-primary">Create</button>
-                                <button type="reset" class="btn btn-warning">Reset</button>
+                                <button type="reset" class="btn btn-default">Reset</button>
                             </form>
                         </div>
                     </article>

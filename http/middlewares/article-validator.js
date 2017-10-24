@@ -1,4 +1,5 @@
 const Article = require('../../app/articles/article');
+const uploadImage = require('../../app/upload-image/upload-image');
 
 exports.newArticleConverter = (req, res, next) => {
     let title = req.body.title;
@@ -17,6 +18,7 @@ exports.newArticleConverter = (req, res, next) => {
     if (errors) {
         res.render('article-creator', {errors: errors});
     } else {
+        console.log(uploadImage);
         req.article = new Article(title, content);
         req.article.setAuthorId(author);
         req.article.setCreatedDate(create_at);
