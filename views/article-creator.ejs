@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css"/>
+    <script src="/libs/dropzone/dist/min/dropzone.min.js"></script>
+    <link href="/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="page">
@@ -37,17 +39,24 @@
                     <article>
                         <h1 style="font-weight: bold; margin: 0">Create new article</h1>
                         <hr/>
-                        <div class="upload">
-                            <form action="/articles/upload" method="POST" enctype="multipart/form-data">
-                                <input type="file" name="articlePhoto" id="articlePhoto" />
-                                <input type="submit" value="Upload" />
-                            </form>
-                        </div>
+                        <!--<div class="upload">-->
+                            <!--<form action="/articles/upload" method="POST" enctype="multipart/form-data">-->
+                                <!--<input type="file" name="articlePhoto" id="articlePhoto" />-->
+                                <!--<input type="submit" value="Upload" />-->
+                            <!--</form>-->
+                        <!--</div>-->
                         <div class="create-article">
-                            <form name="article-form" method="post">
-                                <!--<div class="form-group">-->
-                                    <!--<input type="file" name="articlePhoto" id="articlePhoto" />-->
-                                <!--</div>-->
+                            <form method="POST"
+                                  enctype="multipart/form-data"
+                                  action="/articles/upload"
+                                  class="dropzone dz-clickable"
+                                  id="my-awesome-dropzone"
+                            >
+                                <div class="fallback">
+                                    <input name="file" type="file" multiple />
+                                </div>
+                            </form>
+                            <form name="article-form" method="POST">
                                 <div class="form-group">
                                     <label class="control-label">Title</label>
                                     <input type="text" class="form-control" id="title" name="title" placeholder="Input new article title">
