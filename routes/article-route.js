@@ -29,8 +29,10 @@ const SearchQuickController = require('../http/controllers/search-quick-controll
 const createComment = require('../http/controllers/comment-controller').createComment;
 const deleteComment = require('../http/controllers/comment-controller').deleteComment;
 
+
+const CheckAliveSession = require('../http/middlewares/check-alive-session');
 //List
-router.get('/', getAllArticlesForMember);
+router.get('/',CheckAliveSession, getAllArticlesForMember);
 
 router.get('/detail/:articleId', articleDetail);
 
@@ -49,7 +51,7 @@ router.post('/edit/:articleId', articleEditingConverter, articleEditing);
 router.get('/delete/:articleId', articleDeleting);
 
 //Accept, Reject Or Delete a Article
-router.get('/list', moderatorRequireMiddleware, getAllArticlesForModerator);
+router.get('/list',CheckAliveSession, moderatorRequireMiddleware, getAllArticlesForModerator);
 
 router.get('/accept/:articleId', moderatorRequireMiddleware, articleAccepting);
 

@@ -1,28 +1,12 @@
-const Registrator = require('../../app/resister-service/registrator');
-const Profile = require('../../app/profiles/profile');
-let registrators = new Registrator();
+const CredentialService = require('../../app/credentials/credential-service');
+let credentialService = new CredentialService();
 module.exports = (req, res, next)=>{
-    req.registrator = registrators;
-    req.registrator.checkExistedAcount(req.credential)
-        .then(result=>{
-            if(result === true){
-                let profile = new Profile();
-                profile.setPhone(req.listValue.phoneNumber);
-                profile.setFullname(req.listValue.fullname);
-                profile.setEmail(req.listValue.email);
-                profile.setAddress(req.listValue.address);
-                profile.setUsername(req.listValue.username);
-                req.profile= profile;
-                next();
-            }
-
-            else return res.render('signup',{message:"username existed !"
-                                            , username:""
-                                            ,password:""
-                                            ,passwordConfirm:""
-                                            ,fullname: req.listValue.fullname
-                                            , email: req.listValue.email
-                                            , address: req.listValue.address
-                                            , phone: req.listValue.phoneNumber});
-        })
+  credentialService.checkUsername(req.listValue)
+      .then(result=>{
+          console.log(result);
+          if(!result[0]){
+              next();
+          }
+          else return res.render('signup',{message: '55', listValue: req.listValue});
+      })
 }

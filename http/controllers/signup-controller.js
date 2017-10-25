@@ -1,13 +1,12 @@
-
+const Registrator = require('../../app/resister-service/registrator');
+let registrator = new Registrator();
 module.exports = (req, res)=>{
     "use strict";
-    req.registrator.register(req.credential, req.profile);
-    res.render('signup',{message: 'signup successfuly'
-                        ,username: req.credential.getUsername()
-                        ,password: req.credential.getPassword()
-                        , email: req.profile.getEmail()
-                        , phone: req.profile.getPhone()
-                        ,fullname: req.profile.getFullname()
-                        , address: req.profile.getAddress()
-                });
+
+    registrator.register(req.listValue)
+        .then((profile)=>{
+            if(profile.getUsername() === req.listValue.username){
+                return res.render('login',{message:"Signup successfully"});
+            }
+        })
 }

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = require('express').Router();
-
+const CheckAliveSession = require('../http/middlewares/check-alive-session');
 const getAllCredentials = require('../http/controllers/credential-controller').getAllCredentials;
 const setModeratorRole = require('../http/controllers/credential-controller').setModeratorRole;
 const setMemberRole = require('../http/controllers/credential-controller').setMemberRole;
@@ -8,7 +8,7 @@ const setBannerRole = require('../http/controllers/credential-controller').setBa
 
 const adminRequireMiddleware = require('../http/middlewares/admin-require-middleware');
 
-router.get('/', adminRequireMiddleware, getAllCredentials);
+router.get('/',CheckAliveSession, adminRequireMiddleware, getAllCredentials);
 
 router.get('/up_to_mod/:userId', adminRequireMiddleware, setModeratorRole);
 

@@ -55,7 +55,7 @@
                             <strong>Warning! </strong> Fomat email not correct, please enter again!
                         </div>
                         <% } %>
-                        <% if(message === 'username existed !'){ %>
+                        <% if(message === '55'){ %>
                         <div class="alert alert-warning" style="margin-bottom: 0; border-radius: 0; padding: 20px">
                             <strong>Warning</strong> username existed !
                         </div>
@@ -79,21 +79,21 @@
                                         <span><i class="fa fa-user fa" aria-hidden="true"></i> </span><label class="control-label" for="lname">User Name *</label>
                                         <div class="col-sm-12 input-group">
 
-                                            <input id="username" name="username" type="text" placeholder="User Name" class="form-control" value="<%=username%>"/>
+                                            <input id="username" name="username" type="text" placeholder="User Name" class="form-control" value="<%=listValue.username%>"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <span><i class="fa fa-lock fa-lg" aria-hidden="true"></i> </span><label class="control-label" for="city">Password *</label>
                                         <div class="col-sm-12 input-group">
 
-                                            <input id="password" name="password" type="password" placeholder="Password" class="form-control" value="<%=password%>"/>
+                                            <input id="password" name="password" type="password" placeholder="Password" class="form-control" value="<%=listValue.password%>"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <span><i class="fa fa-lock fa-lg" aria-hidden="true"></i> </span><label class="control-label" for="city">Confirm password *</label>
                                         <div class="col-sm-12 input-group">
 
-                                            <input id="passwordConfirm" name="passwordConfirm" type="password" placeholder="Confirm Password" class="form-control" value=""/>
+                                            <input id="passwordConfirm" name="passwordConfirm" type="password" placeholder="Confirm Password" class="form-control" value="<%=listValue.passwordConfirm%>"/>
                                         </div>
                                     </div>
                                 </div>
@@ -102,14 +102,14 @@
                                         <span><i class="fa fa-users fa" aria-hidden="true"></i> </span><label class="control-label" for="fname">Full Name *</label>
                                         <div class="col-sm-12 input-group">
 
-                                            <input id="fullname" name="fullname" type="text" placeholder="Full Name" class="form-control" value="<%=fullname%>"/>
+                                            <input id="fullname" name="fullname" type="text" placeholder="Full Name" class="form-control" value="<%=listValue.fullname%>"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                         <span><i class="fa fa-envelope fa" aria-hidden="true"></i> </span><label class="control-label" for="email">Email</label>
+                                         <span><i class="fa fa-envelope fa" aria-hidden="true"></i> </span><label class="control-label" for="listValue.email">Email</label>
                                         <div class="col-sm-12 input-group">
 
-                                            <input id="email" name="email" type="email" placeholder="Email" class="form-control" value="<%=email%>"/>
+                                            <input id="email" name="email" type="email" placeholder="Email" class="form-control" value="<%=listValue.email%>"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -117,14 +117,14 @@
                                         <div class="col-sm-12 input-group">
 
                                             <div>
-                                                <input id="phoneNumber" name="phoneNumber" type="number" placeholder="Phone" class="form-control" value="<%=phone%>"/>
+                                                <input id="phoneNumber" name="phoneNumber" type="number" placeholder="Phone" class="form-control" value="<%=listValue.phone%>"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label" for="notes">Address</label>
                                         <div class="col-sm-12 input-group">
-                                            <textarea class="form-control" id="address" name="address" rows="3" placeholder="Address" style="border-radius: 4px; resize: none" value="<%=address%>"></textarea>
+                                            <textarea class="form-control" id="address" name="address" rows="3" placeholder="Address" style="border-radius: 4px; resize: none" value="<%=listValue.address%>"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">

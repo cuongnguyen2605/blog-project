@@ -25,16 +25,16 @@ class ProfileService {
             ]
         );
     }
-    insertProfile(profile){
+    insertProfile(profileRaw, user_id){
         let query = 'INSERT INTO profiles VALUES(?,?,?,?,?,?,?,NOW())';
         return this.mysqlConnection.query(query,
             [   null,
-                profile.getFullname(),
-                profile.getUsername(),
-                profile.getUserId(),
-                profile.getEmail(),
-                profile.getPhone(),
-                profile.getAddress(),
+                profileRaw.fullname,
+                profileRaw.username,
+                user_id,
+                profileRaw.email,
+                profileRaw.phone,
+                profileRaw.address,
 
             ]);
     }
