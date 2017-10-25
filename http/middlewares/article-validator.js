@@ -4,6 +4,7 @@ exports.newArticleConverter = (req, res, next) => {
     let title = req.body.title;
     let author = req.session.user_id;
     let create_at = new Date();
+    let image = req.body['url-image'];
     let content = req.body.content;
     let status = "waiting";
     if (req.session.role === "moderator") {
@@ -20,6 +21,7 @@ exports.newArticleConverter = (req, res, next) => {
         req.article = new Article(title, content);
         req.article.setAuthorId(author);
         req.article.setCreatedDate(create_at);
+        req.article.setImage(image);
         req.article.setStatus(status);
         next();
     }

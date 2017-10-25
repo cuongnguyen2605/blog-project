@@ -39,12 +39,6 @@
                     <article>
                         <h1 style="font-weight: bold; margin: 0">Create new article</h1>
                         <hr/>
-                        <!--<div class="upload">-->
-                            <!--<form action="/articles/upload" method="POST" enctype="multipart/form-data">-->
-                                <!--<input type="file" name="articlePhoto" id="articlePhoto" />-->
-                                <!--<input type="submit" value="Upload" />-->
-                            <!--</form>-->
-                        <!--</div>-->
                         <div class="create-article">
                             <form method="POST"
                                   enctype="multipart/form-data"
@@ -53,10 +47,13 @@
                                   id="my-awesome-dropzone"
                             >
                                 <div class="fallback">
-                                    <input name="file" type="file" multiple />
+                                    <input name="file" type="file" />
                                 </div>
                             </form>
                             <form name="article-form" method="POST">
+                                <div class="form-group">
+                                    <input id="url-image" type="hidden" name="url-image" />
+                                </div>
                                 <div class="form-group">
                                     <label class="control-label">Title</label>
                                     <input type="text" class="form-control" id="title" name="title" placeholder="Input new article title">
@@ -114,6 +111,14 @@
             submitHandler: function (form) {
                 form.submit();
             }
+        });
+    });
+
+    Dropzone.autoDiscover = false;
+    $(document).ready(function () {
+        const uploader = new Dropzone('#my-awesome-dropzone');
+        uploader.on('success', function( file, res ){
+            $('#url-image').val(res.link);
         });
     });
 </script>

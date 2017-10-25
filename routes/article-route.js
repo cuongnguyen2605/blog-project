@@ -46,11 +46,7 @@ router.get('/create', canCreatingArticle, (req, res) => {
     return res.render('article-creator.ejs', {errors: ""});
 });
 //Create, Edit
-router.post('/upload', function (req, res) {
-    console.log(req.files.file);
-});
-
-//router.post('/upload', uploadImage);
+router.post('/upload', uploadImage);
 
 router.post('/create', newArticleConverter, articleCreating);
 

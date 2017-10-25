@@ -24,6 +24,11 @@ class Articles {
         this.status = status;
         return this;
     }
+
+    setImage (images) {
+        this.images = images;
+        return this;
+    }
 }
 
 module.exports = Articles;
