@@ -8,7 +8,7 @@ class Authenticator {
         return credentialService.getCredential(credentialRaw)
             .then(result=>{
                 console.log(result);
-                if(!result){
+                if(!result[0]){
                     return false;
                 }
                 let user = new Credential(result[0].username, result[0].password);
