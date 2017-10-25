@@ -4,10 +4,10 @@ module.exports = function (req, res) {
     auth.authenticate(req.credentialRaw)
         .then(result=>{
             if(result === false){
-                 return res.render('login',{message: " Please enter username or password again!"});
+                 return res.render('login',{message: " Username or password is not correct!"});
              }
              if(result.getRole() === 'banner'){
-                 return res.render('login',{message: " Your acount was banned!"});
+                 return res.render('login',{message: " Your account was banned!"});
              }
              //set cookie and session
             req.session.username = result.getUsername();

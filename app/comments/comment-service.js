@@ -17,7 +17,6 @@ class CommentService {
 
     createComment(commentInfor) {
         let query = 'INSERT INTO comments SET ?';
-        console.log(comment);
         return this.mysqlConnection.query(query, [commentInfor]);
     }
 
