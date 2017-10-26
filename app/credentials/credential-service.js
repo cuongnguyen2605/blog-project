@@ -1,19 +1,19 @@
 const knex = require('../../database/knex-connection');
+const md5  = require('md5');
 class CredentialService{
-    insertCredential(credential){
-        return knex.insert({user_id: null, username: credential.getUsername()
-                            , password: credential.getPassword()
+
+    insertCredential(credentialRaw){
+        return knex.insert({user_id: null, username: credentialRaw.username
+                            , password: md5(credentialRaw.password)
                             , role: 'member'}).into('credentials');
     }
-
-    selectCredentials(credential){
-        return knex('credentials').where('username','=',credential.getUsername());
+    checkUsername(credentialRaw){
+         return knex('credentials').where('username','=',credentialRaw.username);
     }
-    selectCredential(credential){
-        return knex('credentials').where('username','=',credential.getUsername())
-                .andWhere('password','=',credential.getPassword());
+    getCredential(credentialRaw){
+        return knex('credentials').where('username','=',credentialRaw.username)
+                .andWhere('password','=',md5(credentialRaw.password));
     }
-
 
 }
 module.exports = CredentialService;

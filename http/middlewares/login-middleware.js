@@ -6,8 +6,11 @@ module.exports = function (req,res,next) {
     if(!req.body.password){
         return res.render('login',{message: 'Please enter password'});
     }
-    let credential = new Credential(req.body.username, req.body.password);
+    let credential = {
+        username: req.body.username.trim(),
+        password: req.body.password
+    };
 
-    req.credential = credential;
+    req.credentialRaw = credential;
     next();
 };

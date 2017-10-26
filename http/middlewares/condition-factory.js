@@ -13,14 +13,7 @@ exports.searchAdvanceCondition = (req, res, next) => {
     searchAdvance.setTitle(req.body.title);
     searchAdvance.setAuthor(req.body.author);
     searchAdvance.setStartDate(req.body.start);
-    if (req.body.start === "") {
-        searchAdvance.setStartDate('2017-1-1');
-    }
     searchAdvance.setEndDate(req.body.end);
-    if (req.body.end === "") {
-        let currentDate = (new Date()).getFullYear() + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getDate();
-        searchAdvance.setEndDate(currentDate);
-    }
     req.searchAdvance = searchAdvance;
     next();
 };

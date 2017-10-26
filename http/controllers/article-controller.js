@@ -49,7 +49,7 @@ exports.getMyArticles = (req, res, next) => {
 exports.articleDetail = (req, res, next) => {
     Promise.all([
         articleRepository.getArticle(req.params.articleId),
-        commentService.getComment(req.params.articleId),
+        commentService.getComments(req.params.articleId),
         articleRepository.getAuthorId(req.params.articleId)
     ])
         .then(([article, comments, author]) => {
@@ -87,8 +87,22 @@ exports.articleEditing = (req, res) => {
         });
 };
 
-exports.statusChanging = (req, res) => {
-    return articleRepository.articleStatusChanging(req.article.status, req.article.article_id)
+exports.articleAccepting = (req, res) => {
+    return articleRepository.articleStatusChanging("accepted", req.params.articleId)
+        .then(() => {
+            res.redirect('/articles/list');
+        });
+};
+
+exports.articleRejecting = (req, res) => {
+    return articleRepository.articleStatusChanging("rejected", req.params.articleId)
+        .then(() => {
+            res.redirect('/articles/list');
+        });
+};
+
+exports.articleUnrejecting = (req, res) => {
+    return articleRepository.articleStatusChanging("waiting", req.params.articleId)
         .then(() => {
             res.redirect('/articles/list');
         });
