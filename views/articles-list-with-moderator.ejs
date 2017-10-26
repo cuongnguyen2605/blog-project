@@ -23,16 +23,19 @@
                         <ul class="nav navbar-nav"></ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="/articles/my-articles/<%= user_id %>"><i class="fa fa-file-text-o" aria-hidden="true"></i> My Articles</a>
+                                <a href="/articles/my-articles/<%= user_id %>"><i class="fa fa-file-text-o"
+                                                                                  aria-hidden="true"></i> My
+                                    Articles</a>
                             </li>
                             <li>
                                 <a href="/articles"><i class="fa fa-list" aria-hidden="true"></i> Articles</a>
                             </li>
                             <li>
-                                <a href="/profile/<%= username %>"><span class="glyphicon glyphicon-user"></span> <%= username %></a>
+                                <a href="/profile/<%= username %>"><span
+                                            class="glyphicon glyphicon-user"></span> <%= username %></a>
                             </li>
                             <li>
-                                <a href="/"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                                <a href="/signout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -45,6 +48,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 style="font-weight: bold; margin: 0">Articles list of Member</h1>
+                    <% if (articles[0] == null) { %>
+                    <h3>Don't have any article!</h3>
+                    <% } else { %>
                     <hr/>
                     <div style="border: 1px solid #ddd; padding: 10px">
                         <table class="table table-hover" style="margin-bottom: 0">
@@ -72,74 +78,51 @@
                                 <% if (article.status == "waiting") { %>
                                 <td>
                                     <a href="/articles/accept/<%= article.article_id %>">
-                                        <button type="button" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Accept</button>
+                                        <button type="button" class="btn btn-primary"><i class="fa fa-check"
+                                                                                         aria-hidden="true"></i> Accept
+                                        </button>
                                     </a>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
-                                    <div id="myModal" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title">Delete Post!</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Are you sure you want to delete the post?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a href="/articles/delete/<%= article.article_id %>">
-                                                        <button type="button" class="btn btn-primary">Yes</button>
-                                                    </a>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a href="/articles/delete/<%= article.article_id %>" class="del-article">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa fa-times" aria-hidden="true"></i> Delete
+                                        </button>
+                                    </a>
                                 </td>
                                 <% } %>
                                 <% if (article.status == "accepted") { %>
                                 <td>
                                     <a href="/articles/reject/<%= article.article_id %>" style="text-decoration: none">
-                                        <button type="button" class="btn btn-primary"><i class="fa fa-lock" aria-hidden="true"></i> Reject</button>
+                                        <button type="button" class="btn btn-primary"><i class="fa fa-lock"
+                                                                                         aria-hidden="true"></i> Reject
+                                        </button>
                                     </a>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
-                                    <div id="myModal" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;
-                                                    </button>
-                                                    <h4 class="modal-title">Delete Post!</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Are you sure you want to delete the post?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a href="/articles/delete/<%= article.article_id %>">
-                                                        <button type="button" class="btn btn-primary">Yes</button>
-                                                    </a>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a href="/articles/delete/<%= article.article_id %>" class="del-article">
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fa fa-times" aria-hidden="true"></i> Delete
+                                        </button>
+                                    </a>
                                 </td>
                                 <% } %>
                                 <% if (article.status == "rejected") { %>
                                 <td colspan="2">
                                     <a href="/articles/unreject/<%= article.article_id %>">
-                                        <button type="button" class="btn btn-warning"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Unreject</button>
+                                        <button type="button" class="btn btn-warning"><i class="fa fa-unlock-alt"
+                                                                                         aria-hidden="true"></i>
+                                            Unreject
+                                        </button>
                                     </a>
                                 </td>
                                 <% } %>
                             </tr>
-                            <% }); %>
+                            <% });%>
                             </tbody>
                         </table>
                     </div>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -147,5 +130,22 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+<script>
+    $('a.del-article').confirm({
+        title: "Delete Article",
+        content: "Are you sure you want to delete the post? ",
+        autoClose: 'cancel|5000',
+        buttons: {
+            delete: function () {
+                location.href = this.$target.attr('href');
+            },
+            cancel: function () {
+            }
+        }
+    });
+</script>
 </body>
 </html>

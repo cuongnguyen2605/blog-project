@@ -4,6 +4,7 @@
     <title>Login</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
@@ -39,27 +40,26 @@
                                 <i class="fa fa-lock fa-lg" aria-hidden="true"></i> You need Login.
                             </h3>
                         </div>
-                        <% if(message != ""){ %>
+                        <% if(message != "" && message != "Signup successfully"){ %>
                         <div class="alert alert-warning" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
                             <strong>Warning! </strong><%= message %>.
                         </div>
                         <% } %>
+                        <% if(message === "Signup successfully"){ %>
+                        <div class="alert alert-success" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
+                            <strong>Success! </strong><%= message %>.
+                        </div>
+                        <% } %>
                         <div class="panel-body" style="padding: 20px">
-                            <form accept-charset="UTF-8" role="form" action="/signin" method="post">
+                            <form accept-charset="UTF-8" role="form" action="/signin" method="post" id="login-form">
                                 <fieldset>
                                     <div class="form-group">
-                                        <label for="">Username</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                            <input class="form-control" placeholder="Username" name="username" type="text"/>
-                                        </div>
+                                        <label for="username">Username</label>
+                                        <input class="form-control" placeholder="Username" name="username" type="text" id="username"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Password</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                            <input class="form-control" placeholder="Password" name="password" type="password"/>
-                                        </div>
+                                        <label for="password">Password</label>
+                                        <input class="form-control" placeholder="Password" name="password" type="password" id="password"/>
                                     </div>
                                     <button class="btn btn-primary" type="submit"><i class="fa fa-key" aria-hidden="true"></i> Login</button>
                                 </fieldset>
@@ -75,5 +75,37 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+    $("#login-form").validate({
+        rules: {
+            username: {
+                required: true,
+                minlength: 6
+            },
+            password: {
+                required: true,
+                minlength: 6,
+                maxlength: 16
+            }
+        },
+        messages: {
+            username: {
+                required: 'Please enter username',
+                minlength: 'Username must be at least 6 characters long'
+            },
+            password: {
+                required: 'Please enter password',
+                minlength: 'Password must be at least 6 characters long',
+                maxlength: 'Maximum 16 characters long'
+            }
+        },
+        submitHandler: function (form) {
+            form.submit();
+        }
+
+    });
+</script>
 </body>
 </html>
