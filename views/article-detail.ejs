@@ -55,86 +55,84 @@
         <div class="container" style="width: 80%">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="col-md-12">
-                        <div class="col-md-2">
-                            <img alt="128x128"
-                                 class="media-object"
-                                 data-src="holder.js/100x100"
-                                 src="<%= article.images %>"
-                                 data-holder-rendered="true"
-                                 style="width: 100px; height: 100px;"
-                            >
-                        </div>
-                        <% article.forEach(function (article) { %>
-                        <div class="col-md-10">
-                            <h2 style="font-weight: bold; margin-top: 0"><%= article.title %></h2>
+                    <% article.forEach(function (article) { %>
+                    <div class="col-md-2">
+                        <img alt="128x128"
+                             class="media-object"
+                             data-src="holder.js/100x100"
+                             src="<%= article.images %>"
+                             data-holder-rendered="true"
+                             style="width: 100px; height: 100px;"
+                        >
+                    </div>
+                    <div class="col-md-10">
+                        <h2 style="font-weight: bold; margin-top: 0"><%= article.title %></h2>
 
-                            <% if(authorId === user_id || role === 'moderator') { %>
-                            <a href="/articles/delete/<%= article.article_id %>" class="del-article">
-                                <button type="button" class="btn btn-danger" style="float: right">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
-                                </button>
-                            </a>
-                            <a href="/articles/edit/<%= article.article_id %>" style="float: right; margin-right: 10px">
-                                <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o"
-                                                                                 aria-hidden="true"></i> Edit
-                                </button>
-                            </a>
-                            <% } %>
-                            <p>by <a href="#"><strong><%= article.username %></strong></a></p>
-                            <p style="color: #818181">
-                                <i class="fa fa-clock-o" aria-hidden="true"></i> Posted
-                                on <%= article.create_at.toDateString() %>
-                            </p>
-                        </div>
-                        <div class="col-md-12">
-                            <hr>
-                            <article style="font-size: 16px">
-                                <%- article.content %>
-                            </article>
-                            <hr>
-                        </div>
+                        <% if(authorId === user_id || role === 'moderator') { %>
+                        <a href="/articles/delete/<%= article.article_id %>" class="del-article">
+                            <button type="button" class="btn btn-danger" style="float: right">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                            </button>
+                        </a>
+                        <a href="/articles/edit/<%= article.article_id %>" style="float: right; margin-right: 10px">
+                            <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o"
+                                                                             aria-hidden="true"></i> Edit
+                            </button>
+                        </a>
+                        <% } %>
+                        <p>by <a href="#"><strong><%= article.username %></strong></a></p>
+                        <p style="color: #818181">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i> Posted
+                            on <%= article.create_at.toDateString() %>
+                        </p>
                     </div>
-                    <% comments.forEach(function (comment) { %>
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <p>
-                                    <strong><%= comment.username %></strong> -
-                                    <small><%= comment.created_at.toDateString() %></small>
-                                    <% if(comment.user_id === user_id) { %>
-                                    <a href="/articles/comments/delete/<%= comment.comment_id %>/<%= article.article_id %> %>"
-                                       class="del-comment" style="float: right">
-                                        <i class="fa fa-times" aria-hidden="true"></i>
-                                    </a>
-                                    <% } %>
-                                </p>
-                            </div>
-                            <div class="panel-body">
-                                <p><%= comment.content %></p>
-                            </div>
-                        </div>
-                    </div>
-                    <% }); %>
                     <div class="col-md-12">
                         <hr>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h5>Write a Comment:</h5>
-                            </div>
-                            <div class="panel-body">
-                                <form action="/articles/comment/<%= article.article_id %>" method="post">
-                                    <div class="form-group">
-                                        <textarea name="comment" class="form-control" rows="5"
-                                                  placeholder="Write a Comment..." style="resize: none"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary" style="float:right">Comment</button>
-                                </form>
-                            </div>
+                        <article style="font-size: 16px">
+                            <%- article.content %>
+                        </article>
+                        <hr>
+                    </div>
+                </div>
+                <% comments.forEach(function (comment) { %>
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <p>
+                                <strong><%= comment.username %></strong> -
+                                <small><%= comment.created_at.toDateString() %></small>
+                                <% if(comment.user_id === user_id) { %>
+                                <a href="/articles/comments/delete/<%= comment.comment_id %>/<%= article.article_id %> %>"
+                                   class="del-comment" style="float: right">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+                                <% } %>
+                            </p>
+                        </div>
+                        <div class="panel-body">
+                            <p><%= comment.content %></p>
                         </div>
                     </div>
-                    <% }); %>
+                </div>
+                <% }); %>
+                <div class="col-md-12">
+                    <hr>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h5>Write a Comment:</h5>
+                        </div>
+                        <div class="panel-body">
+                            <form action="/articles/comment/<%= article.article_id %>" method="post">
+                                <div class="form-group">
+                                    <textarea name="comment" class="form-control" rows="5"
+                                              placeholder="Write a Comment..." style="resize: none"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="float:right">Comment</button>
+                            </form>
+                        </div>
                     </div>
+                </div>
+                <% }); %>
                 </div>
             </div>
         </main>
