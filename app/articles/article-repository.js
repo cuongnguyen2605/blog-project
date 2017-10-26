@@ -44,7 +44,8 @@ class ArticleRepository {
     articleEditing(articleInfor) {
         return knex('articles').update({
             title: articleInfor.title,
-            content: articleInfor.content
+            content: articleInfor.content,
+            images: articleInfor.images
         }).where('article_id', '=', articleInfor.article_id);
     }
 

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css" />
     <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
+    <link href="/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet"/>
     <style>
         .upload-btn-wrapper {
             position: relative;
@@ -52,7 +53,22 @@
                     <h1 style="margin: 0; font-weight: bold">Edit article</h1>
                     <hr />
                     <% article.forEach(function (article) { %>
+                    <img src="<%= article.images %>" alt="" width="200" height="200" />
+                    <form method="POST"
+                          action="/articles/upload"
+                          id="my-awesome-dropzone"
+                          class="dropzone dz-clickable"
+                          enctype="multipart/form-data"
+                    >
+                        <div class="fallback">
+                            <input type="file" name="file" />
+                        </div>
+                    </form>
+
                     <form name="article-form" action="" method="post">
+                        <div class="form-group">
+                            <input type="hidden" id="url-image" name="url-image" />
+                        </div>
                         <div class="form-group">
                             <label class="control-label">Title</label>
                             <input type="text" class="form-control" id="title" name="title"
@@ -79,6 +95,7 @@
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
 <script>tinymce.init({selector: 'textarea'});</script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<script src="/libs/dropzone/dist/min/dropzone.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('form[name="article-form"]').validate({
@@ -107,6 +124,14 @@
             submitHandler: function (form) {
                 form.submit();
             }
+        });
+    });
+
+    Dropzone.autoDiscover = false;
+    $(document).ready(function () {
+        const uploader = new Dropzone('#my-awesome-dropzone');
+        uploader.on('success', function( file, res ){
+            $('#url-image').val(res.link);
         });
     });
 </script>
