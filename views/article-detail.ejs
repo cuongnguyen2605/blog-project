@@ -45,7 +45,7 @@
             </div>
         </nav>
     </header>
-    <div class="main-page">
+    <main>
         <div class="container" style="width: 80%">
             <div class="row">
                 <div class="col-md-12">
@@ -75,6 +75,7 @@
                             </div>
                         </div>
                     </div>
+                    <img src="<%= article.images %>" alt="" style="width: 100px; height: 100px;"/>
                     <a href="/articles/edit/<%= article.article_id %>" style="float: right; margin-right: 10px">
                         <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
                     </a>
@@ -137,10 +138,9 @@
                         <div class="panel-body">
                             <p><%= comment.content %></p>
                         </div>
-                    </div>
+                    </main>
                     <% }); %>
                     <% }); %>
-
                 </div>
             </div>
         </div>

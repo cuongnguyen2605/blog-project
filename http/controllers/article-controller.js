@@ -22,14 +22,12 @@ exports.getAllArticlesWithMember = (req, res, next) => {
 exports.getAllArticlesWithModerator = (req, res, next) => {
     articleRepository.getAllArticlesForMod()
         .then((articles) => {
-
             res.render('articles-list-with-moderator', {
                 articles: articles
                 , username: req.session.username
                 , role: req.session.role
                 , user_id: req.session.user_id
             });
-
         })
         .catch(next);
 };

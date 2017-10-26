@@ -1,7 +1,7 @@
 const multer = require('multer');
 const path = require('path');
-const randomstring = require('randomstring');
-const random = randomstring.generate();
+const randomString = require('randomstring');
+const random = randomString.generate();
 
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {

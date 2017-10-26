@@ -32,7 +32,7 @@
             </div>
         </nav>
     </header>
-    <div class="main-page">
+    <main>
         <div class="container" style="width: 80%">
             <div class="row">
                 <div class="col-md-12">
@@ -41,18 +41,18 @@
                         <hr/>
                         <div class="create-article">
                             <form method="POST"
-                                  enctype="multipart/form-data"
                                   action="/articles/upload"
-                                  class="dropzone dz-clickable"
                                   id="my-awesome-dropzone"
+                                  class="dropzone dz-clickable"
+                                  enctype="multipart/form-data"
                             >
                                 <div class="fallback">
-                                    <input name="file" type="file" />
+                                    <input type="file" name="file" />
                                 </div>
                             </form>
                             <form name="article-form" method="POST">
                                 <div class="form-group">
-                                    <input id="url-image" type="hidden" name="url-image" />
+                                    <input type="hidden" id="url-image" name="url-image" value="/uploads/default.jpg" />
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Title</label>
@@ -76,7 +76,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
