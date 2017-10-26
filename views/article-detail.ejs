@@ -65,14 +65,6 @@
                                  style="width: 100px; height: 100px;"
                             >
                         </div>
-<<<<<<< HEAD
-                    </div>
-                    <img src="<%= article.images %>" alt="" style="width: 100px; height: 100px;"/>
-                    <a href="/articles/edit/<%= article.article_id %>" style="float: right; margin-right: 10px">
-                        <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
-                    </a>
-                    <% } %>
-=======
                         <% article.forEach(function (article) { %>
                         <div class="col-md-10">
                             <h2 style="font-weight: bold; margin-top: 0"><%= article.title %></h2>
@@ -89,8 +81,6 @@
                                 </button>
                             </a>
                             <% } %>
->>>>>>> f444f4619ad3e5dacd18572c2002b4ca07f3ee55
-
                             <p>by <a href="#"><strong><%= article.username %></strong></a></p>
                             <p style="color: #818181">
                                 <i class="fa fa-clock-o" aria-hidden="true"></i> Posted
@@ -124,7 +114,7 @@
                                 <p><%= comment.content %></p>
                             </div>
                         </div>
-                    </main>
+                    </div>
                     <% }); %>
                     <div class="col-md-12">
                         <hr>
@@ -144,9 +134,10 @@
                         </div>
                     </div>
                     <% }); %>
+                    </div>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

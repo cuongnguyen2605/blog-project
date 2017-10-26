@@ -159,15 +159,29 @@
         });
     });
 
+
+    Dropzone.options.myAwesomeDropzone = {
+        maxFiles: 1,
+        accept: function(file, done) {
+            console.log("uploaded");
+            done();
+        },
+        init: function() {
+            this.on("maxfilesexceeded", function(file){
+                this.removeAllFiles();
+                this.addFile(file);
+            });
+        }
+    };
+
+
     function readURL(input) {
 
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-
             reader.onload = function (e) {
                 $('#img-preview').attr('src', e.target.result);
             }
-
             reader.readAsDataURL(input.files[0]);
         }
     }
