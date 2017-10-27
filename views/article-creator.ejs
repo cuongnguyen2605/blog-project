@@ -12,21 +12,6 @@
     <link href="/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet"/>
     <script src="/libs/dropzone/dist/min/dropzone.min.js"></script>
 
-    <style>
-        .upload-btn-wrapper {
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-        }
-
-        .upload-btn-wrapper input[type=file] {
-            font-size: 100px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-        }
-    </style>
 </head>
 <body>
 <div class="page">
@@ -56,18 +41,6 @@
                         <h1 style="font-weight: bold; margin: 0">Create new article</h1>
                         <hr/>
                         <div class="create-article">
-                            <div class="col-md-3">
-                                <form method="POST"
-                                      action="/articles/upload"
-                                      id="my-awesome-dropzone"
-                                      class="dropzone dz-clickable"
-                                      enctype="multipart/form-data"
-                                >
-                                    <div class="fallback">
-                                        <input type="file" name="file" />
-                                    </div>
-                                </form>
-                            </div>
                             <div class="col-md-9">
                                 <form name="article-form" action="" method="post">
                                     <div class="form-group">
@@ -76,7 +49,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Title</label>
                                         <input type="text" class="form-control" id="title" name="title"
-                                               placeholder="Input new article title">
+                                               placeholder="Input new article title" style="width: 1000px">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Content</label>
@@ -90,6 +63,19 @@
                                     <br/>
                                     <button type="submit" class="btn btn-primary">Create</button>
                                     <button type="reset" class="btn btn-default">Clear</button>
+                                </form>
+                            </div>
+                            <div class="col-md-3" style="margin-top: 120px">
+                                <form method="POST"
+                                      action="/articles/upload"
+                                      id="my-awesome-dropzone"
+                                      class="dropzone dz-clickable"
+                                      enctype="multipart/form-data"
+                                      style="width: 200px"
+                                >
+                                    <div class="fallback">
+                                        <input type="file" name="file" />
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -141,37 +127,6 @@
         uploader.on('success', function( file, res ){
             $('#url-image').val(res.link);
         });
-    });
-
-
-    Dropzone.options.myAwesomeDropzone = {
-        maxFiles: 1,
-        accept: function(file, done) {
-            console.log("uploaded");
-            done();
-        },
-        init: function() {
-            this.on("maxfilesexceeded", function(file){
-                this.removeAllFiles();
-                this.addFile(file);
-            });
-        }
-    };
-
-
-    function readURL(input) {
-
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#img-preview').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#img-upload").change(function () {
-        readURL(this);
     });
 </script>
 </body>
