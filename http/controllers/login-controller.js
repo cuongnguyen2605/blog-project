@@ -1,4 +1,5 @@
 const Authenticator  = require('../../app/auth/Authenticator');
+const md5  = require('md5');
 let auth = new Authenticator();
 module.exports = function (req, res) {
     auth.authenticate(req.credentialRaw)
@@ -13,7 +14,7 @@ module.exports = function (req, res) {
             req.session.username = result.getUsername();
             req.session.role = result.getRole();
             req.session.user_id = result.getUserId();
-            res.cookie('status','yes');
+            res.cookie('status',md5('yes'));
             //
              if(result.getRole() === 'member'){
                  return res.redirect('/articles');
