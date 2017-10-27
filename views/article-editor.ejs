@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css" />
     <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
     <link href="/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet"/>
+
     <style>
         .upload-btn-wrapper {
             position: relative;
@@ -23,6 +24,10 @@
             left: 0;
             top: 0;
             opacity: 0;
+        }
+        .undo{
+            margin-top: 220px;
+            margin-left: -210px;
         }
     </style>
 </head>
@@ -52,8 +57,10 @@
                 <div class="col-md-12">
                     <h1 style="margin: 0; font-weight: bold">Edit article</h1>
                     <hr />
+                    <div id="undo">
                     <% article.forEach(function (article) { %>
-                    <img src="<%= article.images %>" alt="" width="200" height="200" />
+                    <img src="<%= article.images %>" alt="" width="200" height="200" id="img"
+                    style="border: 2px; border-radius: 25px;"/>
                     <form method="POST"
                           action="/articles/upload"
                           id="my-awesome-dropzone"
@@ -61,10 +68,10 @@
                           enctype="multipart/form-data"
                     >
                         <div class="fallback">
-                            <input type="file" name="file" />
+                            <input type="file" name="file" id="file" />
                         </div>
                     </form>
-
+                    </div>
                     <form name="article-form" action="" method="post">
                         <div class="form-group">
                             <input type="hidden" id="url-image" name="url-image" />
@@ -134,6 +141,43 @@
             $('#url-image').val(res.link);
         });
     });
+
+    $(document).ready(function () {
+        $('#my-awesome-dropzone').click(function () {
+            $('#my-awesome-dropzone').hide();
+            $('#undo').append('<button id="buttonA" class="btn btn-link"><em>Do you want select another images?</em></button>');
+            $("#buttonA").addClass("undo");
+            $('#buttonA').click(function () {
+                $('#my-awesome-dropzone').show();
+                $('#buttonA').remove();
+            })
+
+        });
+    });
+
+
+    Dropzone.options.myAwesomeDropzone = {
+        maxFiles: 1,
+        accept: function(file, done) {
+            console.log("uploaded");
+            done();
+        },
+        success : function(file, response){
+            // jquery here
+//            console.log(response.link);
+//            console.log(file);
+            $('img').attr('src',response.link);
+
+
+            //
+        },
+        init: function() {
+            this.on("maxfilesexceeded", function(file){
+                this.removeAllFiles();
+                this.addFile(file);
+            });
+        }
+    };
 </script>
 </body>
 </html>

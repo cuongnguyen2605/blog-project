@@ -62,6 +62,7 @@
                                       id="my-awesome-dropzone"
                                       class="dropzone dz-clickable"
                                       enctype="multipart/form-data"
+                                      style=" width: 50%; border-style: inset;"
                                 >
                                     <div class="fallback">
                                         <input type="file" name="file" />
@@ -140,15 +141,20 @@
         const uploader = new Dropzone('#my-awesome-dropzone');
         uploader.on('success', function( file, res ){
             $('#url-image').val(res.link);
+            console.log(res.link);
+
         });
     });
 
 
     Dropzone.options.myAwesomeDropzone = {
         maxFiles: 1,
-        accept: function(file, done) {
+            accept: function(file, done) {
             console.log("uploaded");
             done();
+        },
+        success: function (file, res) {
+            $('#my-awesome-dropzone').css('border-style','none');
         },
         init: function() {
             this.on("maxfilesexceeded", function(file){
@@ -157,7 +163,12 @@
             });
         }
     };
-
+     //
+    $(document).ready(function () {
+       $('.dz-preview dz-processing dz-complete dz-image-preview').click(function () {
+           $('#my-awesome-dropzone').css('border-style','solid');
+       }) ;
+    });
 
     function readURL(input) {
 

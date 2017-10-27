@@ -7,8 +7,8 @@ const storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, './public/uploads');
     },
-    filename: function (req, file, callback) {
-        callback(null, "photo" + '-' + random + path.extname(file.originalname));
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now());
     }
 });
 
@@ -21,13 +21,13 @@ module.exports = function (req, res, next) {
             throw new Error("Upload failed");
         }
         if (!req.file) {
-            res.status(404).json({
+            return res.status(404).json({
                 status: 'Fail'
             });
         }
-        res.status(200).json({
+        return res.status(200).json({
             status: 'Success',
-            link: `/uploads/${req.file.filename}`
+             link: `/uploads/${req.file.filename}`
         });
     });
 };
