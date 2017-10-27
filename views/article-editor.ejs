@@ -2,34 +2,16 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit Article</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css"/>
     <link href="/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet"/>
 
-    <style>
-        .upload-btn-wrapper {
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-        }
-
-        .upload-btn-wrapper input[type=file] {
-            font-size: 100px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-        }
-        .undo{
-            margin-top: 220px;
-            margin-left: -210px;
-        }
-    </style>
 </head>
 <body>
 <div class="page">
@@ -56,43 +38,45 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 style="margin: 0; font-weight: bold">Edit article</h1>
-                    <hr />
-                    <div id="undo">
-                    <% article.forEach(function (article) { %>
-                    <img src="<%= article.images %>" alt="" width="200" height="200" id="img"
-                    style="border: 2px; border-radius: 25px;"/>
-                    <form method="POST"
-                          action="/articles/upload"
-                          id="my-awesome-dropzone"
-                          class="dropzone dz-clickable"
-                          enctype="multipart/form-data"
-                    >
-                        <div class="fallback">
-                            <input type="file" name="file" id="file" />
-                        </div>
-                    </form>
+                    <div class="col-md-9">
+                        <form name="article-form" action="" method="post">
+                            <div class="form-group">
+                                <input type="hidden" id="url-image" name="url-image"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Title</label>
+                                <input type="text" class="form-control" id="title" name="title" style="width: 1000px;"
+                                       placeholder="Input new article title" value="<%= article.title %>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Content</label>
+                                <textarea style="height:200px" name="content" id="content">
+                                    <%= article.content %>
+                                </textarea>
+                            </div>
+                            <br/>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </form>
                     </div>
-                    <form name="article-form" action="" method="post">
-                        <div class="form-group">
-                            <input type="hidden" id="url-image" name="url-image" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Title</label>
-                            <input type="text" class="form-control" id="title" name="title"
-                                   placeholder="Input new article title" value="<%= article.title %>">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Content</label>
-                            <textarea style="height:200px" name="content" id="content">
-                                <%= article.content %>
-                            </textarea>
-                        </div>
-                        <br/>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <button type="reset" class="btn btn-default">Reset</button>
-                    </form>
-                    <% }); %>
+
+                    <div id="undo" style="margin-top: 120px;" class="col-md-3">
+                        <% article.forEach(function (article) { %>
+                        <img src="<%= article.images %>" alt="" id="img"
+                             style="border: 2px; border-radius: 5px; max-width: 200px; max-height: 200px; margin-bottom: 20px"/>
+                        <form method="POST"
+                              action="/articles/upload"
+                              id="my-awesome-dropzone"
+                              class="dropzone dz-clickable"
+                              enctype="multipart/form-data"
+                        >
+                            <div class="fallback">
+                                <input type="file" name="file" id="file"/>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                <% }); %>
             </div>
         </div>
     </main>
@@ -137,7 +121,7 @@
     Dropzone.autoDiscover = false;
     $(document).ready(function () {
         const uploader = new Dropzone('#my-awesome-dropzone');
-        uploader.on('success', function( file, res ){
+        uploader.on('success', function (file, res) {
             $('#url-image').val(res.link);
         });
     });
@@ -158,21 +142,21 @@
 
     Dropzone.options.myAwesomeDropzone = {
         maxFiles: 1,
-        accept: function(file, done) {
+        accept: function (file, done) {
             console.log("uploaded");
             done();
         },
-        success : function(file, response){
+        success: function (file, response) {
             // jquery here
 //            console.log(response.link);
 //            console.log(file);
-            $('img').attr('src',response.link);
+            $('img').attr('src', response.link);
 
 
             //
         },
-        init: function() {
-            this.on("maxfilesexceeded", function(file){
+        init: function () {
+            this.on("maxfilesexceeded", function (file) {
                 this.removeAllFiles();
                 this.addFile(file);
             });
