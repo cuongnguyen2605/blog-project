@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css"/>
-    <link href="/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet"/>
-    <script src="/libs/dropzone/dist/min/dropzone.min.js"></script>
 
 </head>
 <body>
@@ -65,19 +63,21 @@
                                     <button type="reset" class="btn btn-default">Clear</button>
                                 </form>
                             </div>
-                            <div class="col-md-3" style="margin-top: 120px">
-                                <form method="POST"
-                                      action="/articles/upload"
-                                      id="my-awesome-dropzone"
-                                      class="dropzone dz-clickable"
-                                      enctype="multipart/form-data"
-                                      style=" width: 200px; border-style: inset;"
+                            <div class="col-md-3" style="margin-top: 90px">
+                                <label class="control-label" for="image-article">Image</label>
+                                <img class="article-image img-responsive hoverZoomLink"
+                                     id="img-preview"
+                                     style="max-width: 200px; max-height: 200px; border: slategray solid 1px"
+                                     data-src="holder.js/100x100"
+                                     data-holder-rendered="true"
+                                     src="/uploads/default.jpg"
                                 >
-                                    <div class="dz-message" data-dz-message><span>Click here to upload an image</span></div>
-                                    <div class="fallback">
-                                        <input type="file" name="file" />
-                                    </div>
-                                </form>
+                                <br>
+                                <div style="position: relative; overflow: hidden; display: inline-block;">
+                                    <button class="btn">Choose a image</button>
+                                    <input type="file" name="file" id="img-upload"
+                                           style=" font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0;"/>
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -122,35 +122,39 @@
         });
     });
 
-    Dropzone.autoDiscover = false;
-    $(document).ready(function () {
-        const uploader = new Dropzone('#my-awesome-dropzone');
-        uploader.on('success', function( file, res ){
-            $('#url-image').val(res.link);
-            console.log(res.link);
-        });
+//Show selected image
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#img-preview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#img-upload").change(function () {
+        readURL(this);
     });
 
-    Dropzone.options.myAwesomeDropzone = {
-        maxFiles: 1,
-            accept: function(file, done) {
-            console.log("uploaded");
-            done();
-        },
-        success: function (file, res) {
-            $('#my-awesome-dropzone').css('border-style','inset');
-        },
-        init: function() {
-            this.on("maxfilesexceeded", function(file){
-                this.removeAllFiles();
-                this.addFile(file);
-            });
-        }
-    };
-    $(document).ready(function () {
-       $('.dz-preview dz-processing dz-complete dz-image-preview').click(function () {
-           $('#my-awesome-dropzone').css('border-style','solid');
-       }) ;
+//Upload image
+    $(document).ready(() => {
+        $('#img-upload').change((e) => {
+            let formData = new FormData();
+            formData.append('file', e.target.files[0]);
+
+            $.ajax({
+                url: '/articles/upload',
+                type: 'post',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: (result) => {
+                    if (result.status == 'Success') {
+                        $('#url-image').val(result.link);
+                    }
+                }
+            })
+        });
     });
 </script>
 </body>

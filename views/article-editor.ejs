@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css"/>
-    <link href="/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet"/>
 
 </head>
 <body>
@@ -36,6 +35,7 @@
     <main>
         <div class="container" style="width: 80%">
             <div class="row">
+                <% article.forEach(function (article) { %>
                 <div class="col-md-12">
                     <h1 style="margin: 0; font-weight: bold">Edit article</h1>
                     <div class="col-md-9">
@@ -60,22 +60,21 @@
                         </form>
                     </div>
 
-                    <div id="undo" style="margin-top: 120px;" class="col-md-3">
-                        <% article.forEach(function (article) { %>
-                        <img src="<%= article.images %>" alt="" id="img"
-                             style="border: 2px; border-radius: 5px; max-width: 200px; max-height: 200px; margin-bottom: 20px"/>
-                        <form method="POST"
-                              action="/articles/upload"
-                              id="my-awesome-dropzone"
-                              class="dropzone dz-clickable"
-                              enctype="multipart/form-data"
-                              style="width: 200px"
+                    <div style="margin-top: 90px;" class="col-md-3">
+                        <label class="control-label" for="image-article">Image</label>
+                        <img class="article-image img-responsive hoverZoomLink"
+                             id="img-preview"
+                             style="max-width: 200px; max-height: 200px; border: slategray solid 1px"
+                             data-src="holder.js/100x100"
+                             data-holder-rendered="true"
+                             src="<%= article.images %>"
                         >
-                            <div class="dz-message" data-dz-message><span>Click here to upload an image</span></div>
-                            <div class="fallback">
-                                <input type="file" name="file" id="file"/>
-                            </div>
-                        </form>
+                        <br>
+                        <div style="position: relative; overflow: hidden; display: inline-block;">
+                            <button class="btn">Choose a image</button>
+                            <input type="file" name="file" id="img-upload"
+                                   style=" font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0;"/>
+                        </div>
                     </div>
                 </div>
                 <% }); %>
@@ -120,50 +119,40 @@
         });
     });
 
-    Dropzone.autoDiscover = false;
-    $(document).ready(function () {
-        const uploader = new Dropzone('#my-awesome-dropzone');
-        uploader.on('success', function (file, res) {
-            $('#url-image').val(res.link);
-        });
-    });
-
-    $(document).ready(function () {
-        $('#my-awesome-dropzone').click(function () {
-            $('#my-awesome-dropzone').hide();
-            $('#undo').append('<button id="buttonA" class="btn btn-link"><em>Do you want select another images?</em></button>');
-            $("#buttonA").addClass("undo");
-            $('#buttonA').click(function () {
-                $('#my-awesome-dropzone').show();
-                $('#buttonA').remove();
-            })
-
-        });
-    });
-
-
-    Dropzone.options.myAwesomeDropzone = {
-        maxFiles: 1,
-        accept: function (file, done) {
-            console.log("uploaded");
-            done();
-        },
-        success: function (file, response) {
-            // jquery here
-//            console.log(response.link);
-//            console.log(file);
-            $('img').attr('src', response.link);
-
-
-            //
-        },
-        init: function () {
-            this.on("maxfilesexceeded", function (file) {
-                this.removeAllFiles();
-                this.addFile(file);
-            });
+//Show selected image
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#img-preview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
         }
-    };
+    }
+    $("#img-upload").change(function () {
+        readURL(this);
+    });
+
+//Upload image
+    $(document).ready(() => {
+        $('#img-upload').change((e) => {
+            let formData = new FormData();
+            formData.append('file', e.target.files[0]);
+
+            $.ajax({
+                url: '/articles/upload',
+                type: 'post',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: (result) => {
+                    if (result.status == 'Success') {
+                        $('#url-image').val(result.link);
+                    }
+                }
+            })
+        });
+    });
 </script>
 </body>
 </html>
