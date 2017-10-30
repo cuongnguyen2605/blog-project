@@ -10,35 +10,17 @@
     <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css"/>
 </head>
-<body>
+<body style="background: #e6e6e6">
 <div class="page">
-    <header>
-        <nav class="navbar navbar-default" style="border-radius: 0px">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="/">Blog Project</a>
-                        </div>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="/signup"><span class="glyphicon glyphicon-user"></span> Create Account</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="main-page">
-        <div class="container">
+    <div class="main-page" style="margin-top: 100px">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default" style="width: 40%; margin: 0 auto; border-radius: 0;">
+                <div class="col-md-4 col-md-offset-4 col-sm-12">
+                    <div class="panel panel-default">
                         <div class="panel-heading" style="background: #f8f8f8; padding: 20px">
-                            <h3 class="panel-title" style="font-weight: bold">
-                                <i class="fa fa-lock fa-lg" aria-hidden="true"></i> You need Login.
-                            </h3>
+                            <h1 class="panel-title" style="font-weight: bold">
+                                <i class="fa fa-lock fa-lg" aria-hidden="true"></i> Login
+                            </h1>
                         </div>
                         <% if(message != "" && message != "Signup successfully"){ %>
                         <div class="alert alert-warning" style="margin-bottom: 0px; border-radius: 0px; padding: 20px">
@@ -54,14 +36,12 @@
                             <form accept-charset="UTF-8" role="form" action="/signin" method="post" id="login-form">
                                 <fieldset>
                                     <div class="form-group">
-                                        <label for="username">Username</label>
                                         <input class="form-control" placeholder="Username" name="username" type="text" id="username"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">Password</label>
                                         <input class="form-control" placeholder="Password" name="password" type="password" id="password"/>
                                     </div>
-                                    <button class="btn btn-primary" type="submit"><i class="fa fa-key" aria-hidden="true"></i> Login</button>
+                                    <button class="btn btn-success btn-block" type="submit"><i class="fa fa-key" aria-hidden="true"></i> Login</button>
                                 </fieldset>
                             </form>
                             <br/>
