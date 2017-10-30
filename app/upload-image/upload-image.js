@@ -1,6 +1,6 @@
 const multer = require('multer');
 const path = require('path');
-
+let maxSize = 5* 1000 * 1000;
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, './public/uploads');
@@ -10,15 +10,18 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage: storage,
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: maxSize },
     fileFilter: function (req, file, callback) {
         let ext = path.extname(file.originalname);
-        if(ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+        if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
             callback(new Error('Upload file must be image!'));
             return callback(null, false);
         }
-           return callback(null, true);
-    }}).single('file');
+        return callback(null, true);
+    }
+}).single('file');
 
 module.exports = function (req, res) {
     upload(req, res, function (err) {
@@ -34,7 +37,7 @@ module.exports = function (req, res) {
         }
         return res.status(200).json({
             status: 'Success',
-             link: `/uploads/${req.file.filename}`
+            link: `/uploads/${req.file.filename}`
         });
     });
 };
