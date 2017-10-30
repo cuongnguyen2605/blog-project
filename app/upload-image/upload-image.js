@@ -5,14 +5,14 @@ const storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, './public/uploads');
     },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    filename: function (req, file, callback) {
+        callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
 
 const upload = multer({ storage: storage}).single('file');
 
-module.exports = function (req, res, next) {
+module.exports = function (req, res) {
     upload(req, res, function (err) {
         if (err) {
             console.log(err)
