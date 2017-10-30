@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit Article</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
@@ -38,16 +39,16 @@
                 <% article.forEach(function (article) { %>
                 <div class="col-md-12">
                     <h1 style="margin: 0; font-weight: bold">Edit article</h1>
-                    <div class="col-md-9">
-                        <form name="article-form" action="" method="post">
-                            <div class="form-group">
-                                <input type="hidden" id="url-image" name="url-image"/>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Title</label>
-                                <input type="text" class="form-control" id="title" name="title" style="width: 1000px;"
-                                       placeholder="Input new article title" value="<%= article.title %>">
-                            </div>
+                    <form name="article-form" action="" method="post">
+                        <div class="form-group">
+                            <input type="hidden" id="url-image" name="url-image"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="title"
+                                   placeholder="Input new article title" value="<%= article.title %>">
+                        </div>
+                        <div class="col-md-9">
                             <div class="form-group">
                                 <label class="control-label">Content</label>
                                 <textarea style="height:200px" name="content" id="content">
@@ -57,25 +58,26 @@
                             <br/>
                             <button type="submit" class="btn btn-primary">Save</button>
                             <button type="reset" class="btn btn-default">Reset</button>
-                        </form>
-                    </div>
-
-                    <div style="margin-top: 90px;" class="col-md-3">
-                        <label class="control-label" for="image-article">Image</label>
-                        <img class="article-image img-responsive hoverZoomLink"
-                             id="img-preview"
-                             style="max-width: 200px; max-height: 200px; border: slategray solid 1px"
-                             data-src="holder.js/100x100"
-                             data-holder-rendered="true"
-                             src="<%= article.images %>"
-                        >
-                        <br>
-                        <div style="position: relative; overflow: hidden; display: inline-block;">
-                            <button class="btn">Choose a image</button>
-                            <input type="file" name="file" id="img-upload"
-                                   style=" font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0;"/>
                         </div>
-                    </div>
+
+                        <div class="col-md-3">
+                            <label class="control-label" for="image-article">Image</label>
+                            <img class="article-image img-responsive hoverZoomLink"
+                                 id="img-preview"
+                                 style="max-width: 200px; max-height: 200px; border: slategray solid 1px"
+                                 data-src="holder.js/100x100"
+                                 data-holder-rendered="true"
+                                 src="<%= article.images %>"
+                            >
+                            <br>
+                            <div style="position: relative; overflow: hidden; display: inline-block;">
+                                <button class="btn">Choose a image</button>
+                                <input type="file" name="file" id="img-upload"
+                                       style=" font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0;"/>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
                 <% }); %>
             </div>
@@ -100,6 +102,9 @@
                 content: {
                     required: true,
                     minlength: 100
+                },
+                file: {
+                    accept: "png|jpe?g|gif"
                 }
             },
             messages: {
@@ -111,7 +116,8 @@
                 content: {
                     required: 'Please enter Content',
                     minlength: 'Your Content must be at least 100 characters long.'
-                }
+                },
+                file: "Your image is not an image"
             },
             submitHandler: function (form) {
                 form.submit();
@@ -119,7 +125,7 @@
         });
     });
 
-//Show selected image
+    //Show selected image
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -129,11 +135,12 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+
     $("#img-upload").change(function () {
         readURL(this);
     });
 
-//Upload image
+    //Upload image
     $(document).ready(() => {
         $('#img-upload').change((e) => {
             let formData = new FormData();
