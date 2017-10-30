@@ -150,6 +150,7 @@
                 contentType: false,
                 success: (result) => {
                     if (result.status == 'Success') {
+                        console.log(result);
                         $('#url-image').val(result.link);
                     }
                 }

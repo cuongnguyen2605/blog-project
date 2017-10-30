@@ -10,13 +10,22 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage: storage}).single('file');
+const upload = multer({ storage: storage,
+    fileFilter: function (req, file, callback) {
+        let ext = path.extname(file.originalname);
+        if(ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+            callback(new Error('Upload file must be image!'));
+            return callback(null, false);
+        }
+           return callback(null, true);
+    }}).single('file');
 
 module.exports = function (req, res) {
     upload(req, res, function (err) {
         if (err) {
-            console.log(err)
-            throw new Error("Upload failed");
+            console.log(err);
+            return res.status(500).json({error: err});
+
         }
         if (!req.file) {
             return res.status(404).json({
