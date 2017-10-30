@@ -1,14 +1,12 @@
 const multer = require('multer');
 const path = require('path');
-const randomString = require('randomstring');
-const random = randomString.generate();
 
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, './public/uploads');
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now());
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
 

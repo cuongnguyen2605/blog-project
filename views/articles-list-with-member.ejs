@@ -59,14 +59,14 @@
             <div class="row">
                 <div class="col-md-8" style="border-right: 1px solid #eee">
                     <h1 style="margin: 0; font-weight: bold;">Articles List</h1>
-                    <hr/>
+                    <hr style="margin-bottom: 0"/>
                     <div class="list-group" style="margin: 0">
                         <% if (articles[0] == null) { %>
                         <h3>Don't have any article!</h3>
                         <% } else { %>
                         <% articles.forEach(function(article) { %>
                             <div class="media" style="margin: 0;padding: 20px 0; border-bottom: 1px solid #eee">
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding: 0">
                                     <div class="media-left" style="padding-right: 20px">
                                         <img alt="Image"
                                              class="media-object"
@@ -77,7 +77,7 @@
                                         >
                                     </div>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-9" style="padding: 0">
                                     <div class="media-body">
                                         <a href="/articles/detail/<%= article.article_id %>">
                                             <h4 style="font-weight: bold; margin-top: 0px"><%= article.title %></h4>
