@@ -4,7 +4,7 @@ module.exports = function (req, res) {
 
     uploader.upload(req, res, function (err) {
         if (err) {
-            return res.status(500).json({error: err});
+            return res.status(500).json({link: '/uploads/default.jpg'});
 
         }
         if (!req.file) {
