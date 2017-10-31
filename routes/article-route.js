@@ -29,7 +29,7 @@ const SearchAdvanceController = require('../http/controllers/search-advance-cont
 const SearchQuickController = require('../http/controllers/search-quick-controller');
 const createComment = require('../http/controllers/comment-controller').createComment;
 const deleteComment = require('../http/controllers/comment-controller').deleteComment;
-const uploadImage = require('../app/upload-image/upload-image');
+const uploadImage = require('../http/controllers/upload-controller');
 
 //List
 router.get('/',CheckAliveSession, getAllArticlesForMember);
