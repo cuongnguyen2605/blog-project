@@ -40,15 +40,15 @@
                         <hr/>
                         <div class="create-article">
                             <form name="article-form" action="" method="post">
-                                    <div class="form-group">
-                                        <input type="hidden" id="url-image" name="url-image" value="/uploads/default.jpg" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label">Title</label>
-                                        <input type="text" class="form-control" id="title" name="title"
-                                               placeholder="Input new article title">
-                                    </div>
-                                <div class="col-md-9">
+                                <div class="form-group">
+                                    <input type="hidden" id="url-image" name="url-image" value="/uploads/default.jpg" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                           placeholder="Input new article title">
+                                </div>
+                                <div class="col-md-9" style="padding-left: 0">
                                     <div class="form-group">
                                         <label class="control-label">Content</label>
                                         <textarea style="height:200px" name="content" id="content"></textarea>
@@ -62,24 +62,22 @@
                                     <button type="submit" class="btn btn-primary">Create</button>
                                     <button type="reset" class="btn btn-default">Clear</button>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-right: 0">
                                     <label class="control-label" for="image-article">Image</label>
                                     <img class="article-image img-responsive hoverZoomLink"
                                          id="img-preview"
                                          style="max-width: 200px; max-height: 200px; border: slategray solid 1px"
-                                         data-src="holder.js/100x100"
                                          data-holder-rendered="true"
                                          src="/uploads/default.jpg"
                                     >
                                     <br>
                                     <div style="position: relative; overflow: hidden; display: inline-block;">
-                                        <button class="btn">Choose a image</button>
+                                        <button class="btn btn-basic">Choose a Image</button>
                                         <input type="file" name="file" id="img-upload"
                                                style=" font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0;"/>
                                     </div>
                                 </div>
                             </form>
-
                         </div>
                     </article>
                 </div>
@@ -111,15 +109,15 @@
             },
             messages: {
                 title: {
-                    required: 'Please enter Title',
+                    required: 'Please enter Title.',
                     minlength: 'Your Title must be between 10 to 100 character.',
                     maxlength: 'Your Title must be between 10 to 100 character.'
                 },
                 content: {
-                    required: 'Please enter Content',
+                    required: 'Please enter Content.',
                     minlength: 'Your Content must be at least 100 characters long.'
                 },
-                file: "Your file is not an image"
+                file: "Your file is not an image."
             },
             submitHandler: function (form) {
                 form.submit();
@@ -169,7 +167,7 @@
                 contentType: false,
                 success: (result) => {
                     console.log(result);
-                    if (result.status == 'Success') {
+                    if (result.status === 'Success') {
                         console.log(result);
                         $('#url-image').val(result.link);
                     }
