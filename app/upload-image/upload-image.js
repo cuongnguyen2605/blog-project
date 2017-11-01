@@ -18,10 +18,9 @@ class Uploader{
             fileFilter: function (req, file, callback) {
                 let ext = path.extname(file.originalname);
                 if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
-                    callback(new Error('Upload file must be image!'));
-                    return callback(null, false);
+                    return callback(new Error('Upload file must be image!'), false);
                 }
-                else return callback(null, true);
+                return callback(null, true);
             }
         }).single('file');
     }

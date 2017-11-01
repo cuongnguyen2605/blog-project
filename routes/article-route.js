@@ -30,6 +30,7 @@ const SearchQuickController = require('../http/controllers/search-quick-controll
 const createComment = require('../http/controllers/comment-controller').createComment;
 const deleteComment = require('../http/controllers/comment-controller').deleteComment;
 const uploadImage = require('../http/controllers/upload-controller');
+const uploadValidatorMiddleware = require('../http/middlewares/upload-validator-middleware');
 
 //List
 router.get('/',CheckAliveSession, getAllArticlesForMember);
@@ -42,7 +43,7 @@ router.get('/create', canCreatingArticle, (req, res) => {
     return res.render('article-creator.ejs', {errors: ""});
 });
 //Create, Edit
-router.post('/upload', uploadImage);
+router.post('/upload', uploadValidatorMiddleware, uploadImage);
 
 router.post('/create', newArticleConverter, articleCreating);
 
