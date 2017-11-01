@@ -72,7 +72,7 @@
                                          src="/uploads/default.jpg"
                                     >
                                     <br>
-                                    <div style="position: relative; overflow: hidden; display: inline-block;">
+                                    <div id="notice-error" style="position: relative; overflow: hidden; display: inline-block;">
                                         <button class="btn">Choose a image</button>
                                         <input type="file" name="file" id="img-upload"
                                                style=" font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0;"/>
@@ -128,14 +128,16 @@
     });
 
 //Show selected image
+
     function readURL(input) {
-        let mimetipeImage = /(image\/)gif|(image\/)jpg|(image\/)jp?g|(image\/)png/;
+        let mimetipeImage = /(image\/)gif|(image\/)jpg|(image\/)jpeg|(image\/)png/;
         if (input.files && input.files[0]) {
             console.log(input.files[0].type);
             var reader = new FileReader();
             if(mimetipeImage.test(input.files[0].type)){
                 if(input.files[0].size > 5*1024*1024){
                     $('#img-preview').attr('src', '/uploads/default.jpg');
+                    $('#notice-error').append('<label for="img-upload" generated="true" class="error" style="">Size of file not exceed 5mb</label>');
                 }
                 else{
                     reader.onload = function (e) {
@@ -170,7 +172,6 @@
                 success: (result) => {
                     console.log(result);
                     if (result.status == 'Success') {
-                        console.log(result);
                         $('#url-image').val(result.link);
                     }
                 }
