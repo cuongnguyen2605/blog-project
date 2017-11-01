@@ -56,32 +56,36 @@
                         <% } else { %>
                         <% articles.forEach(function(article) { %>
                         <div class="media" style="margin: 0;padding: 20px 0; border-bottom: 1px solid #eee">
-                            <div class="media-left" style="padding-right: 20px">
-                                <img alt="Image"
-                                     class="media-object"
-                                     data-src="holder.js/100x100"
-                                     src="<%= article.images %>"
-                                     data-holder-rendered="true"
-                                     style="max-width: 150px; max-height: 150px;"
-                                >
+                            <div class="col-md-3" style="padding: 0">
+                                <div class="media-left" style="padding-right: 20px">
+                                    <img alt="Image"
+                                         class="media-object"
+                                         data-src="holder.js/100x100"
+                                         src="<%= article.images %>"
+                                         data-holder-rendered="true"
+                                         style="max-width: 150px; max-height: 150px;"
+                                    >
+                                </div>
                             </div>
-                            <div class="media-body">
-                                <a href="/articles/detail/<%= article.article_id %>">
-                                    <h4 style="font-weight: bold; margin-top: 0px"><%= article.title %></h4>
-                                </a>
-                                <p style="font-size: 16px">by <a href="#"><%= article.username %></a></p>
-                                <p style="color: #818181; margin-bottom: -1px;">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at.toDateString() %>
-                                </p>
-                                <% if (article.status === "accepted") {%>
+                            <div class="col-md-9" style="padding: 0">
+                                <div class="media-body">
+                                    <a href="/articles/detail/<%= article.article_id %>">
+                                        <h4 style="font-weight: bold; margin-top: 0px"><%= article.title %></h4>
+                                    </a>
+                                    <p style="font-size: 16px">by <a href="#"><%= article.username %></a></p>
+                                    <p style="color: #818181; margin-bottom: -1px;">
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i> Posted on <%= article.create_at.toDateString() %>
+                                    </p>
+                                    <% if (article.status === "accepted") {%>
                                     <span class="label label-success"><%= article.status %></span>
-                                <% } %>
-                                <% if (article.status === "waiting") {%>
+                                    <% } %>
+                                    <% if (article.status === "waiting") {%>
                                     <span class="label label-warning"><%= article.status %></span>
-                                <% } %>
-                                <% if(article.status === "rejected") {%>
+                                    <% } %>
+                                    <% if(article.status === "rejected") {%>
                                     <span class="label label-danger"><%= article.status %></span>
-                                <% } %>
+                                    <% } %>
+                                </div>
                             </div>
                         </div>
                         <% }); } %>
