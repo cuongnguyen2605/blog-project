@@ -4,3 +4,4 @@ node_modules/
 knexfile.js
 knex-connection.js
 mysql-connection.js
+public/uploads

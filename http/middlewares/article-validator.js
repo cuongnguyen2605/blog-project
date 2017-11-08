@@ -23,7 +23,8 @@ exports.newArticleConverter = (req, res, next) => {
         req.article.setCreatedDate(create_at);
         req.article.setImage(image);
         req.article.setStatus(status);
-        next();
+        console.log(req.article);
+        // next();
     }
 };
 

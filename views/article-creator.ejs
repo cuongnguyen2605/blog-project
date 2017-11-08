@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css"/>
-
 </head>
 <body>
 <div class="page">
@@ -40,14 +39,14 @@
                         <hr/>
                         <div class="create-article">
                             <form name="article-form" action="" method="post">
-                                    <div class="form-group">
-                                        <input type="hidden" id="url-image" name="url-image" value="/uploads/default.jpg" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label">Title</label>
-                                        <input type="text" class="form-control" id="title" name="title"
-                                               placeholder="Input new article title">
-                                    </div>
+                                <div class="form-group">
+                                    <input type="hidden" id="url-image" name="url-image" value="/uploads/default.jpg" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                           placeholder="Input new article title">
+                                </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <label class="control-label">Content</label>
@@ -64,23 +63,19 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label class="control-label" for="image-article">Image</label>
-                                    <img class="article-image img-responsive hoverZoomLink"
+                                    <img class="article-image img-responsive"
                                          id="img-preview"
                                          style="max-width: 200px; max-height: 200px; border: slategray solid 1px"
-                                         data-src="holder.js/100x100"
-                                         data-holder-rendered="true"
                                          src="/uploads/default.jpg"
                                     >
                                     <input type="hidden" value="/uploads/default.jpg" id="undo-image">
                                     <br>
                                     <div id="notice-error" style="position: relative; overflow: hidden; display: inline-block;">
                                         <button class="btn">Choose a image</button>
-                                        <input type="file" name="file" id="img-upload"
-                                               style=" font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0;"/>
+                                        <input type="file" name="file" id="img-upload" style="font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0;"/>
                                     </div>
                                 </div>
                             </form>
-
                         </div>
                     </article>
                 </div>
@@ -128,8 +123,9 @@
         });
     });
 
-//Show selected image
-    //Show selected image
+    /**
+     * Show selected image
+     */
     $(document).ready(function () {
         let undoimage = $('#undo-image').val();
         $('#img-upload').change(function () {
@@ -138,24 +134,20 @@
         function readURL(input) {
             let mimetipeImage = /(image\/)gif|(image\/)jpg|(image\/)jpeg|(image\/)png/;
             if (input.files && input.files[0]) {
-                var reader = new FileReader();
+                let reader = new FileReader();
                 if(mimetipeImage.test(input.files[0].type)){
                     if(input.files[0].size > 5*1024*1024){
                         $('#img-preview').attr('src',undoimage);
                         alert('Size of file not exceed 5mb');
-                    }
-                    else
-                    {
+                    } else {
                         reader.onload = function (e) {
                             $('#img-preview').attr('src', e.target.result);
                         }
                         reader.readAsDataURL(input.files[0]);
                     }
-                }
-                else{
+                } else {
                     $('#img-preview').attr('src', undoimage);
                 }
-
             }
         }
 
@@ -164,18 +156,24 @@
         });
 
     });
-    //
+
+    /**
+     * Show Error
+     */
     $(document).ready(function () {
         $('#notice-error').change(function () {
             $('#err-exceed').show();
         })
     })
-//Upload image
+
+    /**
+     * Upload image
+     */
     $(document).ready(() => {
         $('#img-upload').change((e) => {
             let formData = new FormData();
             formData.append('file', e.target.files[0]);
-            console.log(e.target.files[0].name);
+            console.log(e.target.files[0]);
             $.ajax({
                 url: '/articles/upload',
                 type: 'post',
@@ -184,7 +182,7 @@
                 contentType: false,
                 success: (result) => {
                     console.log(result);
-                    if (result.status == 'Success') {
+                    if (result.status === 'Success') {
                         $('#url-image').val(result.link);
                     }
                 }
