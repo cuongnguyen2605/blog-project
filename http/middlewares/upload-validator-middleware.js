@@ -4,11 +4,10 @@ let uploader = new Uploader();
 module.exports = function (req, res, next) {
     uploader.upload(req, res, function (err) {
         if (err) {
-            console.log(err);
-            res.status(500).json({link: '/uploads/default.jpg', message: err.message});
+            res.status(500).json({link: '/uploads/default.jpg', message: err.getMessage()});
         }
         else {
             next();
         }
     });
-}
+};

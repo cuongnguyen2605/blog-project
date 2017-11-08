@@ -1,6 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 const maxSize = 5* 1000 * 1000;
+const UploadImageValidator= require('./uploaded-image-validator');
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, './public/uploads');
@@ -10,17 +11,15 @@ const storage = multer.diskStorage({
     }
 });
 
+let uploadImageValidator= new UploadImageValidator(path);
+
 class Uploader{
     constructor(){
         this.upload = multer({
             storage: storage,
             limits: { fileSize: maxSize },
-            fileFilter: function (req, file, callback) {
-                let ext = path.extname(file.originalname);
-                if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
-                    return callback(new Error('Upload file must be image!'), false);
-                }
-                return callback(null, true);
+            fileFilter: function (req, file, cb) {
+                return cb(uploadImageValidator.validate(file),false);
             }
         }).single('file');
     }

@@ -9,7 +9,9 @@ class InvalidUploadedResult {
         this.message = message;
     }
 
-    getMessage(){
+    getMessage() {
         return this.message;
     }
 }
+
+module.exports = InvalidUploadedResult;

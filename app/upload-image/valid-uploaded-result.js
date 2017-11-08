@@ -9,7 +9,9 @@ class ValidUploadedResult {
         this.message = message;
     }
 
-    getMessage(){
+    getMessage() {
         return this.message;
     }
 }
+
+module.exports = ValidUploadedResult;
